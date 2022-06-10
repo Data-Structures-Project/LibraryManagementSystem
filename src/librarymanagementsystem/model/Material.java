@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.Objects;
 import java.util.Stack;
 
-public class Material implements Comparable<Material>{
+public class Material implements Comparable<Material> {
     private Long id;
     private MaterialType type;
     private String name;
@@ -19,7 +19,8 @@ public class Material implements Comparable<Material>{
 
     private String info;
 
-    public Material(Long id, MaterialType type, String name, Category category, Date publicationDate, Author author, Publisher publisher, int pageCount, Situation situation, Location location) {
+    public Material(Long id, MaterialType type, String name, Category category, Date publicationDate, Author author,
+            Publisher publisher, int pageCount, Situation situation, Location location) {
         this.id = id;
         this.type = type;
         this.name = name;
@@ -33,10 +34,10 @@ public class Material implements Comparable<Material>{
         rates = new Stack<>();
     }
 
-    public Material(String name)
-    {
+    public Material(String name) {
         this.name = name;
     }
+
     public Long getId() {
         return id;
     }
@@ -117,7 +118,6 @@ public class Material implements Comparable<Material>{
         this.location = location;
     }
 
-
     public Stack<Integer> getRates() {
         return rates;
     }
@@ -126,34 +126,35 @@ public class Material implements Comparable<Material>{
         this.rates = rates;
     }
 
-    public boolean addRate(Integer rate){
+    public boolean addRate(Integer rate) {
         return rates.add(rate);
     }
 
-    public boolean removeRate(Integer rate){
+    public boolean removeRate(Integer rate) {
         return rates.remove(rate);
     }
 
     /**
      * TODO BUNU İSME GÖRE COMPARE ET
+     * 
      * @param material the object to be compared.
      * @return
      */
     @Override
     public int compareTo(Material material) {
         try {
-            if(material == null)
+            if (material == null)
                 throw new NullPointerException();
 
-            else if(id < material.id)
+            else if (id < material.id)
                 return -1;
 
-            else if(id > material.id)
+            else if (id > material.id)
                 return 1;
 
             else
                 return 0;
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             System.out.println("Material.compareTo: material is null");
         }
 
@@ -161,24 +162,31 @@ public class Material implements Comparable<Material>{
     }
 
     public int compareTo(Integer ID) {
-            if(id <ID)
-                return -1;
+        if (id < ID)
+            return -1;
 
-            else if(id > ID)
-                return 1;
+        else if (id > ID)
+            return 1;
 
-            else
-                return 0;
+        else
+            return 0;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Material)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof Material))
+            return false;
         Material material = (Material) o;
-        return getPageCount() == material.getPageCount() && Objects.equals(getId(), material.getId()) && getType() == material.getType() && Objects.equals(getName(), material.getName()) && getCategory() == material.getCategory() && Objects.equals(getPublicationDate(), material.getPublicationDate()) && Objects.equals(getAuthor(), material.getAuthor()) && Objects.equals(getPublisher(), material.getPublisher()) && getSituation() == material.getSituation() && getLocation() == material.getLocation() && Objects.equals(getRates(), material.getRates());
+        return getPageCount() == material.getPageCount() && Objects.equals(getId(), material.getId())
+                && getType() == material.getType() && Objects.equals(getName(), material.getName())
+                && getCategory() == material.getCategory()
+                && Objects.equals(getPublicationDate(), material.getPublicationDate())
+                && Objects.equals(getAuthor(), material.getAuthor())
+                && Objects.equals(getPublisher(), material.getPublisher()) && getSituation() == material.getSituation()
+                && getLocation() == material.getLocation() && Objects.equals(getRates(), material.getRates());
     }
-
 
     @Override
     public String toString() {

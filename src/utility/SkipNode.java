@@ -1,5 +1,8 @@
 package utility;
 
+import java.util.ArrayList;
+import java.util.Locale.Category;
+
 import librarymanagementsystem.model.Material;
 
 class SkipNode<N extends Comparable<? super N>> {
@@ -95,30 +98,79 @@ class SkipNode<N extends Comparable<? super N>> {
      * @param ID
      * @return
      */
-    public boolean compareTo(int ID)
-    {
-        if(((Material)data).getId()==ID)
+    public boolean compareTo(int ID) {
+        if (((Material) data).getId() == ID)
             return true;
 
-        else return false;
+        else
+            return false;
     }
 
     /**
+     *
+     * @param Category category
+     * @return
+     */
+    public boolean compareTo(librarymanagementsystem.model.Category category) {
+        if (((Material) data).getCategory().compareTo(category) == 0)
+            return true;
+
+        else
+            return false;
+    }
+
+        /**
+     *
+     * @param Category category
+     * @return
+     */
+    // public boolean compareByRate(int rate) {
+
+    //     if (((Material) data).getRates() == rate)
+    //         return true;
+
+    //     else
+    //         return false;
+    // }
+
+    /**
      * Traverses the Skip List, searches the Materials by given ID.
+     * 
      * @param ID Target ID
      * @return Return the found data
      */
-    N nodeTraverseByID(int ID)
-    {
+    N nodeTraverseByID(int ID) {
         SkipNode<N> current = this.getNext(0); // levela dikat.
         while (current != null) {
-            if((current.compareTo(ID)==true)) return current.data;
+            if ((current.compareTo(ID) == true))
+                return current.data;
             current = current.getNext(0);
         }
         return null;
     }
 
+    ArrayList<N> nodeTraverseByCategory(librarymanagementsystem.model.Category category, ArrayList<N> materialList) {
+        SkipNode<N> current = this.getNext(0); // levela dikat.
+
+        while (current != null) {
+            if ((current.compareTo(category) == true))
+                materialList.add(current.data);
+
+            current = current.getNext(0);
+        }
+        return materialList;
+    }
+
+    ArrayList<N> nodeTraverseByCategory(int rate, ArrayList<N> materialList) {
+        SkipNode<N> current = this.getNext(0); // levela dikat.
+
+        while (current != null) {
+            if ((current.compareTo(rate) == true))
+                materialList.add(current.data);
+
+            current = current.getNext(0);
+        }
+        return materialList;
+    }
+
 }
-
-
-
