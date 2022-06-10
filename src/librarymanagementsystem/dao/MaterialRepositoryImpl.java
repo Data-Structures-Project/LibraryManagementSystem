@@ -23,7 +23,7 @@ public class MaterialRepositoryImpl implements MaterialRepository {
     @Override
     public SkipList<Material> getAll() {
         return materials;
-    }
+    } // asdf
 
     /**
      * Searches the Material (Skip List data) by given ID.
