@@ -16,11 +16,11 @@ public class Material implements Comparable<Material> {
     private Situation situation;
     private Location location;
     private Stack<Integer> rates;
-
+    private Double rateAve;
     private String info;
 
     public Material(Long id, MaterialType type, String name, Category category, Date publicationDate, Author author,
-            Publisher publisher, int pageCount, Situation situation, Location location) {
+            Publisher publisher, int pageCount, Situation situation, Location location, Double rateAve, String info) {
         this.id = id;
         this.type = type;
         this.name = name;
@@ -31,6 +31,8 @@ public class Material implements Comparable<Material> {
         this.pageCount = pageCount;
         this.situation = situation;
         this.location = location;
+        this.rateAve = rateAve;
+        this.info = info;
         rates = new Stack<>();
     }
 
@@ -134,6 +136,22 @@ public class Material implements Comparable<Material> {
         return rates.remove(rate);
     }
 
+    public Double getRateAve() {
+        for (Integer integer : rates) {
+            this.rateAve += integer;
+        }
+        return rateAve = this.rateAve/ rates.size();
+    }
+
+    public String getInfo() {
+        return this.info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    
     /**
      * TODO BUNU İSME GÖRE COMPARE ET
      * 

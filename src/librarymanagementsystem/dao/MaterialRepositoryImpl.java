@@ -62,7 +62,7 @@ public class MaterialRepositoryImpl implements MaterialRepository {
     @Override
     public List<Material> findByCategories(librarymanagementsystem.model.Category category) {
         ArrayList<Material> materialsByCategory = new ArrayList<>();
-        
+
         return this.materials.traverseByCategory(category, materialsByCategory);
     }
 
@@ -82,7 +82,9 @@ public class MaterialRepositoryImpl implements MaterialRepository {
      */
     @Override
     public List<Material> findByRate(Integer rate) {
-        return null;
+        ArrayList<Material> materialsByRate = new ArrayList<>();
+
+        return this.materials.traverseByRate(rate, materialsByRate);
     }
 
     @Override
@@ -110,4 +112,5 @@ public class MaterialRepositoryImpl implements MaterialRepository {
     public String viewInfo(String name) {
         return null;
     }
+
 }

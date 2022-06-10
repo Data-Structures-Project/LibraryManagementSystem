@@ -72,16 +72,17 @@ public class SkipList<T extends Comparable<? super T>> implements SkippableList<
         return head.nodeTraverseByCategory(cat, materialList);
     }
 
-    /**
+
+        /**
      * Traverses the Skip List, searches the Materials by given ID.
      * 
      * @param Category     cat
      * @param ArrayList<T> materialList
      * @return Return the found data
      */
-    // public ArrayList<T> traverseByRate(int rate, ArrayList<T> materialList) {
-    //     return head.nodeTraverseByRate(rate, materialList);
-    // }
+    public ArrayList<T> traverseByRate(int rate, ArrayList<T> materialList) {
+        return head.nodeTraverseByRate(rate, materialList);
+    }
 
     private void insert(SkipNode<T> SkipNode, int level) {
         head.insert(SkipNode, level);
