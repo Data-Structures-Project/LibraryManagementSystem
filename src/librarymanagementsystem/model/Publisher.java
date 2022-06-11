@@ -16,6 +16,12 @@ public class Publisher implements Comparable<Publisher>{
         this.info = info;
     }
 
+    public Publisher(Long id, String name, String info) {
+        this.id = id;
+        this.name = name;
+        this.info = info;
+    }
+
     public Publisher(String name)
     {
         this.name = name;

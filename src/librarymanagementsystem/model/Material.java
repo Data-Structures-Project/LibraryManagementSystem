@@ -20,7 +20,7 @@ public class Material implements Comparable<Material> {
     private String info;
 
     public Material(Long id, MaterialType type, String name, Category category, Date publicationDate, Author author,
-            Publisher publisher, int pageCount, Situation situation, Location location, Double rateAve, String info) {
+            Publisher publisher, int pageCount, Situation situation, Location location, String info) {
         this.id = id;
         this.type = type;
         this.name = name;
@@ -31,7 +31,6 @@ public class Material implements Comparable<Material> {
         this.pageCount = pageCount;
         this.situation = situation;
         this.location = location;
-        this.rateAve = rateAve;
         this.info = info;
         rates = new Stack<>();
     }
