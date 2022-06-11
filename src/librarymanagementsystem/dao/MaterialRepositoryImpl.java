@@ -1,6 +1,5 @@
 package librarymanagementsystem.dao;
 
-import librarymanagementsystem.model.Category;
 import librarymanagementsystem.model.Material;
 import utility.SkipList;
 import java.util.ArrayList;
@@ -120,8 +119,8 @@ public class MaterialRepositoryImpl implements MaterialRepository {
      * @return Return the information
      */
     @Override
-    public String viewInfo(String name) {
+    public Material viewInfo(String name) {
         Material targetMaterial = this.materials.traverseByName(name);
-        return targetMaterial.toString();
+        return targetMaterial;
     }
 }

@@ -1,21 +1,13 @@
 package librarymanagementsystem.dao;
 
 import librarymanagementsystem.model.Author;
-import librarymanagementsystem.model.Material;
 import utility.AVLTree;
-import java.util.LinkedList;
-import java.util.Iterator;
-import java.util.ListIterator;
-import utility.BinarySearchTree;
-
-import java.util.*;
 
 /* NOT : FIND BY AUTHOR METODU BURADA OLACAK */
 /* NOT : FIND BY AUTHOR METODU BURADA OLACAK */
 /* NOT : FIND BY AUTHOR METODU BURADA OLACAK */
 /* NOT : FIND BY AUTHOR METODU BURADA OLACAK */
 /* NOT : FIND BY AUTHOR METODU BURADA OLACAK */
-
 
 
 public class AuthorRepositoryImpl implements AuthorRepository{
@@ -73,8 +65,8 @@ public class AuthorRepositoryImpl implements AuthorRepository{
     }
 
    @Override
-    public String viewInfo(String name) {
+    public Author viewInfo(String name) {
        Author targetAuthor = this.authors.find(new Author(name));
-       return targetAuthor.toString();
+       return targetAuthor;
     }
 }

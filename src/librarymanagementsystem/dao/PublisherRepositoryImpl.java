@@ -1,9 +1,7 @@
 package librarymanagementsystem.dao;
 
-import librarymanagementsystem.model.Author;
 import librarymanagementsystem.model.Publisher;
 import utility.AVLTree;
-import utility.BinarySearchTree;
 
 import java.util.List;
 
@@ -62,8 +60,8 @@ public class PublisherRepositoryImpl implements PublisherRepository {
     }
 
     @Override
-    public String viewInfo(String name) {
+    public Publisher viewInfo(String name) {
         Publisher targetPublisher = this.publishers.find(new Publisher(name));
-        return targetPublisher.toString();
+        return targetPublisher;
     }
 }

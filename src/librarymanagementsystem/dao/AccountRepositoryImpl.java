@@ -34,10 +34,9 @@ public class AccountRepositoryImpl implements AccountRepository{
     }
 
     @Override
-    public String viewInfo(String username) {
+    public Account viewInfo(String username) {
         Account targetAccount = accounts.remove(username);
-        String sb =  targetAccount.toString();
         accounts.put(username, targetAccount);
-        return sb;
+        return targetAccount;
     }
 }

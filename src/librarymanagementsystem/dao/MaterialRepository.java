@@ -1,9 +1,7 @@
 package librarymanagementsystem.dao;
 
-import librarymanagementsystem.model.Author;
 import librarymanagementsystem.model.Category;
 import librarymanagementsystem.model.Material;
-import librarymanagementsystem.model.Publisher;
 import utility.SkipList;
 
 import java.util.List;
@@ -27,5 +25,5 @@ public interface MaterialRepository {
 
     void remove(Material material);
 
-    String viewInfo(String name);
+    Material viewInfo(String name);
 }

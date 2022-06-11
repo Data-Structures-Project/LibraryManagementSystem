@@ -12,5 +12,5 @@ public interface PublisherRepository {
     void create(Publisher publisher);
     Publisher update(Publisher publisherTarget, Publisher publisherNew);
     void remove(Publisher publisher);
-    String viewInfo(String name);
+    Publisher viewInfo(String name);
 }
