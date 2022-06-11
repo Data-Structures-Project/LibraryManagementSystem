@@ -1,17 +1,19 @@
 package librarymanagementsystem;
 
+import java.util.Scanner;
+
 public class Main {
 
+    public static final String ANSI_RED = "\u001B[31m";
 
-    public static void main(String[] args) {
-        public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
 
-        public static final String ANSI_GREEN = "\u001B[32m";
-        public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
 
-        public static final String ANSI_BLUE = "\u001B[34m";
-        public static final String ANSI_PURPLE = "\u001B[35m";
-        public static final String ANSI_CYAN = "\u001B[36m";
+
 
         public static void main (String[]args){
             Scanner sc = new Scanner(System.in);
@@ -22,7 +24,7 @@ public class Main {
             System.out.println(ANSI_CYAN + "0. Exit");
             System.out.print(ANSI_GREEN + "Choose one of the options : ");
 
-
+        while (true){
             String input = sc.next();
 
             switch (input) {
@@ -36,9 +38,12 @@ public class Main {
                     System.exit(0);
                     break;
                 default:
+                    System.out.print(ANSI_RED + "Invalid input!" + ANSI_GREEN + "\nPlease choose again : ");
                     break;
 
             }
+        }
+
 
 
         }
@@ -149,7 +154,7 @@ public class Main {
 
             }
         }
-        static void readerMenu () {
+        static void readerMenu (String usersName) {
             System.out.println(ANSI_BLUE + "\n\nHello " + usersName);
             System.out.println(ANSI_CYAN + "1. Search books");
             System.out.println(ANSI_CYAN + "2. Rate a book");
@@ -174,33 +179,35 @@ public class Main {
             }
 
 
-            static void manageLibraries ( char userType){
+
 
             }
-            static void manageLibraryManagers () {
 
-            }
-            static void manageLibrarians () {
 
-            }
-            static void manageReaders () {
 
-            }
-            static void manageLoanBooks () {
+    static void manageLibraries ( char userType){
 
-            }
-            static void manageBooks () {
-
-            }
-            static void manageMagazines () {
-
-            }
-            static void searchBooks () {
-
-            }
-            static void rateBooks () {
-
-            }
-        }
     }
+    static void manageLibraryManagers () {
+
+    }
+    static void manageLibrarians () {
+
+    }
+    static void manageReaders () {
+
+    }
+    static void manageLoanBooks () {
+
+    }
+    static void manageBooks () {
+
+    }
+    static void manageMagazines () {
+
+    }
+    static void searchBooks () {
+
+    }
+    static void rateBook() {}
 }
