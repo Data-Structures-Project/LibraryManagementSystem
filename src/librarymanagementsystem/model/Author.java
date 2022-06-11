@@ -18,6 +18,20 @@ public class Author implements Comparable<Author>{
         materials = null;
     }
 
+    public Author(String name)
+    {
+        this.name = name;
+    }
+
+    public void setAuthor(Author newAuthor)
+    {
+        this.id = newAuthor.id;
+        this.name = newAuthor.name;
+        this.surname = newAuthor.surname;
+        this.info = newAuthor.info;
+        this.materials = newAuthor.materials;
+    }
+
     public long getId() {
         return id;
     }

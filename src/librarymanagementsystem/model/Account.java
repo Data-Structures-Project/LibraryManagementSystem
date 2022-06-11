@@ -3,25 +3,47 @@ package librarymanagementsystem.model;
 import java.util.Objects;
 
 public abstract class Account implements Comparable<Account>{
-    private Long id;
+    private int id;
+
+    private String username;
     private String name;
     private String surname;
     private String password;
     private Library library;
 
-    public Account(Long id, String name, String surname, String password, Library library) {
+    public Account(int id, String name, String username, String surname, String password, Library library) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.password = password;
         this.library = library;
+        this.username = username;
     }
 
-    public Long getId() {
+    public void setAccount(Account newAccount)
+    {
+        this.id = newAccount.id;
+        this.name = newAccount.name;
+        this.surname = newAccount.surname;
+        this.password = newAccount.password;
+        this.library = newAccount.library;
+        this.username = newAccount.username;
+    }
+
+    public String getUsername()
+    {
+        return username;
+    }
+
+    public void setUsername(String username)
+    {
+        this.username = username;
+    }
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

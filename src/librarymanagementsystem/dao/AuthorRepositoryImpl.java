@@ -1,54 +1,80 @@
 package librarymanagementsystem.dao;
 
 import librarymanagementsystem.model.Author;
+import librarymanagementsystem.model.Material;
+import utility.AVLTree;
+import java.util.LinkedList;
+import java.util.Iterator;
+import java.util.ListIterator;
 import utility.BinarySearchTree;
 
-import java.util.List;
+import java.util.*;
+
+/* NOT : FIND BY AUTHOR METODU BURADA OLACAK */
+/* NOT : FIND BY AUTHOR METODU BURADA OLACAK */
+/* NOT : FIND BY AUTHOR METODU BURADA OLACAK */
+/* NOT : FIND BY AUTHOR METODU BURADA OLACAK */
+/* NOT : FIND BY AUTHOR METODU BURADA OLACAK */
+
+
 
 public class AuthorRepositoryImpl implements AuthorRepository{
-    private BinarySearchTree<Author> authors; //BBST
+    /**
+     * AVL Balanced Tree that store the Authors
+     */
+    private AVLTree<Author> authors;
 
+    /**
+     * Constructor. Creates the AVL Tree
+     */
     public AuthorRepositoryImpl(){
-        authors = new BinarySearchTree<>();
+        authors = new AVLTree<>();
+    }
+
+    /**
+     * Returns the Author data.
+     * @return Returns the AVL Tree data Author
+     */
+    @Override
+    public AVLTree<Author> findAll() {
+        return authors;
     }
 
     @Override
-    public List<Author> findAll() {
-        return null;
-    }
-
-    @Override
-    public Author findById(Long id) {
-        return null;
+    public Author findById(int ID) {
+        return (Author) authors.serchByID(ID);
     }
 
     /**
      * this.authorsa bakacak, yazarı bulacak, içindeki bütün kitapları yazdırcak
-     * @param surname
+     * @param
      * @return
      */
     @Override
-    public List<Author> findByName(String surname) {
-        return null;
+    public Author findByName(String name) {
+        return (Author) authors.searchByName(name);
     }
 
     @Override
     public void create(Author author) {
-
+        authors.add(author);
     }
 
-    @Override
-    public Author update(Author author) {
-        return null;
+
+    public Author update(Author targetAuthor, Author newAuthor) {
+        Author target = authors.find(targetAuthor);
+        target.setAuthor(newAuthor);
+        return newAuthor;
     }
 
     @Override
     public void remove(Author author) {
-
+        authors.remove(author);
     }
 
-    @Override
-    public String viewInfo(Long id) {
-        return null;
+   @Override
+    public String viewInfo(String name) {
+       Author targetAuthor = this.authors.find(new Author(name));
+       return targetAuthor.toString();
     }
 }

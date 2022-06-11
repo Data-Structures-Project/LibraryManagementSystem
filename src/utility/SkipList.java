@@ -11,6 +11,10 @@ public class SkipList<T extends Comparable<? super T>> implements SkippableList<
     private final SkipNode<T> head = new SkipNode<>(null);
     private final Random rand = new Random();
 
+    /**
+     * Insert the data to the Skip List
+     * @param data
+     */
     @Override
     public void insert(T data) {
         SkipNode<T> skipNode = new SkipNode<>(data);
@@ -52,7 +56,7 @@ public class SkipList<T extends Comparable<? super T>> implements SkippableList<
     }
 
     /**
-     * Traverses the Skip List, searches the Materials by given ID.
+     * Traverses the Skip List, searches the Materials to find the given ID
      * 
      * @param ID Target ID
      * @return Return the found data
@@ -62,12 +66,19 @@ public class SkipList<T extends Comparable<? super T>> implements SkippableList<
     }
 
     /**
+     * Traverses the SkipList, searches the Materials to find the given name
+     * @param name Target name
+     * @return Return the found material
+     */
+    public Material traverseByName(String name){return (Material) head.nodeTraverseByName(name);}
+
+    /**
      * Traverses the Skip List, searches the Materials by given ID.
      * 
-     * @param Category     cat
-     * @param ArrayList<T> materialList
-     * @return Return the found data
-     */
+     * @param cat Target category type
+     * @param materialList ArrayList that will store the Materials with category type "cat"
+     * @return Returns the ArrayList that store the Materials with category type "cat".
+     *      */
     public ArrayList<T> traverseByCategory(librarymanagementsystem.model.Category cat, ArrayList<T> materialList) {
         return head.nodeTraverseByCategory(cat, materialList);
     }
@@ -75,7 +86,7 @@ public class SkipList<T extends Comparable<? super T>> implements SkippableList<
 
         /**
      * Traverses the Skip List, searches the Materials by given ID.
-     * 
+     *
      * @param Category     cat
      * @param ArrayList<T> materialList
      * @return Return the found data
