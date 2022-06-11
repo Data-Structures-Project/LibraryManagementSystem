@@ -127,7 +127,9 @@ public class Material implements Comparable<Material> {
     }
 
     public boolean addRate(Integer rate) {
-        return rates.add(rate);
+        rates.add(rate);
+        rateAve = ((rateAve*(rates.size()-1))+ rate)/rates.size();
+        return true;
     }
 
     public boolean removeRate(Integer rate) {
@@ -152,10 +154,7 @@ public class Material implements Comparable<Material> {
         return this.lib;
     }
     public Double getRateAve() {
-        for (Integer integer : rates) {
-            this.rateAve += integer;
-        }
-        return rateAve = this.rateAve/ rates.size();
+        return rateAve;
     }
 
     public String getInfo() {
