@@ -8,7 +8,7 @@ import java.util.List;
 public interface PublisherRepository {
     AVLTree<Publisher> findAll();
     Publisher findById(int id);
-    List<Publisher> findByName(String name);
+    Publisher findByName(String name);
     void create(Publisher publisher);
     Publisher update(Publisher publisherTarget, Publisher publisherNew);
     void remove(Publisher publisher);

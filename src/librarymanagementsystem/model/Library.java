@@ -1,6 +1,7 @@
 package librarymanagementsystem.model;
 
 import java.util.Objects;
+import java.util.Random;
 
 public class Library implements Comparable<Library>{
     private int id;
@@ -8,10 +9,17 @@ public class Library implements Comparable<Library>{
     private String name;
     private City city;
 
+    private double [] coordinates;
+
     public Library(String name, City city){
         this.id = count++;
         this.name = name;
         this.city = city;
+
+        Random rand = new Random();
+        coordinates = new double[2];
+        coordinates[0] = rand.nextDouble(200);
+        coordinates[1] = rand.nextDouble(200);
     }
 
     @Override
@@ -54,4 +62,6 @@ public class Library implements Comparable<Library>{
     public String getName(){
         return name;
     }
+
+    public int getId(){return id;}
 }

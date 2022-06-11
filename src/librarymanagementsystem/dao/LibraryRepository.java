@@ -1,15 +1,14 @@
 package librarymanagementsystem.dao;
 
 import librarymanagementsystem.model.Library;
-
-import java.util.List;
+import utility.Graph;
 
 public interface LibraryRepository {
-    List<Library> findAll();
+    Graph findAll();
     Library findById(int id);
-    List<Library> findByName(String name);
+    Library findByName(String name);
     void create(Library library);
     Library update(Library library);
     void remove(Library library);
-    String viewInfo(int id);
+    Library viewInfo(String name);
 }

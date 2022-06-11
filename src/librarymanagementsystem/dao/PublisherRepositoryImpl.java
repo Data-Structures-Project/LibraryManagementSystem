@@ -34,8 +34,8 @@ public class PublisherRepositoryImpl implements PublisherRepository {
      * @return
      */
     @Override
-    public List<Publisher> findByName(String name) {
-        return null;
+    public Publisher findByName(String name) {
+        return (Publisher) publishers.searchByName(name);
     }
 
     @Override

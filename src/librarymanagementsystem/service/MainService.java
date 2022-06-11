@@ -1,7 +1,7 @@
 package librarymanagementsystem.service;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import librarymanagementsystem.dao.AccountRepositoryImpl;
 import librarymanagementsystem.dao.AuthorRepositoryImpl;
@@ -142,7 +142,8 @@ public class MainService {
         return false;
     }
 
-    public static List<Library> listLibraries() {
-        return libraries.findAll();
+    public static ArrayList<Library> listLibraries() {
+        ArrayList<Library> libList = libraries.findAll().getVertexList();
+        return libList;
     }
 }
