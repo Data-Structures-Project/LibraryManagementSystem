@@ -74,7 +74,7 @@ public class MaterialRepositoryImpl implements MaterialRepository {
      * @return
      */
     @Override
-    public List<Material> findByRate(Integer rate) {
+    public ArrayList<Material> findByRate(Integer rate) {
         ArrayList<Material> materialsByRate = new ArrayList<>();
 
         return this.materials.traverseByRate(rate, materialsByRate);

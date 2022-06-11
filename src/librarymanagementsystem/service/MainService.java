@@ -166,9 +166,57 @@ public class MainService {
         return str;
     }
 
-    public static ArrayList<Material> searchByCategory(librarymanagementsystem.model.Category category)
+    public static ArrayList<Material> searchByCategory(int categoryChoice)
     {
+        Category category = null;
+        switch(categoryChoice)
+        {
+            case 0:
+                category = Category.HORROR;
+                break;
+                
+            case 1:
+                category = Category.THRILLER;
+                break;
+                
+            case 2:
+                category = Category.MYSTERY;
+                break;
+                
+            case 3:
+                category = Category.LITERARY_FICTION;
+                break;
+                
+            case 4:
+                category = Category.HISTORY;
+                break;
+                
+            case 5:
+                category = Category.SCIENCE_FICTION;
+                break;
+                
+            case 6:
+                category = Category.BIOGRAPHIES;
+                break;
+                
+            case 7:
+                category = Category.AUTOBIOGRAPHIES;
+                break;
+                
+            case 8:
+                category = Category.POETRY;
+                break;
+                
+            default:
+                break;
+
+        }
         ArrayList<Material> materialList = materials.findByCategories(category);
         return materialList;
+    }
+
+    public static ArrayList<Material> searchByRate(int rate)
+    {
+        return materials.findByRate(rate);
     }
 }
