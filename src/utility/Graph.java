@@ -17,6 +17,7 @@ public class Graph< T
 
     public Graph() {
         this.adjLists = new HashMap<Vertex<T>, ArrayList<Vertex<T>>>();
+        this.verList = new ArrayList<>();
     }
 
     /**
