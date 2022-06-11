@@ -8,6 +8,7 @@ import librarymanagementsystem.service.MainService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Locale.Category;
 
 public class Main {
 
@@ -215,7 +216,7 @@ public class Main {
                 manageMagazines();
                 break;
             case "5":
-                searchBooks();
+                searchMaterials();
                 break;
             case "0":
                 System.exit(0);
@@ -230,8 +231,8 @@ public class Main {
         System.out.println(ANSI_BLUE + "\n\n=================================================");
         System.out.println(ANSI_BLUE + "|\t\t\t\tHello " + usersName + "\t\t\t\t\t|");
         System.out.println(ANSI_BLUE + "=================================================");
-        System.out.println(ANSI_CYAN + "|         1. Search books                       |");
-        System.out.println(ANSI_CYAN + "|         2. Rate a book                        |");
+        System.out.println(ANSI_CYAN + "|         1. Search materials                   |");
+        System.out.println(ANSI_CYAN + "|         2. Rate a materials                   |");
         System.out.println(ANSI_CYAN + "|         0. Exit                               |");
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.print(ANSI_GREEN + "   Choose one of the options : ");
@@ -241,10 +242,10 @@ public class Main {
 
         switch (input) {
             case "1":
-                searchBooks();
+                searchMaterials();
                 break;
             case "2":
-                rateBook();
+                rateMaterials();
                 break;
             case "0":
                 System.exit(0);
@@ -511,9 +512,9 @@ public class Main {
         }
     }
 
-    static void searchBooks() {
+    static void searchMaterials() {
         System.out.println(ANSI_BLUE + "\n\n=================================================");
-        System.out.println(ANSI_BLUE + "|                  Search Books                 |");
+        System.out.println(ANSI_BLUE + "|                  Search Materials             |");
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.println(ANSI_CYAN + "|         1. Search by Name                     |");
         System.out.println(ANSI_CYAN + "|         2. Search by Author                   |");
@@ -552,7 +553,38 @@ public class Main {
         }
     }
 
-    static void rateBook() {
+    static void rateMaterials() {
+        System.out.print(ANSI_CYAN + "   Enter the name of the book want to Rate : ");
+        Scanner sc = new Scanner(System.in);
+        String materialName = sc.next();
+        Material newMat = MainService.searchByName(materialName);
+        if (newMat == null) {
+            System.out.println(ANSI_RED + "   The book your searched couldn't find :(");
+            searchByName();
+        } else {
+            System.out.println(ANSI_BLUE + "\n\n=================================================");
+            System.out.println(ANSI_BLUE + "|\t\t\t\t" + newMat.getName() + "\t\t\t\t\t|");
+            System.out.println(ANSI_BLUE + "=================================================");
+            if (newMat.getIsLoaned())
+                System.out.println(ANSI_RED + "|\t\t\t\tSituation : Loaned\t\t\t\t\t|");
+            else
+                System.out.println(ANSI_GREEN + "|\t\t\t\tSituation : Avaliable\t\t\t\t\t|");
+            System.out.println(ANSI_CYAN + "|\t\t\t\tAuthor : " + newMat.getAuthor().getName() + "\t\t\t\t\t|");
+            System.out.println(ANSI_CYAN + "|\t\t\t\tPage : " + newMat.getPageCount() + "\t\t\t\t\t|");
+            System.out.println(ANSI_CYAN + "|\t\t\t\tPublisher : " + newMat.getPublisher().getName() + "\t\t\t\t\t|");
+            System.out.println(ANSI_CYAN + "|\t\t\t\tCategory : " + newMat.getCategory() + "\t\t\t\t\t|");
+            System.out.println(ANSI_CYAN + "|\t\t\t\tLocation : " + newMat.getLocation().toString() + "\t\t\t\t\t|");
+            System.out.println(ANSI_BLUE + "|\t\t\t\tRate : " + newMat.getRateAve() + "\t\t\t\t\t|");
+            System.out.println(ANSI_BLUE + "|\t\t\t\tType : " + newMat.getType() + "\t\t\t\t\t|");
+            System.out.println(ANSI_BLUE + newMat.getInfo());
+            System.out.println(ANSI_BLUE + "=================================================");
+        }
+
+        System.out.print(ANSI_CYAN + "   Enter the Rate : ");
+        int materialRate = Integer.parseInt(sc.next());
+        MainService.addRate(newMat, materialRate);
+
+        System.out.println( newMat.getRateAve());
 
     }
 
@@ -665,9 +697,7 @@ public class Main {
             System.out.println(ANSI_BLUE + "|\t\t\t\tType : " + newMat.getType() + "\t\t\t\t\t|");
             System.out.println(ANSI_BLUE + newMat.getInfo());
             System.out.println(ANSI_BLUE + "=================================================");
-
         }
-
     }
 
     static void searchByAuthor() {
@@ -683,6 +713,8 @@ public class Main {
         System.out.print(ANSI_GREEN + "  Choose one of the options : ");
         int authorIndex = Integer.parseInt(sc.next());
         List<Material> authorBooks = MainService.searchByAuthor(authorList.get(authorIndex).getName());
+        if (authorBooks == null)
+            searchByAuthor();
         for (int i = 0; i < authorBooks.size(); i++) {
             System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + authorBooks.get(i).getName() + "\t\t\t\t\t\t");
         }
@@ -702,6 +734,8 @@ public class Main {
         System.out.print(ANSI_GREEN + "  Choose one of the options : ");
         int publisherIndex = Integer.parseInt(sc.next());
         List<Material> publisherBooks = MainService.searchByPublisher(publisherList.get(publisherIndex).getName());
+        if (publisherBooks == null)
+            searchByPublisher();
         for (int i = 0; i < publisherBooks.size(); i++) {
             System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + publisherBooks.get(i).getName() + "\t\t\t\t\t\t");
         }
@@ -714,20 +748,34 @@ public class Main {
         System.out.println(ANSI_BLUE + "=================================================");
 
         Scanner sc = new Scanner(System.in);
-        ArrayList<Publisher> publisherList = MainService.publisherList();
-        for (int i = 0; i < publisherList.size(); i++) {
-            System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + publisherList.get(i).getName() + "\t\t\t\t\t\t");
-        }
+        System.out.printf("%s", MainService.getCategoryList());
+
         System.out.print(ANSI_GREEN + "  Choose one of the options : ");
-        int publisherIndex = Integer.parseInt(sc.next());
-        List<Material> publisherBooks = MainService.searchByPublisher(publisherList.get(publisherIndex).getName());
-        for (int i = 0; i < publisherBooks.size(); i++) {
-            System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + publisherBooks.get(i).getName() + "\t\t\t\t\t\t");
+        int categoryIndex = Integer.parseInt(sc.next());
+        List<Material> categoryBooks = MainService.searchByCategory(categoryIndex);
+        if (categoryBooks == null)
+            searchByCategory();
+        for (int i = 0; i < categoryBooks.size(); i++) {
+            System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + categoryBooks.get(i).getName() + "\t\t\t\t\t\t");
         }
     }
 
     static void searchByRate() {
+        System.out.print(ANSI_CYAN + "   Enter the rate of Book : ");
+        Scanner sc = new Scanner(System.in);
+        int materialRate = Integer.parseInt(sc.next());
+        List<Material> newMaterials = MainService.searchByRate(materialRate);
+        if (newMaterials == null) {
+            System.out.println(ANSI_RED + "   The book your searched couldn't find :(");
+            searchByRate();
+        } else {
+            for (int i = 0; i < newMaterials.size(); i++) {
+                System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + newMaterials.get(i).getName() + "\t\t"
+                        + newMaterials.get(i).getRateAve() + "\t\t\t\t\t\t");
+            }
+            System.out.println(ANSI_BLUE + "=================================================");
 
+        }
     }
 
 }
