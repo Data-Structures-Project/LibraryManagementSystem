@@ -4,6 +4,8 @@ import librarymanagementsystem.dao.LibraryRepositoryImpl;
 import librarymanagementsystem.model.Account;
 import librarymanagementsystem.model.Library;
 import librarymanagementsystem.service.MainService;
+
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
@@ -22,12 +24,14 @@ public class Main {
         public static void main (String[]args){
             MainService.mockData();
             Scanner sc = new Scanner(System.in);
-
-            System.out.println(ANSI_BLUE + "====== Welcome to Library Management System ======");
-            System.out.println(ANSI_CYAN + "1. Login");
-            System.out.println(ANSI_CYAN + "2. Register");
-            System.out.println(ANSI_CYAN + "0. Exit");
-            System.out.print(ANSI_GREEN + "Choose one of the options : ");
+            System.out.println(ANSI_BLUE + "==================================================");
+            System.out.println(ANSI_BLUE + "|      Welcome to Library Management System      |");
+            System.out.println(ANSI_BLUE + "==================================================");
+            System.out.println(ANSI_CYAN + "|         1. Login                               |");
+            System.out.println(ANSI_CYAN + "|         2. Register                            |");
+            System.out.println(ANSI_CYAN + "|         0. Exit                                |");
+            System.out.println(ANSI_BLUE + "==================================================");
+            System.out.print(ANSI_GREEN + "   Choose one of the options : ");
 
         while (true){
             String input = sc.next();
@@ -55,11 +59,14 @@ public class Main {
 
 
     static void loginMenu () {
-        System.out.println(ANSI_BLUE + "\n\n====== Login ======");
-        System.out.print(ANSI_GREEN + "Username :  ");
+        System.out.println(ANSI_BLUE + "\n\n=================================================");
+        System.out.println(ANSI_BLUE + "|                     Login                     |");
+        System.out.println(ANSI_BLUE + "=================================================");
+
+        System.out.print(ANSI_GREEN + "         Username :  ");
         Scanner sc = new Scanner(System.in);
         String username = sc.next();
-        System.out.print(ANSI_GREEN + "Password :  ");
+        System.out.print(ANSI_GREEN + "         Password :  ");
         String password = sc.next();
 
         Account newLogin = MainService.login(username,password);
@@ -94,7 +101,7 @@ public class Main {
         }
         System.out.print(ANSI_GREEN + "Choose one of the options : ");
         int libraryid = Integer.parseInt(sc.next());
-        while (libraryid < 1 || libraryid > MainService.listLibraries().size()){
+        while (libraryid < 0 || libraryid > MainService.listLibraries().size()-1){
             System.out.println(ANSI_RED + "Invalid input!");
             System.out.print(ANSI_GREEN + "Choose one of the options : ");
             libraryid = Integer.parseInt(sc.next());
@@ -121,11 +128,15 @@ public class Main {
 
     }
 
+
     static void administratorMenu (String usersName){
-        System.out.println(ANSI_BLUE + "\n\nHello " + usersName);
-        System.out.println(ANSI_CYAN + "1. Manage Libraries");
-        System.out.println(ANSI_CYAN + "2. Manege Library Managers");
-        System.out.println(ANSI_CYAN + "0. Exit");
+        System.out.println(ANSI_BLUE + "\n\n=================================================");
+        System.out.println(ANSI_BLUE + "|\t\t\t\tHello "+usersName+"\t\t\t\t\t|");
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.println(ANSI_CYAN + "|         1. Manage Libraries                   |");
+        System.out.println(ANSI_CYAN + "|         2. Manege Library Managers            |");
+        System.out.println(ANSI_CYAN + "|         0. Exit                               |");
+        System.out.println(ANSI_BLUE + "=================================================");
         System.out.print(ANSI_GREEN + "Choose one of the options : ");
 
         Scanner sc = new Scanner(System.in);
@@ -148,11 +159,14 @@ public class Main {
 
     }
     static void libraryManagerMenu (String usersName){
-        System.out.println(ANSI_BLUE + "\n\nHello " + usersName);
-        System.out.println(ANSI_CYAN + "1. Edit Libraries");
-        System.out.println(ANSI_CYAN + "2. Manege Librarians");
-        System.out.println(ANSI_CYAN + "0. Exit");
-        System.out.print(ANSI_GREEN + "Choose one of the options : ");
+        System.out.println(ANSI_BLUE + "\n\n=================================================");
+        System.out.println(ANSI_BLUE + "|\t\t\t\tHello "+usersName+"\t\t\t\t\t|");
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.println(ANSI_CYAN + "|         1. Edit Libraries                     |");
+        System.out.println(ANSI_CYAN + "|         2. Manege Librarians                  |");
+        System.out.println(ANSI_CYAN + "|         0. Exit                               |");
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.print(ANSI_GREEN + "   Choose one of the options : ");
 
         Scanner sc = new Scanner(System.in);
         String input = sc.next();
@@ -173,13 +187,16 @@ public class Main {
         }
     }
     static void librarianMenu (String usersName){
-        System.out.println(ANSI_BLUE + "\n\nHello " + usersName);
-        System.out.println(ANSI_CYAN + "1. Manage Readers");
-        System.out.println(ANSI_CYAN + "2. Manege loan books");
-        System.out.println(ANSI_CYAN + "3. Manege books");
-        System.out.println(ANSI_CYAN + "4. Manege magazines");
-        System.out.println(ANSI_CYAN + "5. Search books");
-        System.out.println(ANSI_CYAN + "0. Exit");
+        System.out.println(ANSI_BLUE + "\n\n=================================================");
+        System.out.println(ANSI_BLUE + "|\t\t\t\tHello "+usersName+"\t\t\t\t\t|");
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.println(ANSI_CYAN + "|         1. Manage Readers                     |");
+        System.out.println(ANSI_CYAN + "|         2. Manege loan books                  |");
+        System.out.println(ANSI_CYAN + "|         3. Manege books                       |");
+        System.out.println(ANSI_CYAN + "|         4. Manege magazines                   |");
+        System.out.println(ANSI_CYAN + "|         5. Search books                       |");
+        System.out.println(ANSI_CYAN + "|         0. Exit                               |");
+        System.out.println(ANSI_BLUE + "=================================================");
         System.out.print(ANSI_GREEN + "Choose one of the options : ");
 
         Scanner sc = new Scanner(System.in);
@@ -210,10 +227,14 @@ public class Main {
         }
     }
     static void readerMenu (String usersName) {
-        System.out.println(ANSI_BLUE + "\n\nHello " + usersName);
-        System.out.println(ANSI_CYAN + "1. Search books");
-        System.out.println(ANSI_CYAN + "2. Rate a book");
-        System.out.print(ANSI_GREEN + "Choose one of the options : ");
+        System.out.println(ANSI_BLUE + "\n\n=================================================");
+        System.out.println(ANSI_BLUE + "|\t\t\t\tHello "+usersName+"\t\t\t\t\t|");
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.println(ANSI_CYAN + "|         1. Search books                       |");
+        System.out.println(ANSI_CYAN + "|         2. Rate a book                        |");
+        System.out.println(ANSI_CYAN + "|         0. Exit                               |");
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.print(ANSI_GREEN + "   Choose one of the options : ");
 
         Scanner sc = new Scanner(System.in);
         String input = sc.next();
@@ -240,13 +261,18 @@ public class Main {
 
 
     static void manageLibraries ( char userType){
-        System.out.println(ANSI_BLUE + "\n\n====== Manage Libraries ======");
+
+
+        System.out.println(ANSI_BLUE + "\n\n=================================================");
+        System.out.println(ANSI_BLUE + "|                 Manage Libraries              |");
+        System.out.println(ANSI_BLUE + "=================================================");
         if (userType == 'a'){
-            System.out.println(ANSI_CYAN + "1. Add library");
-            System.out.println(ANSI_CYAN + "2. Remove library");
-            System.out.println(ANSI_CYAN + "3. Edit library");
-            System.out.println(ANSI_CYAN + "0. Exit");
-            System.out.print(ANSI_GREEN + "Choose one of the options : ");
+            System.out.println(ANSI_CYAN + "|         1. Add library                        |");
+            System.out.println(ANSI_CYAN + "|         2. Remmove library                    |");
+            System.out.println(ANSI_CYAN + "|         3. Edit library                       |");
+            System.out.println(ANSI_CYAN + "|         0. Exit                               |");
+            System.out.println(ANSI_BLUE + "=================================================");
+            System.out.print(ANSI_GREEN + "   Choose one of the options : ");
             Scanner sc = new Scanner(System.in);
             String input = sc.next();
 
@@ -271,9 +297,10 @@ public class Main {
 
         else {
 
-            System.out.println(ANSI_CYAN + "1. Edit library");
-            System.out.println(ANSI_CYAN + "0. Exit");
-            System.out.print(ANSI_GREEN + "Choose one of the options : ");
+            System.out.println(ANSI_CYAN + "|         3. Edit library                       |");
+            System.out.println(ANSI_CYAN + "|         0. Exit                               |");
+            System.out.println(ANSI_BLUE + "=================================================");
+            System.out.print(ANSI_GREEN + "   Choose one of the options : ");
             Scanner sc = new Scanner(System.in);
             String input = sc.next();
 
@@ -292,12 +319,15 @@ public class Main {
 
     }
     static void manageLibraryManagers () {
-        System.out.println(ANSI_BLUE + "\n\n====== Manage Library Managers ======");
-        System.out.println(ANSI_CYAN + "1. Add library manager");
-        System.out.println(ANSI_CYAN + "2. Remmove library manager");
-        System.out.println(ANSI_CYAN + "3. Edit library manager");
-        System.out.print(ANSI_GREEN + "Choose one of the options : ");
-
+        System.out.println(ANSI_BLUE + "\n\n=================================================");
+        System.out.println(ANSI_BLUE + "|             Manage Library Managers           |");
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.println(ANSI_CYAN + "|         1. Add library manager                |");
+        System.out.println(ANSI_CYAN + "|         2. Remmove library manager            |");
+        System.out.println(ANSI_CYAN + "|         3. Edit library manager               |");
+        System.out.println(ANSI_CYAN + "|         0. Exit                               |");
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.print(ANSI_GREEN + "   Choose one of the options : ");
         Scanner sc = new Scanner(System.in);
         String input = sc.next();
 
@@ -320,11 +350,15 @@ public class Main {
         }
     }
     static void manageLibrarians () {
-        System.out.println(ANSI_BLUE + "\n\n====== Manage Librarians ======");
-        System.out.println(ANSI_CYAN + "1. Add librarian");
-        System.out.println(ANSI_CYAN + "2. Remmove librarian");
-        System.out.println(ANSI_CYAN + "3. Edit librarian");
-        System.out.print(ANSI_GREEN + "Choose one of the options : ");
+        System.out.println(ANSI_BLUE + "\n\n=================================================");
+        System.out.println(ANSI_BLUE + "|               Manage Librarians               |");
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.println(ANSI_CYAN + "|         1. Add librarians                     |");
+        System.out.println(ANSI_CYAN + "|         2. Remmove librarians                 |");
+        System.out.println(ANSI_CYAN + "|         3. Edit librarians                    |");
+        System.out.println(ANSI_CYAN + "|         0. Exit                               |");
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.print(ANSI_GREEN + "   Choose one of the options : ");
 
         Scanner sc = new Scanner(System.in);
         String input = sc.next();
@@ -348,11 +382,16 @@ public class Main {
         }
     }
     static void manageReaders () {
-        System.out.println(ANSI_BLUE + "\n\n====== Manage Readers ======");
-        System.out.println(ANSI_CYAN + "1. Add reader");
-        System.out.println(ANSI_CYAN + "2. Remmove reader");
-        System.out.println(ANSI_CYAN + "3. Edit reader");
-        System.out.print(ANSI_GREEN + "Choose one of the options : ");
+        System.out.println(ANSI_BLUE + "\n\n=================================================");
+        System.out.println(ANSI_BLUE + "|                 Manage Readers                |");
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.println(ANSI_CYAN + "|         1. Add readers                        |");
+        System.out.println(ANSI_CYAN + "|         2. Remmove readers                    |");
+        System.out.println(ANSI_CYAN + "|         3. Edit readers                       |");
+        System.out.println(ANSI_CYAN + "|         0. Exit                               |");
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.print(ANSI_GREEN + "   Choose one of the options : ");
+
 
         Scanner sc = new Scanner(System.in);
         String input = sc.next();
@@ -380,11 +419,15 @@ public class Main {
 
 
     static void manageLoanBooks () {
-        System.out.println(ANSI_BLUE + "\n\n====== Manage Loan Books ======");
-        System.out.println(ANSI_CYAN + "1. Add loan book");
-        System.out.println(ANSI_CYAN + "2. Remmove loan book");
-        System.out.println(ANSI_CYAN + "3. Edit loan book");
-        System.out.print(ANSI_GREEN + "Choose one of the options : ");
+        System.out.println(ANSI_BLUE + "\n\n=================================================");
+        System.out.println(ANSI_BLUE + "|                Manage Loan Books              |");
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.println(ANSI_CYAN + "|         1. Add loan book                      |");
+        System.out.println(ANSI_CYAN + "|         2. Remmove loan book                  |");
+        System.out.println(ANSI_CYAN + "|         3. Edit loan book                     |");
+        System.out.println(ANSI_CYAN + "|         0. Exit                               |");
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.print(ANSI_GREEN + "   Choose one of the options : ");
 
         Scanner sc = new Scanner(System.in);
         String input = sc.next();
@@ -408,11 +451,15 @@ public class Main {
         }
     }
     static void manageBooks () {
-        System.out.println(ANSI_BLUE + "\n\n====== Manage Books ======");
-        System.out.println(ANSI_CYAN + "1. Add book");
-        System.out.println(ANSI_CYAN + "2. Remmove book");
-        System.out.println(ANSI_CYAN + "3. Edit book");
-        System.out.print(ANSI_GREEN + "Choose one of the options : ");
+        System.out.println(ANSI_BLUE + "\n\n=================================================");
+        System.out.println(ANSI_BLUE + "|                  Manage Books                 |");
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.println(ANSI_CYAN + "|         1. Add book                           |");
+        System.out.println(ANSI_CYAN + "|         2. Remmove book                       |");
+        System.out.println(ANSI_CYAN + "|         3. Edit book                          |");
+        System.out.println(ANSI_CYAN + "|         0. Exit                               |");
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.print(ANSI_GREEN + "   Choose one of the options : ");
 
         Scanner sc = new Scanner(System.in);
         String input = sc.next();
@@ -436,11 +483,15 @@ public class Main {
         }
     }
     static void manageMagazines () {
-        System.out.println(ANSI_BLUE + "\n\n====== Manage Magazines ======");
-        System.out.println(ANSI_CYAN + "1. Add magazine");
-        System.out.println(ANSI_CYAN + "2. Remmove magazine");
-        System.out.println(ANSI_CYAN + "3. Edit magazine");
-        System.out.print(ANSI_GREEN + "Choose one of the options : ");
+        System.out.println(ANSI_BLUE + "\n\n=================================================");
+        System.out.println(ANSI_BLUE + "|                Manage Magazines               |");
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.println(ANSI_CYAN + "|         1. Add magazine                       |");
+        System.out.println(ANSI_CYAN + "|         2. Remmove magazine                   |");
+        System.out.println(ANSI_CYAN + "|         3. Edit magazine                      |");
+        System.out.println(ANSI_CYAN + "|         0. Exit                               |");
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.print(ANSI_GREEN + "   Choose one of the options : ");
 
         Scanner sc = new Scanner(System.in);
         String input = sc.next();
@@ -464,14 +515,17 @@ public class Main {
         }
     }
     static void searchBooks () {
-        System.out.println(ANSI_BLUE + "\n\n====== Search Books ======");
-        System.out.println(ANSI_CYAN + "1. Search by Name");
-        System.out.println(ANSI_CYAN + "2. Search by Author");
-        System.out.println(ANSI_CYAN + "3. Search by Publisher");
-        System.out.println(ANSI_CYAN + "4. Search by Category");
-        System.out.println(ANSI_CYAN + "5. Search by Rate");
-        System.out.println(ANSI_CYAN + "0. Exit");
-        System.out.print(ANSI_GREEN + "Choose one of the options : ");
+        System.out.println(ANSI_BLUE + "\n\n=================================================");
+        System.out.println(ANSI_BLUE + "|                    Search Books                   |");
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.println(ANSI_CYAN + "|         1. Search by Name                         |");
+        System.out.println(ANSI_CYAN + "|         2. Search by Author                       |");
+        System.out.println(ANSI_CYAN + "|         3. Search by Publisher                    |");
+        System.out.println(ANSI_CYAN + "|         4. Search by Category                     |");
+        System.out.println(ANSI_CYAN + "|         5. Search by Rate                         |");
+        System.out.println(ANSI_CYAN + "|         0. Exit                                   |");
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.print(ANSI_GREEN + "   Choose one of the options : ");
 
         Scanner sc = new Scanner(System.in);
         String input = sc.next();
