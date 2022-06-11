@@ -29,7 +29,7 @@ public class MainService {
     static MaterialRepositoryImpl materials = new MaterialRepositoryImpl();
     static PublisherRepositoryImpl publishers = new PublisherRepositoryImpl();
 
-    private void mockData() {
+    public static void mockData() {
         Library lib1 = new Library((long) 1, "Library1", City.ANKARA);
         Library lib2 = new Library((long) 2, "Library2", City.ISTANBUL);
         Library lib3 = new Library((long) 3, "Library3", City.IZMIR);
