@@ -55,6 +55,7 @@ public class Main {
 
 
     static void loginMenu () {
+        System.out.println(ANSI_BLUE + "\n\n====== Login ======");
         System.out.print(ANSI_GREEN + "Username :  ");
         Scanner sc = new Scanner(System.in);
         String username = sc.next();
@@ -68,16 +69,16 @@ public class Main {
         }
         else{
             switch (newLogin.getClass().getName()){
-                case "Administrator":
+                case "librarymanagementsystem.model.Administrator":
                     administratorMenu(newLogin.getName());
                     break;
-                case "LibraryManager":
+                case "librarymanagementsystem.model.LibraryManager":
                     libraryManagerMenu(newLogin.getName());
                     break;
-                case "Librarian":
+                case "librarymanagementsystem.model.Librarian":
                     librarianMenu(newLogin.getName());
                     break;
-                case "User":
+                case "librarymanagementsystem.model.User":
                     readerMenu(newLogin.getName());
                     break;
             }
@@ -85,6 +86,7 @@ public class Main {
     }
 
     static void registerMenu () {
+        System.out.println(ANSI_BLUE + "\n\n====== Register ======");
         Scanner sc = new Scanner(System.in);
         System.out.println(ANSI_BLUE + "Libraries to register");
         for (int i = 0; i < MainService.listLibraries().size();i++){
@@ -114,7 +116,7 @@ public class Main {
 
         MainService.register(name,surname,username,password,(long) libraryid);
 
-
+        loginMenu();
 
 
     }
