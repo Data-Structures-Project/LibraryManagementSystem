@@ -4,7 +4,6 @@ import java.util.Objects;
 
 public abstract class Account implements Comparable<Account>{
     private int id;
-
     private String username;
     private String name;
     private String surname;
