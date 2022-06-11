@@ -65,15 +65,15 @@ public class MainService {
         authors.create(author2);
         authors.create(author3);
 
-        Material material1 = new Material(MaterialType.BOOK, "Beyaz Diş", Category.MYSTERY, new Date(1997513),
+        Material material1 = new Material(MaterialType.BOOK, "Beyaz", Category.MYSTERY, new Date(1997513),
                 author1, publisher1, 10, Location.A1, "New Info", library1);
-        Material material2 = new Material(MaterialType.BOOK, "Beyaz Diş", Category.MYSTERY, new Date(1997513),
+        Material material2 = new Material(MaterialType.BOOK, "Beyaz", Category.MYSTERY, new Date(1997513),
                 author1, publisher1, 10, Location.A1, "New Info", library2);
-        Material material3 = new Material(MaterialType.BOOK, "Beyaz Diş", Category.MYSTERY, new Date(1997513),
+        Material material3 = new Material(MaterialType.BOOK, "Beyaz", Category.MYSTERY, new Date(1997513),
                 author1, publisher1, 10, Location.A1, "New Info", library3);
-        Material material4 = new Material(MaterialType.BOOK, "Beyaz Diş", Category.MYSTERY, new Date(1997513),
+        Material material4 = new Material(MaterialType.BOOK, "Beyaz", Category.MYSTERY, new Date(1997513),
                 author1, publisher1, 10, Location.A1, "New Info", library2);
-        Material material5 = new Material(MaterialType.BOOK, "Beyaz Diş", Category.MYSTERY, new Date(1997513),
+        Material material5 = new Material(MaterialType.BOOK, "Beyaz", Category.MYSTERY, new Date(1997513),
                 author1, publisher1, 10, Location.A1, "New Info", library1);
 
             
@@ -152,5 +152,14 @@ public class MainService {
         return materials.findByName(name);
     }
 
+    public ArrayList<Author> authorList()
+    {
+        return authors.authorList();
+    }
+
+    public ArrayList<Publisher> publisherList()
+    {
+        return publishers.publisherList();
+    }
 
 }
