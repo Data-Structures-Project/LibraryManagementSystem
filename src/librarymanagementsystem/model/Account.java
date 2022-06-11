@@ -4,14 +4,15 @@ import java.util.Objects;
 
 public abstract class Account implements Comparable<Account>{
     private int id;
+    private static int count;
     private String username;
     private String name;
     private String surname;
     private String password;
     private Library library;
 
-    public Account(int id, String name, String surname, String username, String password, Library library) {
-        this.id = id;
+    public Account(String name, String surname, String username, String password, Library library) {
+        this.id = count++;
         this.name = name;
         this.surname = surname;
         this.username = username;

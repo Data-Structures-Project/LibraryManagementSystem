@@ -6,6 +6,7 @@ import java.util.Stack;
 
 public class Material implements Comparable<Material> {
     private int id;
+    private static int count;
     private MaterialType type;
     private String name;
     private Category category;
@@ -19,9 +20,9 @@ public class Material implements Comparable<Material> {
     private Double rateAve;
     private String info;
 
-    public Material(int id, MaterialType type, String name, Category category, Date publicationDate, Author author,
+    public Material(MaterialType type, String name, Category category, Date publicationDate, Author author,
             Publisher publisher, int pageCount, Situation situation, Location location, String info) {
-        this.id = id;
+        this.id = count++;
         this.type = type;
         this.name = name;
         this.category = category;

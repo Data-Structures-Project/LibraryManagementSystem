@@ -5,13 +5,14 @@ import java.util.Objects;
 
 public class Author implements Comparable<Author>{
     private int id;
+    private static int count;
     private String name;
     private String surname;
     private String info;
     private List<Material> materials;
 
-    public Author(int id, String name, String surname, String info) {
-        this.id = id;
+    public Author(String name, String surname, String info) {
+        this.id = count++;
         this.name = name;
         this.surname = surname;
         this.info = info;

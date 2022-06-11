@@ -4,11 +4,12 @@ import java.util.Objects;
 
 public class Library implements Comparable<Library>{
     private int id;
+    private static int count;
     private String name;
     private City city;
 
-    public Library(int id, String name, City city){
-        this.id = id;
+    public Library(String name, City city){
+        this.id = count++;
         this.name = name;
         this.city = city;
     }

@@ -6,8 +6,8 @@ import java.util.List;
 public class User extends Account{
     private List<Material> materials;
 
-    public User(int id, String name, String surname, String username, String password, Library library) {
-        super(id, name, surname, username, password, library);
+    public User(String name, String surname, String username, String password, Library library) {
+        super(name, surname, username, password, library);
         materials = new LinkedList<>();
     }
 

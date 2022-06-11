@@ -5,19 +5,20 @@ import java.util.Objects;
 
 public class Publisher implements Comparable<Publisher>{
     private int id;
+    private static int count;
     private String name;
     private List<Material> materials;
     private String info;
 
-    public Publisher(int id, String name, List<Material> materials, String info) {
-        this.id = id;
+    public Publisher(String name, List<Material> materials, String info) {
+        this.id = count++;
         this.name = name;
         this.materials = materials;
         this.info = info;
     }
 
-    public Publisher(int id, String name, String info) {
-        this.id = id;
+    public Publisher(String name, String info) {
+        this.id = count++;
         this.name = name;
         this.info = info;
     }

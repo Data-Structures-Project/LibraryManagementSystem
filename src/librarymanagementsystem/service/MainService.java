@@ -30,24 +30,24 @@ public class MainService {
     static PublisherRepositoryImpl publishers = new PublisherRepositoryImpl();
 
     public static void mockData() {
-        Library library1 = new Library(  1, "Library1", City.ANKARA);
-        Library library2 = new Library(  2, "Library2", City.ISTANBUL);
-        Library library3 = new Library(  3, "Library3", City.IZMIR);
+        Library library1 = new Library("Library1", City.ANKARA);
+        Library library2 = new Library("Library2", City.ISTANBUL);
+        Library library3 = new Library("Library3", City.IZMIR);
         libraries.create(library1);
         libraries.create(library2);
         libraries.create(library3);
 
-        User user1 = new User(1, "Sefa", "Cahyir", "scahyir", "1234", library1);
-        User user2 = new User(2, "Mustafa", "Mert", "Mustafa52", "1234", library2);
-        User user3 = new User(3, "Emre", "Yılmaz", "Emre9180", "1234", library3);
+        User user1 = new User("Sefa", "Cahyir", "scahyir", "1234", library1);
+        User user2 = new User("Mustafa", "Mert", "Mustafa52", "1234", library2);
+        User user3 = new User("Emre", "Yılmaz", "Emre9180", "1234", library3);
 
-        Personnel personal1 = new Personnel(1, "SefaPersonal", "Cahyir", "scahyirPersonal", "1234", library1);
-        Personnel personal2 = new Personnel(2, "MustafaPersonal", "Mert", "Mustafa52Personal", "1234", library2);
-        Personnel personal3 = new Personnel(3, "EmrePersonal", "Yılmaz", "Emre9180Personal", "1234", library3);
+        Personnel personal1 = new Personnel("SefaPersonal", "Cahyir", "scahyirPersonal", "1234", library1);
+        Personnel personal2 = new Personnel("MustafaPersonal", "Mert", "Mustafa52Personal", "1234", library2);
+        Personnel personal3 = new Personnel("EmrePersonal", "Yılmaz", "Emre9180Personal", "1234", library3);
 
-        Administrator admin1 = new Administrator(1, "SefaAdmin", "Cahyir", "scahyirAdmin", "1234", library1);
-        Administrator admin2 = new Administrator(2, "MustafaAdmin", "Mert", "Mustafa52Admin", "1234", library2);
-        Administrator admin3 = new Administrator(3, "EmreAdmin", "Yılmaz", "Emre9180Admin", "1234", library3);
+        Administrator admin1 = new Administrator("SefaAdmin", "Cahyir", "scahyirAdmin", "1234", library1);
+        Administrator admin2 = new Administrator("MustafaAdmin", "Mert", "Mustafa52Admin", "1234", library2);
+        Administrator admin3 = new Administrator("EmreAdmin", "Yılmaz", "Emre9180Admin", "1234", library3);
 
         accounts.create(user1);
         accounts.create(user2);
@@ -59,31 +59,31 @@ public class MainService {
         accounts.create(admin2);
         accounts.create(admin3);
 
-        Publisher publisher1 = new Publisher(  1, "Is Bankasi", "Is Bankasi, klasik yayinlar");
-        Publisher publisher2 = new Publisher(  2, "Yapikredi", "Yapikredi, klasik yayinlar");
-        Publisher publisher3 = new Publisher(  3, "Can Yayinlari", "Can yayinlari, klasik yayinlar");
+        Publisher publisher1 = new Publisher("Is Bankasi", "Is Bankasi, klasik yayinlar");
+        Publisher publisher2 = new Publisher("Yapikredi", "Yapikredi, klasik yayinlar");
+        Publisher publisher3 = new Publisher("Can Yayinlari", "Can yayinlari, klasik yayinlar");
 
         publishers.create(publisher1);
         publishers.create(publisher2);
         publishers.create(publisher3);
 
-        Author author1 = new Author(  1, "JRR Tolkien", "Tolkien", "Born in Turkey");
-        Author author2 = new Author(  1, "Lev Nicolovig", "Tolstoy", "Born in Russia");
-        Author author3 = new Author(  1, "Stefan", "Zweig", "Born in Germany");
+        Author author1 = new Author("JRR Tolkien", "Tolkien", "Born in Turkey");
+        Author author2 = new Author("Lev Nicolovig", "Tolstoy", "Born in Russia");
+        Author author3 = new Author("Stefan", "Zweig", "Born in Germany");
 
         authors.create(author1);
         authors.create(author2);
         authors.create(author3);
 
-        Material material1 = new Material(  1, MaterialType.BOOK, "Beyaz Diş", Category.MYSTERY, new Date(1997513),
+        Material material1 = new Material(MaterialType.BOOK, "Beyaz Diş", Category.MYSTERY, new Date(1997513),
                 author1, publisher1, 10, Situation.LIBRARY, Location.A1, "New Info");
-        Material material2 = new Material(  2, MaterialType.BOOK, "Beyaz Diş", Category.MYSTERY, new Date(1997513),
+        Material material2 = new Material(MaterialType.BOOK, "Beyaz Diş", Category.MYSTERY, new Date(1997513),
                 author1, publisher1, 10, Situation.LIBRARY, Location.A1, "New Info");
-        Material material3 = new Material(  3, MaterialType.BOOK, "Beyaz Diş", Category.MYSTERY, new Date(1997513),
+        Material material3 = new Material(MaterialType.BOOK, "Beyaz Diş", Category.MYSTERY, new Date(1997513),
                 author1, publisher1, 10, Situation.LIBRARY, Location.A1, "New Info");
-        Material material4 = new Material(  4, MaterialType.BOOK, "Beyaz Diş", Category.MYSTERY, new Date(1997513),
+        Material material4 = new Material(MaterialType.BOOK, "Beyaz Diş", Category.MYSTERY, new Date(1997513),
                 author1, publisher1, 10, Situation.LIBRARY, Location.A1, "New Info");
-        Material material5 = new Material(  5, MaterialType.BOOK, "Beyaz Diş", Category.MYSTERY, new Date(1997513),
+        Material material5 = new Material(MaterialType.BOOK, "Beyaz Diş", Category.MYSTERY, new Date(1997513),
                 author1, publisher1, 10, Situation.LIBRARY, Location.A1, "New Info");
 
             
@@ -96,13 +96,16 @@ public class MainService {
     }
 
     public static void createLibrary(String name, City city) {
-        libraries.create(new Library(  10, name, city));
+        libraries.create(new Library(name, city));
     }
 
     public static Account login(String username, String password) {
         Account tempAccount = accounts.viewInfo(username);
-        if (tempAccount.getPassword().equals(password))
+        if(accounts.viewInfo(username) != null)
+        {
+            if (tempAccount.getPassword().equals(password))
             return tempAccount;
+        }
         return null;
     }
 
@@ -111,7 +114,7 @@ public class MainService {
 
     public static boolean register(String name, String surname, String username, String password, int libraryId) {
         if (accounts.viewInfo(username) == null) {
-            accounts.create(new User(10, name, surname, username, password, libraries.findById(libraryId)));
+            accounts.create(new User(name, surname, username, password, libraries.findById(libraryId)));
             return true;
         } else
             return false;
@@ -119,7 +122,7 @@ public class MainService {
 
     public static boolean addLibraryManager(String name, String surname, String username, String password, int libraryId) {
         if (accounts.viewInfo(username) == null) {
-            accounts.create(new Personnel(10, name, surname, username, password, libraries.findById(libraryId)));
+            accounts.create(new Personnel(name, surname, username, password, libraries.findById(libraryId)));
             return true;
         } else
             return false;
@@ -127,7 +130,7 @@ public class MainService {
 
     public static boolean addLibrarian(String name, String surname, String username, String password, int libraryId) {
         if (accounts.viewInfo(username) == null) {
-            accounts.create(new Personnel(10, name, surname, username, password, libraries.findById(libraryId)));
+            accounts.create(new Personnel(name, surname, username, password, libraries.findById(libraryId)));
             return true;
         } else
             return false;
