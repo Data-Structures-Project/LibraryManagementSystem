@@ -1,7 +1,12 @@
 package librarymanagementsystem;
 
+import librarymanagementsystem.dao.LibraryRepositoryImpl;
+import librarymanagementsystem.model.Account;
+import librarymanagementsystem.model.Library;
+import librarymanagementsystem.model.User;
 import librarymanagementsystem.service.MainService;
 
+import java.nio.charset.MalformedInputException;
 import java.util.Scanner;
 
 public class Main {
@@ -18,6 +23,7 @@ public class Main {
 
 
         public static void main (String[]args){
+            MainService.mockData();
             Scanner sc = new Scanner(System.in);
 
             System.out.println(ANSI_BLUE + "====== Welcome to Library Management System ======");
@@ -54,15 +60,65 @@ public class Main {
     static void loginMenu () {
         System.out.print(ANSI_GREEN + "Username :  ");
         Scanner sc = new Scanner(System.in);
-        String userName = sc.next();
+        String username = sc.next();
         System.out.print(ANSI_GREEN + "Password :  ");
-        String passwd = sc.next();
+        String password = sc.next();
 
-
-
+        Account newLogin = MainService.login(username,password);
+        if (newLogin == null){
+            System.out.println(ANSI_RED + "Username or possword is wrong!");
+            loginMenu();
+        }
+        else{
+            switch (newLogin.getClass().getName()){
+                case "Administrator":
+                    administratorMenu(newLogin.getName());
+                    break;
+                case "LibraryManager":
+                    libraryManagerMenu(newLogin.getName());
+                    break;
+                case "Librarian":
+                    librarianMenu(newLogin.getName());
+                    break;
+                case "User":
+                    readerMenu(newLogin.getName());
+                    break;
+            }
+        }
     }
 
     static void registerMenu () {
+        Scanner sc = new Scanner(System.in);
+        System.out.println(ANSI_BLUE + "Libraries to register");
+        for (int i = 0; i < MainService.listLibraries().size();i++){
+            System.out.println(ANSI_CYAN + "\t" + i + ". " +MainService.listLibraries().get(i).getName());
+        }
+        System.out.print(ANSI_GREEN + "Choose one of the options : ");
+        int libraryid = Integer.parseInt(sc.next());
+        while (libraryid < 1 || libraryid > MainService.listLibraries().size()){
+            System.out.println(ANSI_RED + "Invalid input!");
+            System.out.print(ANSI_GREEN + "Choose one of the options : ");
+            libraryid = Integer.parseInt(sc.next());
+        }
+
+        System.out.print(ANSI_GREEN + "Name :  ");
+        String name = sc.next();
+        System.out.print(ANSI_GREEN + "Surname :  ");
+        String surname = sc.next();
+        System.out.print(ANSI_GREEN + "Username :  ");
+        String username = sc.next();
+        while (!MainService.isUniqueUserName(username)){
+            System.out.println(ANSI_RED + "This username already taken! Please try another one.");
+            System.out.print(ANSI_GREEN + "Username :  ");
+            username = sc.next();
+        }
+        System.out.print(ANSI_GREEN + "Password :  ");
+        String password = sc.next();
+
+        MainService.register(name,surname,username,password,(long) libraryid);
+
+
+
 
     }
 

@@ -49,4 +49,8 @@ public class Library implements Comparable<Library>{
         }
         return -1;
     }
+
+    public String getName(){
+        return name;
+    }
 }
