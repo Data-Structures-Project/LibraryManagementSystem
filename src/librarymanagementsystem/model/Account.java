@@ -10,13 +10,13 @@ public abstract class Account implements Comparable<Account>{
     private String password;
     private Library library;
 
-    public Account(int id, String name, String username, String surname, String password, Library library) {
+    public Account(int id, String name, String surname, String username, String password, Library library) {
         this.id = id;
         this.name = name;
         this.surname = surname;
+        this.username = username;
         this.password = password;
         this.library = library;
-        this.username = username;
     }
 
     public void setAccount(Account newAccount)
@@ -24,9 +24,9 @@ public abstract class Account implements Comparable<Account>{
         this.id = newAccount.id;
         this.name = newAccount.name;
         this.surname = newAccount.surname;
+        this.username = newAccount.username;
         this.password = newAccount.password;
         this.library = newAccount.library;
-        this.username = newAccount.username;
     }
 
     public String getUsername()

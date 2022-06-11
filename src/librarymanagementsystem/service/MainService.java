@@ -8,6 +8,7 @@ import librarymanagementsystem.dao.PublisherRepositoryImpl;
 import librarymanagementsystem.model.Account;
 import librarymanagementsystem.model.City;
 import librarymanagementsystem.model.Library;
+import librarymanagementsystem.model.User;
 
 public class MainService {
     static AccountRepositoryImpl accounts = new AccountRepositoryImpl();
@@ -18,17 +19,14 @@ public class MainService {
 
     public static Account login(String username, String password) {
         Account tempAccount = accounts.viewInfo(username);
-        if (tempAccount.getPassword() == password)
+        if (tempAccount.getPassword().equals(password))
             return tempAccount;
         return null;
     }
 
-    // public static Account register(String username, String password) {
-    //     Library tempLib = new Library((long) 10, "sefaLib", City.ANKARA);
-    //     Account tempNewAccount = new Account(10, "sefa", "crazySefa", "cahyir", "1234", tempLib);
-    //     Account tempAccount = accounts.create(tempNewAccount);
-    //     if (tempAccount.getPassword() == password)
-    //         return tempAccount;
-    //     return null;
-    // }
+    public static void register(String username, String password) {
+        Library tempLib = new Library((long) 10, "sefaLib", City.ANKARA);
+        User tempNewAccount = new User(10, "sefa", "cahyir", username, password, tempLib);
+        accounts.create(tempNewAccount);
+    }
 }
