@@ -491,4 +491,5 @@ public class Main {
     static void editMagazine(){
 
     }
+
 }
