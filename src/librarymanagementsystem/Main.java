@@ -1,5 +1,7 @@
 package librarymanagementsystem;
 
+import librarymanagementsystem.service.MainService;
+
 import java.util.Scanner;
 
 public class Main {
@@ -56,8 +58,6 @@ public class Main {
         System.out.print(ANSI_GREEN + "Password :  ");
         String passwd = sc.next();
 
-        //switch login func
-        //search user func returns user type, user name
 
 
     }
@@ -409,9 +409,45 @@ public class Main {
         }
     }
     static void searchBooks () {
+        System.out.println(ANSI_BLUE + "\n\n====== Search Books ======");
+        System.out.println(ANSI_CYAN + "1. Search by Name");
+        System.out.println(ANSI_CYAN + "2. Search by Author");
+        System.out.println(ANSI_CYAN + "3. Search by Publisher");
+        System.out.println(ANSI_CYAN + "4. Search by Category");
+        System.out.println(ANSI_CYAN + "5. Search by Rate");
+        System.out.println(ANSI_CYAN + "0. Exit");
+        System.out.print(ANSI_GREEN + "Choose one of the options : ");
+
+        Scanner sc = new Scanner(System.in);
+        String input = sc.next();
+
+        switch (input) {
+            case "1":
+                searchByName();
+                break;
+            case "2":
+                searchByAuthor();
+                break;
+            case "3":
+                searchByPublisher();
+                break;
+            case "4":
+                searchByCategory();
+                break;
+            case "5":
+                searchByRate();
+                break;
+            case "0":
+                System.exit(0);
+                break;
+            default:
+                break;
+
+        }
+    }
+    static void rateBook() {
 
     }
-    static void rateBook() {}
 
 
     static void addLibrary(){
@@ -491,5 +527,25 @@ public class Main {
     static void editMagazine(){
 
     }
+
+
+
+    static void searchByName(){
+
+    }
+    static void searchByAuthor(){
+
+    }
+    static void searchByPublisher(){
+
+    }
+    static void searchByCategory(){
+
+    }
+    static void searchByRate(){
+
+    }
+
+
 
 }
