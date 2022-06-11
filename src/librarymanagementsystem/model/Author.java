@@ -100,6 +100,6 @@ public class Author implements Comparable<Author>{
 
     @Override
     public int compareTo(Author author) {
-        return 0;
+        return this.name.compareTo(author.getName());
     }
 }

@@ -152,12 +152,12 @@ public class MainService {
         return materials.findByName(name);
     }
 
-    public ArrayList<Author> authorList()
+    public static ArrayList<Author> authorList()
     {
         return authors.authorList();
     }
 
-    public ArrayList<Publisher> publisherList()
+    public static ArrayList<Publisher> publisherList()
     {
         return publishers.publisherList();
     }
