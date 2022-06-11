@@ -60,7 +60,7 @@ public class MaterialRepositoryImpl implements MaterialRepository {
      * @return
      */
     @Override
-    public List<Material> findByCategories(librarymanagementsystem.model.Category category) {
+    public ArrayList<Material> findByCategories(librarymanagementsystem.model.Category category) {
         ArrayList<Material> materialsByCategory = new ArrayList<>();
         return this.materials.traverseByCategory(category, materialsByCategory);
     }

@@ -159,4 +159,16 @@ public class MainService {
         return publishers.publisherList();
     }
 
+
+    public static String getCategoryList()
+    {
+        String str = "0. Horror\n1. Thriller\n2. Mystery\n3. Literary Fiction\n4. History\n5. Science-fiction\n6. Biographies\n7. Autobiographies\n8. Poetry";
+        return str;
+    }
+
+    public static ArrayList<Material> searchByCategory(librarymanagementsystem.model.Category category)
+    {
+        ArrayList<Material> materialList = materials.findByCategories(category);
+        return materialList;
+    }
 }

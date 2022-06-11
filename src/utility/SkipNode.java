@@ -140,18 +140,6 @@ class SkipNode<N extends Comparable<? super N>> {
             return false;
     }
 
-    ArrayList<N> nodeTraverseByRate(int rate, ArrayList rateList) {
-        SkipNode<N> current = this.getNext(0); // levela dikat.
-
-        while (current != null) {
-            if ((current.compareTo(rate) == true))
-                rateList.add(current.data);
-
-            current = current.getNext(0);
-        }
-        return rateList;
-    }
-
     /**
      * Traverses the Skip List, searches the Materials by given ID.
      * 
@@ -198,16 +186,17 @@ class SkipNode<N extends Comparable<? super N>> {
         return materialList;
     }
 
-    ArrayList<N> nodeTraverseByCategory(int rate, ArrayList<N> materialList) {
+    ArrayList<N> nodeTraverseByRate(int rate, ArrayList<N> materialList) {
         SkipNode<N> current = this.getNext(0); // levela dikat.
 
         while (current != null) {
-            if ((current.compareTo(rate) == true))
+            if (((Material)current.data).getRateAve()>=rate)
                 materialList.add(current.data);
 
             current = current.getNext(0);
         }
         return materialList;
     }
+
 
 }
