@@ -11,6 +11,9 @@ import librarymanagementsystem.dao.MaterialRepositoryImpl;
 import librarymanagementsystem.dao.PublisherRepositoryImpl;
 import librarymanagementsystem.model.*;
 
+import static librarymanagementsystem.Main.ANSI_BLUE;
+import static librarymanagementsystem.Main.ANSI_CYAN;
+
 public class MainService {
     static AccountRepositoryImpl accounts = new AccountRepositoryImpl();
     static AuthorRepositoryImpl authors = new AuthorRepositoryImpl();
@@ -218,5 +221,10 @@ public class MainService {
     public static ArrayList<Material> searchByRate(int rate)
     {
         return materials.findByRate(rate);
+    }
+
+    public static void addRate(Material material, int rate)
+    {
+        material.addRate(rate);
     }
 }
