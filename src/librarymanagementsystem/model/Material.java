@@ -196,14 +196,7 @@ public class Material implements Comparable<Material> {
             if (material == null)
                 throw new NullPointerException();
 
-            else if (id < material.id)
-                return -1;
-
-            else if (id > material.id)
-                return 1;
-
-            else
-                return 0;
+            return this.name.compareTo(material.getName());
         } catch (NullPointerException e) {
             System.out.println("Material.compareTo: material is null");
         }

@@ -87,8 +87,8 @@ public class SkipList<T extends Comparable<? super T>> implements SkippableList<
         /**
      * Traverses the Skip List, searches the Materials by given ID.
      *
-     * @param Category     cat
-     * @param ArrayList<T> materialList
+     * @param
+     * @param
      * @return Return the found data
      */
     public ArrayList<T> traverseByRate(int rate, ArrayList<T> materialList) {
