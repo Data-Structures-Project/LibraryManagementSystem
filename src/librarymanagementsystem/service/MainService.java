@@ -10,7 +10,6 @@ import librarymanagementsystem.dao.LibraryRepositoryImpl;
 import librarymanagementsystem.dao.MaterialRepositoryImpl;
 import librarymanagementsystem.dao.PublisherRepositoryImpl;
 import librarymanagementsystem.model.*;
-import utility.Vertex;
 
 public class MainService {
     static AccountRepositoryImpl accounts = new AccountRepositoryImpl();
@@ -32,7 +31,8 @@ public class MainService {
         User user3 = new User("Emre", "Yılmaz", "Emre9180", "1234", library3);
 
         LibraryManager libManager1 = new LibraryManager("SefaManager", "Cahyir", "scahyirPersonal", "1234", library1);
-        LibraryManager libManager2 = new LibraryManager("MustafaManager", "Mert", "Mustafa52Personal", "1234", library2);
+        LibraryManager libManager2 = new LibraryManager("MustafaManager", "Mert", "Mustafa52Personal", "1234",
+                library2);
         LibraryManager libManager3 = new LibraryManager("EmreManager", "Yılmaz", "Emre9180Personal", "1234", library3);
 
         Administrator admin1 = new Administrator("SefaAdmin", "Cahyir", "scahyirAdmin", "1234", library1);
@@ -65,24 +65,29 @@ public class MainService {
         authors.create(author2);
         authors.create(author3);
 
-        Material material1 = new Material(MaterialType.BOOK, "Beyaz", Category.MYSTERY, new Date(1997513),
-                author1, publisher1, 10, Location.A1, "New Info", library1);
-        Material material2 = new Material(MaterialType.BOOK, "Beyaz", Category.MYSTERY, new Date(1997513),
-                author1, publisher1, 10, Location.A1, "New Info", library2);
-        Material material3 = new Material(MaterialType.BOOK, "Beyaz", Category.MYSTERY, new Date(1997513),
-                author1, publisher1, 10, Location.A1, "New Info", library3);
-        Material material4 = new Material(MaterialType.BOOK, "Beyaz", Category.MYSTERY, new Date(1997513),
-                author1, publisher1, 10, Location.A1, "New Info", library2);
-        Material material5 = new Material(MaterialType.BOOK, "Beyaz", Category.MYSTERY, new Date(1997513),
-                author1, publisher1, 10, Location.A1, "New Info", library1);
+        Material material1 = new Material(MaterialType.BOOK, "Beyaz", Category.BIOGRAPHIES, new Date(1997513),
+                author1, publisher1, 1024, Location.A1, "Beyaz Dis Info", library1);
+        Material material2 = new Material(MaterialType.MAGAZINE, "Sefaya Selam olsun", Category.MYSTERY,
+                new Date(1997513),
+                author2, publisher2, 1130, Location.A1, "Sefaya Selam olsun Info", library2);
+        Material material3 = new Material(MaterialType.MAGAZINE, "Iradenin gucu", Category.LITERARY_FICTION,
+                new Date(1997513),
+                author2, publisher3, 1120, Location.C3, "Iradenin gucu Info", library3);
+        Material material4 = new Material(MaterialType.MAGAZINE, "Olmaz boyle math", Category.THRILLER,
+                new Date(1997513),
+                author3, publisher2, 2410, Location.B1, "Olmaz boyle math Info", library2);
+        Material material5 = new Material(MaterialType.BOOK, "Yalan dünya", Category.AUTOBIOGRAPHIES, new Date(1997513),
+                author3, publisher1, 510, Location.A3, "Yalan dünya Info", library1);
 
-            
         materials.create(material1);
         materials.create(material2);
         materials.create(material3);
         materials.create(material4);
         materials.create(material5);
 
+        // author1.addBook(material1);
+        // author2.addBook(material2);
+        // author3.addBook(material4);
     }
 
     public static void createLibrary(String name, City city) {
@@ -91,16 +96,12 @@ public class MainService {
 
     public static Account login(String username, String password) {
         Account tempAccount = accounts.viewInfo(username);
-        if(accounts.viewInfo(username) != null)
-        {
+        if (accounts.viewInfo(username) != null) {
             if (tempAccount.getPassword().equals(password))
-            return tempAccount;
+                return tempAccount;
         }
         return null;
     }
-
-    // TODO intları düzenleme
-    // TODO Id otomatik sectirme
 
     public static boolean register(String name, String surname, String username, String password, int libraryId) {
         if (accounts.viewInfo(username) == null) {
@@ -110,7 +111,8 @@ public class MainService {
             return false;
     }
 
-    public static boolean addLibraryManager(String name, String surname, String username, String password, int libraryId) {
+    public static boolean addLibraryManager(String name, String surname, String username, String password,
+            int libraryId) {
         if (accounts.viewInfo(username) == null) {
             accounts.create(new LibraryManager(name, surname, username, password, libraries.findById(libraryId)));
             return true;
@@ -137,28 +139,23 @@ public class MainService {
         return libList;
     }
 
-    public static List<Material> searchByPublisher(String publisher)
-    {
+    public static List<Material> searchByPublisher(String publisher) {
         return publishers.findByName(publisher).getBooks();
     }
 
-    public static List<Material> searchByAuthor(String author)
-    {
+    public static List<Material> searchByAuthor(String author) {
         return authors.findByName(author).getBooks();
     }
 
-    public static Material searchByName(String name)
-    {
+    public static Material searchByName(String name) {
         return materials.findByName(name);
     }
 
-    public static ArrayList<Author> authorList()
-    {
+    public static ArrayList<Author> authorList() {
         return authors.authorList();
     }
 
-    public static ArrayList<Publisher> publisherList()
-    {
+    public static ArrayList<Publisher> publisherList() {
         return publishers.publisherList();
     }
 

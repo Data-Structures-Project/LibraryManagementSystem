@@ -8,8 +8,8 @@ public class Library implements Comparable<Library>{
     private static int count;
     private String name;
     private City city;
-
     private double [] coordinates;
+    //private List<Material> materials;
 
     public Library(String name, City city){
         this.id = count++;

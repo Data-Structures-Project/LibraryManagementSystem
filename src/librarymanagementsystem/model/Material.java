@@ -16,7 +16,7 @@ public class Material implements Comparable<Material> {
     private int pageCount;
     private Location location;
     private Stack<Integer> rates;
-    private Double rateAve;
+    private Double rateAve = 0.0;
     private String info;
 
     private Library lib;
@@ -38,6 +38,8 @@ public class Material implements Comparable<Material> {
         this.isLoaned = false;
         this.lib = lib;
         rates = new Stack<>();
+        author.addBook(this);
+        publisher.addBook(this);
     }
 
     public Material(String name) {

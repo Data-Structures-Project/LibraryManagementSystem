@@ -8,20 +8,14 @@ public class Publisher implements Comparable<Publisher>{
     private int id;
     private static int count;
     private String name;
-    private List<Material> materials;
+    private List<Material> materials = new ArrayList<>();
     private String info;
-
-    public Publisher(String name, List<Material> materials, String info) {
-        this.id = count++;
-        this.name = name;
-        this.materials = materials;
-        this.info = info;
-    }
 
     public Publisher(String name, String info) {
         this.id = count++;
         this.name = name;
         this.info = info;
+
     }
 
     public Publisher(String name)

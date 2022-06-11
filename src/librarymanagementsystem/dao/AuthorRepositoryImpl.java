@@ -46,7 +46,7 @@ public class AuthorRepositoryImpl implements AuthorRepository{
      */
     @Override
     public Author findByName(String name) {
-        return (Author) authors.searchByName(name);
+        return (Author) authors.find(new Author(name));
     }
 
     @Override

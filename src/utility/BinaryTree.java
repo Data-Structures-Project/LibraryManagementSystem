@@ -6,29 +6,33 @@ import java.io.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-/** Class for a binary tree that stores type E objects.
- *   @author Koffman and Wolfgang
- * */
+/**
+ * Class for a binary tree that stores type E objects.
+ * 
+ * @author Koffman and Wolfgang
+ */
 
-public class BinaryTree <E extends Comparable<? super E>>
+public class BinaryTree<E extends Comparable<? super E>>
         implements Serializable {
 
     /** Class to encapsulate a tree node. */
-    protected static class Node  <E extends Comparable<? super E>>
+    protected static class Node<E extends Comparable<? super E>>
             implements Serializable {
         // Data Fields
         /** The information stored in this node. */
         protected E data;
 
         /** Reference to the left child. */
-        protected Node < E > left;
+        protected Node<E> left;
 
         /** Reference to the right child. */
-        protected Node < E > right;
+        protected Node<E> right;
 
         // Constructors
-        /** Construct a node with given data and no children.
-         @param data The data to store in this node
+        /**
+         * Construct a node with given data and no children.
+         * 
+         * @param data The data to store in this node
          */
         public Node(E data) {
             this.data = data;
@@ -37,87 +41,87 @@ public class BinaryTree <E extends Comparable<? super E>>
         }
 
         // Methods
-        /** Return a string representation of the node.
-         @return A string representation of the data fields
+        /**
+         * Return a string representation of the node.
+         * 
+         * @return A string representation of the data fields
          */
         public String toString() {
             return data.toString();
 
-
         }
 
-        public int compareToID(int data)
-        {
-            if(((Author)this.data).getId()==data)
+        public int compareToID(int data) {
+            if (((Author) this.data).getId() == data)
                 return 0;
-            else if(((Author)this.data).getId()>data)
+            else if (((Author) this.data).getId() > data)
                 return 1;
             else
                 return -1;
         }
 
-        public int compareToName(String name)
-        {
-            if(((Author)this.data).getName().compareTo(name)==0)
+        public int compareToName(String name) {
+            if (((Author) this.data).getName().compareTo(name) == 0)
                 return 0;
-            else if(((Author)this.data).getName().compareTo(name)>0)
+            else if (((Author) this.data).getName().compareTo(name) > 0)
                 return 1;
             else
                 return -1;
         }
-
 
     }
 
     // Data Field
     /** The root of the binary tree */
-    protected Node < E > root;
+    protected Node<E> root;
 
     public BinaryTree() {
         root = null;
     }
 
-    protected BinaryTree(Node < E > root) {
+    protected BinaryTree(Node<E> root) {
         this.root = root;
     }
 
-    /** Constructs a new binary tree with data in its root,leftTree
-     as its left subtree and rightTree as its right subtree.
+    /**
+     * Constructs a new binary tree with data in its root,leftTree
+     * as its left subtree and rightTree as its right subtree.
      */
-    public BinaryTree(E data, BinaryTree < E > leftTree,
-                      BinaryTree < E > rightTree) {
-        root = new Node < E > (data);
+    public BinaryTree(E data, BinaryTree<E> leftTree,
+            BinaryTree<E> rightTree) {
+        root = new Node<E>(data);
         if (leftTree != null) {
             root.left = leftTree.root;
-        }
-        else {
+        } else {
             root.left = null;
         }
         if (rightTree != null) {
             root.right = rightTree.root;
-        }
-        else {
+        } else {
             root.right = null;
         }
     }
 
-    /** Return the left subtree.
-     @return The left subtree or null if either the root or
-     the left subtree is null
+    /**
+     * Return the left subtree.
+     * 
+     * @return The left subtree or null if either the root or
+     *         the left subtree is null
      */
-    public BinaryTree < E > getLeftSubtree() {
+    public BinaryTree<E> getLeftSubtree() {
         if (root != null && root.left != null) {
-            return new BinaryTree < E > (root.left);
-        }
-        else {
+            return new BinaryTree<E>(root.left);
+        } else {
             return null;
         }
     }
 
-    /** Return the right sub-tree
-     @return the right sub-tree or
-     null if either the root or the
-     right subtree is null.
+    /**
+     * Return the right sub-tree
+     * 
+     * @return the right sub-tree or
+     *         null if either the root or the
+     *         right subtree is null.
      */
     public BinaryTree<E> getRightSubtree() {
         if (root != null && root.right != null) {
@@ -127,11 +131,12 @@ public class BinaryTree <E extends Comparable<? super E>>
         }
     }
 
-
     /**** BEGIN EXERCISE ****/
-    /** Return the data field of the root
-     @return the data field of the root
-     or null if the root is null
+    /**
+     * Return the data field of the root
+     * 
+     * @return the data field of the root
+     *         or null if the root is null
      */
     public E getData() {
         if (root != null) {
@@ -140,28 +145,28 @@ public class BinaryTree <E extends Comparable<? super E>>
             return null;
         }
     }
+
     /**** END EXERCISE ****/
 
-    /** Determine whether this tree is a leaf.
-     @return true if the root has no children
+    /**
+     * Determine whether this tree is a leaf.
+     * 
+     * @return true if the root has no children
      */
     public boolean isLeaf() {
         return (root.left == null && root.right == null);
     }
 
-    public ArrayList<E> createList()
-    {
+    public ArrayList<E> createList() {
         ArrayList<E> authorList = new ArrayList<>();
         inOrderCreateList(root, authorList);
         return authorList;
     }
 
-    private void inOrderCreateList(Node<E> node, ArrayList<E> list)
-    {
+    private void inOrderCreateList(Node<E> node, ArrayList<E> list) {
         if (node == null) {
             return;
-        }
-        else {
+        } else {
             inOrderCreateList(node.left, list);
             list.add(node.data);
             inOrderCreateList(node.right, list);
@@ -175,13 +180,11 @@ public class BinaryTree <E extends Comparable<? super E>>
         return sb.toString();
     }
 
-
     public E preOrderByID(Node<E> node, int ID) {
         if (node == null) {
             return null;
-        }
-        else {
-            if(node.compareToID(ID)==0)
+        } else {
+            if (node.compareToID(ID) == 0)
                 return node.data;
             preOrderByID(node.left, ID);
             preOrderByID(node.right, ID);
@@ -189,43 +192,26 @@ public class BinaryTree <E extends Comparable<? super E>>
         return null;
     }
 
-    public E preOrderByName(Node<E> node, String name) {
-        if (node == null) {
-            return null;
-        }
-        else {
-            if(node.compareToName(name)==0)
-                return node.data;
-            preOrderByName(node.left, name);
-            preOrderByName(node.right, name);
-        }
-        return null;
-    }
 
-    public E searchByName(String name)
-    {
-        return preOrderByName(this.root, name);
-    }
-
-    public E serchByID(int ID)
-    {
+    public E serchByID(int ID) {
         return preOrderByID(this.root, ID);
     }
 
-    /** Perform a preorder traversal.
-     @param node The local root
-     @param depth The depth
-     @param sb The string buffer to save the output
+    /**
+     * Perform a preorder traversal.
+     * 
+     * @param node  The local root
+     * @param depth The depth
+     * @param sb    The string buffer to save the output
      */
-    private void preOrderTraverse(Node < E > node, int depth,
-                                  StringBuilder sb) {
+    private void preOrderTraverse(Node<E> node, int depth,
+            StringBuilder sb) {
         for (int i = 1; i < depth; i++) {
             sb.append("  ");
         }
         if (node == null) {
             sb.append("null\n");
-        }
-        else {
+        } else {
             sb.append(node.toString());
             sb.append("\n");
             preOrderTraverse(node.left, depth + 1, sb);
@@ -233,24 +219,24 @@ public class BinaryTree <E extends Comparable<? super E>>
         }
     }
 
-    /** Method to read a binary tree.
-     pre: The input consists of a preorder traversal
-     of the binary tree. The line "null" indicates a null tree.
-     @param bR The input file
-     @return The binary tree
-     @throws IOException If there is an input error
+    /**
+     * Method to read a binary tree.
+     * pre: The input consists of a preorder traversal
+     * of the binary tree. The line "null" indicates a null tree.
+     * 
+     * @param bR The input file
+     * @return The binary tree
+     * @throws IOException If there is an input error
      */
-    public static BinaryTree < String >
-    readBinaryTree(BufferedReader bR) throws IOException {
+    public static BinaryTree<String> readBinaryTree(BufferedReader bR) throws IOException {
         // Read a line and trim leading and trailing spaces.
         String data = bR.readLine().trim();
         if (data.equals("null")) {
             return null;
-        }
-        else {
-            BinaryTree < String > leftTree = readBinaryTree(bR);
-            BinaryTree < String > rightTree = readBinaryTree(bR);
-            return new BinaryTree < String > (data, leftTree, rightTree);
+        } else {
+            BinaryTree<String> leftTree = readBinaryTree(bR);
+            BinaryTree<String> rightTree = readBinaryTree(bR);
+            return new BinaryTree<String>(data, leftTree, rightTree);
         }
     }
 

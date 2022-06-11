@@ -10,14 +10,13 @@ public class Author implements Comparable<Author>{
     private String name;
     private String surname;
     private String info;
-    private List<Material> materials;
+    private List<Material> materials = new ArrayList<Material>();
 
     public Author(String name, String surname, String info) {
         this.id = count++;
         this.name = name;
         this.surname = surname;
         this.info = info;
-        materials = null;
     }
 
     public Author(String name)

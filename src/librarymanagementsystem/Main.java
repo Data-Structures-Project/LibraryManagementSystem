@@ -1,14 +1,10 @@
 package librarymanagementsystem;
 
-import librarymanagementsystem.dao.LibraryRepositoryImpl;
 import librarymanagementsystem.model.Account;
 import librarymanagementsystem.model.Author;
-import librarymanagementsystem.model.Library;
 import librarymanagementsystem.model.Material;
+import librarymanagementsystem.model.Publisher;
 import librarymanagementsystem.service.MainService;
-
-import javax.sound.midi.SysexMessage;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -678,6 +674,7 @@ public class Main {
         }
 
     }
+
     static void searchByAuthor(){
         System.out.println(ANSI_BLUE + "\n\n=================================================");
         System.out.println(ANSI_BLUE + "|                    Authors                    |");
@@ -694,11 +691,25 @@ public class Main {
         for (int i = 0; i < authorBooks.size() ; i++){
             System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + authorBooks.get(i).getName() +"\t\t\t\t\t\t");
         }
-
-
-
     }
+
     static void searchByPublisher(){
+
+        System.out.println(ANSI_BLUE + "\n\n=================================================");
+        System.out.println(ANSI_BLUE + "|                    Publisher                    |");
+        System.out.println(ANSI_BLUE + "=================================================");
+
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Publisher> publisherList = MainService.publisherList();
+        for (int i = 0; i < publisherList.size() ; i++){
+            System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + publisherList.get(i).getName() +"\t\t\t\t\t\t");
+        }
+        System.out.print(ANSI_GREEN + "  Choose one of the options : ");
+        int publisherIndex = Integer.parseInt(sc.next());
+        List<Material> publisherBooks = MainService.searchByPublisher(publisherList.get(publisherIndex).getName());
+        for (int i = 0; i < publisherBooks.size() ; i++){
+            System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + publisherBooks.get(i).getName() +"\t\t\t\t\t\t");
+        }
 
     }
     static void searchByCategory(){

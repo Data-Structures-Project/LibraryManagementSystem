@@ -45,7 +45,7 @@ class SkipNode<N extends Comparable<? super N>> {
         SkipNode<N> result = null;
         SkipNode<N> current = this.getNext(level);
         while (current != null && current.data.compareTo(data) != 1) {
-            if (current.data.equals(data)) {
+            if (current.data.compareTo(data) == 0) {
                 result = current;
                 break;
             }
