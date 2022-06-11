@@ -151,7 +151,25 @@ public class Material implements Comparable<Material> {
         this.info = info;
     }
 
-    
+    /**
+     * Copies the newMaterial's data to the this material
+     * @param newMaterial The material object that has new data
+     */
+    public void setMaterial(Material newMaterial)
+    {
+        this.author = newMaterial.author;
+        this.category = newMaterial.category;
+        this.id = newMaterial.id;
+        this.pageCount = newMaterial.pageCount;
+        this.info = newMaterial.info;;
+        this.name = newMaterial.name;
+        this.type = newMaterial.type;
+        this.location = newMaterial.location;
+        this.publicationDate = newMaterial.publicationDate;
+        this.rates = newMaterial.rates;
+        this.situation = newMaterial.situation;
+    }
+
     /**
      * TODO BUNU İSME GÖRE COMPARE ET
      * 

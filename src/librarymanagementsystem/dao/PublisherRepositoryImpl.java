@@ -1,25 +1,32 @@
 package librarymanagementsystem.dao;
 
+import librarymanagementsystem.model.Author;
 import librarymanagementsystem.model.Publisher;
+import utility.AVLTree;
 import utility.BinarySearchTree;
 
 import java.util.List;
 
+/* NOT : FIND BY Publisher METODU BURADA OLACAK */
+/* NOT : FIND BY Publisher METODU BURADA OLACAK */
+/* NOT : FIND BY Publisher METODU BURADA OLACAK */
+/* NOT : FIND BY Publisher METODU BURADA OLACAK */
+/* NOT : FIND BY Publisher METODU BURADA OLACAK */
 public class PublisherRepositoryImpl implements PublisherRepository {
-    private BinarySearchTree<Publisher> publishers; //BBST OLSUN
+    private AVLTree<Publisher> publishers; //BBST OLSUN
 
     public PublisherRepositoryImpl(){
-        publishers = new BinarySearchTree<>();
+        publishers = new AVLTree<>();
     }
 
     @Override
-    public List<Publisher> findAll() {
-        return null;
+    public AVLTree<Publisher> findAll() {
+        return publishers;
     }
 
     @Override
-    public Publisher findById(Long id) {
-        return null;
+    public Publisher findById(int ID) {
+        return (Publisher) publishers.serchByID(ID);
     }
 
     /**
@@ -35,21 +42,28 @@ public class PublisherRepositoryImpl implements PublisherRepository {
 
     @Override
     public void create(Publisher publisher) {
-
+        publishers.add(publisher);
     }
 
-    @Override
-    public Publisher update(Publisher publisher) {
-        return null;
+
+    public Publisher update(Publisher targetPublisher, Publisher newPublisher) {
+        Publisher target = publishers.find(targetPublisher);
+        target.setPublisher(newPublisher);
+        return newPublisher;
     }
 
+    /**
+     * Removes the target publisher from the Publisher data
+     * @param publisher Target Publisher
+     */
     @Override
     public void remove(Publisher publisher) {
-
+        publishers.remove(publisher);
     }
 
     @Override
-    public String viewInfo(Long id) {
-        return null;
+    public String viewInfo(String name) {
+        Publisher targetPublisher = this.publishers.find(new Publisher(name));
+        return targetPublisher.toString();
     }
 }

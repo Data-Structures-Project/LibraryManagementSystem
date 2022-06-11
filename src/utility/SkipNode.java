@@ -107,9 +107,9 @@ class SkipNode<N extends Comparable<? super N>> {
     }
 
     /**
-     *
-     * @param Category category
-     * @return
+     * Compares the materials according to category
+     * @param category Target category
+     * @return Return the result of the comparison
      */
     public boolean compareTo(librarymanagementsystem.model.Category category) {
         if (((Material) data).getCategory().compareTo(category) == 0)
@@ -121,12 +121,21 @@ class SkipNode<N extends Comparable<? super N>> {
 
     /**
      *
-     * @param Category category
+     * @param rate
      * @return
      */
     public boolean compareByRate(int rate) {
         if (((Material) data).getRateAve() > rate)
             return true;
+
+        else
+            return false;
+    }
+
+    public boolean compareByName(String name) {
+        if (((Material) data).getName().compareTo(name)==0)
+            return true;
+
         else
             return false;
     }
@@ -158,6 +167,24 @@ class SkipNode<N extends Comparable<? super N>> {
         }
         return null;
     }
+
+    /**
+     * Traverses the Skip List, searches the Materials by given Name.
+     *
+     * @param name Target Name
+     * @return Return the found data
+     */
+    N nodeTraverseByName(String name) {
+        SkipNode<N> current = this.getNext(0); // levela dikat.
+        while (current != null) {
+            if ((current.compareByName(name) == true))
+                return current.data;
+            current = current.getNext(0);
+        }
+        return null;
+    }
+
+
 
     ArrayList<N> nodeTraverseByCategory(librarymanagementsystem.model.Category category, ArrayList<N> materialList) {
         SkipNode<N> current = this.getNext(0); // levela dikat.

@@ -1,15 +1,16 @@
 package librarymanagementsystem.dao;
 
 import librarymanagementsystem.model.Author;
+import utility.AVLTree;
 
 import java.util.List;
 
 public interface AuthorRepository {
-    List<Author> findAll();
-    Author findById(Long id);
-    List<Author> findByName(String surname);
+    AVLTree<Author> findAll();
+    Author findById(int id);
+    Author findByName(String name);
     void create(Author author);
-    Author update(Author author);
+    Author update(Author targetAuthor, Author newAuthor);
     void remove(Author author);
-    String viewInfo(Long id);
+    String viewInfo(String name);
 }

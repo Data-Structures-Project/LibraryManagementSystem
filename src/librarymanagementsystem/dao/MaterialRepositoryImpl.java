@@ -7,21 +7,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MaterialRepositoryImpl implements MaterialRepository {
+
+    /**
+     * Skip List that store the materials
+     */
     private SkipList<Material> materials;
 
+    /**
+     * Constructor. Creates the skip list
+     */
     public MaterialRepositoryImpl() {
         materials = new SkipList<>();
     }
 
     /**
      * Returns the Material data.
-     * 
      * @return Returns the data Material
      */
     @Override
     public SkipList<Material> getAll() {
         return materials;
-    } // asdf
+    }
 
     /**
      * Searches the Material (Skip List data) by given ID.
@@ -45,12 +51,7 @@ public class MaterialRepositoryImpl implements MaterialRepository {
         return materials.search(new Material(name));
     }
 
-    /*
-     * Silindi @Override
-     * public List<Material> findByAuthorId(Long id) {
-     * return null;
-     * }
-     */
+
 
     /**
      * TODO Bütün skip listi traverse et, bi tane ARRAYLİSTE SOK. arraylisti sort
@@ -62,16 +63,9 @@ public class MaterialRepositoryImpl implements MaterialRepository {
     @Override
     public List<Material> findByCategories(librarymanagementsystem.model.Category category) {
         ArrayList<Material> materialsByCategory = new ArrayList<>();
-
         return this.materials.traverseByCategory(category, materialsByCategory);
     }
 
-    /*
-     * @Override
-     * public List<Material> findByPublisher(Publisher publisher) {
-     * return null;
-     * }
-     */
 
     /**
      * * TODO Bütün skip listi traverse et, bi tane ARRAYLİSTE SOK. arraylisti sort
@@ -87,30 +81,47 @@ public class MaterialRepositoryImpl implements MaterialRepository {
         return this.materials.traverseByRate(rate, materialsByRate);
     }
 
+    /**
+     * Insert the target material to the Material List
+     * @param material Target material
+     */
     @Override
     public void create(Material material) {
-
-    }
-
-    @Override
-    public Material update(Material material) {
-        return null;
-    }
-
-    @Override
-    public void remove(Material material) {
-
+        materials.insert(material);
     }
 
     /**
-     * Parameteryi string yaptık, id idi
-     * 
-     * @param name
-     * @return
+     * Finds the target material, change it with new material
+     * @param targetMaterial Target material to change
+     * @param newMaterial New material to change with target material
+     * @return Return the new material
+     */
+    @Override
+    public Material update(Material targetMaterial, Material newMaterial) {
+        Material targetMat = materials.search(targetMaterial);
+        targetMat.setMaterial(newMaterial);
+        return newMaterial;
+    }
+
+    /**
+     * Removes a material from the Material List.
+     * @param material Target material
+     */
+    @Override
+    public void remove(Material material) {
+    materials.delete(material);
+    }
+
+
+
+    /**
+     * Returns the information of material that has the target name.
+     * @param name Target name
+     * @return Return the information
      */
     @Override
     public String viewInfo(String name) {
-        return null;
+        Material targetMaterial = this.materials.traverseByName(name);
+        return targetMaterial.toString();
     }
-
 }

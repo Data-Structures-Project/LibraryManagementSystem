@@ -1,15 +1,16 @@
 package librarymanagementsystem.dao;
 
 import librarymanagementsystem.model.Publisher;
+import utility.AVLTree;
 
 import java.util.List;
 
 public interface PublisherRepository {
-    List<Publisher> findAll();
-    Publisher findById(Long id);
+    AVLTree<Publisher> findAll();
+    Publisher findById(int id);
     List<Publisher> findByName(String name);
     void create(Publisher publisher);
-    Publisher update(Publisher publisher);
+    Publisher update(Publisher publisherTarget, Publisher publisherNew);
     void remove(Publisher publisher);
-    String viewInfo(Long id);
+    String viewInfo(String name);
 }

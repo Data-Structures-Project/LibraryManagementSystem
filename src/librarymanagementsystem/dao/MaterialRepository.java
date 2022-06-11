@@ -23,7 +23,7 @@ public interface MaterialRepository {
 
     void create(Material material);
 
-    Material update(Material material);
+    public Material update(Material targetMaterial, Material newMaterial);
 
     void remove(Material material);
 
