@@ -149,21 +149,21 @@ public class BinaryTree <E extends Comparable<? super E>>
         return (root.left == null && root.right == null);
     }
 
-    public ArrayList<E> createListAuthor()
+    public ArrayList<E> createList()
     {
         ArrayList<E> authorList = new ArrayList<>();
         inOrderCreateList(root, authorList);
         return authorList;
     }
 
-    private void inOrderCreateList(Node<E> node, ArrayList<Author> list)
+    private void inOrderCreateList(Node<E> node, ArrayList<E> list)
     {
         if (node == null) {
             return;
         }
         else {
             inOrderCreateList(node.left, list);
-            list.add((Author) node.data);
+            list.add(node.data);
             inOrderCreateList(node.right, list);
         }
         return;

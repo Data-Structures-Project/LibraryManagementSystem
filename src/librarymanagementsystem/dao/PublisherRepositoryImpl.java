@@ -3,6 +3,7 @@ package librarymanagementsystem.dao;
 import librarymanagementsystem.model.Publisher;
 import utility.AVLTree;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /* NOT : FIND BY Publisher METODU BURADA OLACAK */
@@ -63,5 +64,10 @@ public class PublisherRepositoryImpl implements PublisherRepository {
     public Publisher viewInfo(String name) {
         Publisher targetPublisher = this.publishers.find(new Publisher(name));
         return targetPublisher;
+    }
+
+    public ArrayList<Publisher> publisherList()
+    {
+        return (ArrayList<Publisher>) publishers.createList();
     }
 }

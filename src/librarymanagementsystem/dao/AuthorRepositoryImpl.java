@@ -74,7 +74,6 @@ public class AuthorRepositoryImpl implements AuthorRepository{
 
     public ArrayList<Author> authorList()
     {
-        ArrayList<Author> authorList = new ArrayList<>();
-
+        return (ArrayList<Author>) authors.createList();
     }
 }
