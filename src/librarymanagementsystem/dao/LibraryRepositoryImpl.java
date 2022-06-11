@@ -18,7 +18,7 @@ public class LibraryRepositoryImpl implements LibraryRepository{
     }
 
     @Override
-    public Library findById(Long id) {
+    public Library findById(int id) {
         return null;
     }
 
@@ -43,7 +43,7 @@ public class LibraryRepositoryImpl implements LibraryRepository{
     }
 
     @Override
-    public String viewInfo(Long id) {
+    public String viewInfo(int id) {
         return null;
     }
 }

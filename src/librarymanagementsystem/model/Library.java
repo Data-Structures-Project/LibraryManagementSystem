@@ -3,11 +3,11 @@ package librarymanagementsystem.model;
 import java.util.Objects;
 
 public class Library implements Comparable<Library>{
-    private Long id;
+    private int id;
     private String name;
     private City city;
 
-    public Library(Long id, String name, City city){
+    public Library(int id, String name, City city){
         this.id = id;
         this.name = name;
         this.city = city;

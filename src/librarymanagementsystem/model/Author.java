@@ -4,13 +4,13 @@ import java.util.List;
 import java.util.Objects;
 
 public class Author implements Comparable<Author>{
-    private long id;
+    private int id;
     private String name;
     private String surname;
     private String info;
     private List<Material> materials;
 
-    public Author(Long id, String name, String surname, String info) {
+    public Author(int id, String name, String surname, String info) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -32,11 +32,11 @@ public class Author implements Comparable<Author>{
         this.materials = newAuthor.materials;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

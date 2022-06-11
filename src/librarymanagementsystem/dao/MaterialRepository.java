@@ -13,7 +13,7 @@ public interface MaterialRepository {
 
     Material findByName(String name);
 
-    /* List<Material> findByAuthorId(Long id); */
+    /* List<Material> findByAuthorId(int id); */
     List<Material> findByCategories(Category category);
 
     /* List<Material> findByPublisher(Publisher publisher); */

@@ -5,7 +5,7 @@ package utility;
  */
 public interface SearchTree<E> {
     /**
-     * Inserts item where it belongs in the tree.
+     * Inserts item where it beints in the tree.
      * @param item Data to add
      * @return Returns true if item is inserted; false if it isn’t (already in tree)
      */

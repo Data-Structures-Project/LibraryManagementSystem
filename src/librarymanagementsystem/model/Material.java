@@ -5,7 +5,7 @@ import java.util.Objects;
 import java.util.Stack;
 
 public class Material implements Comparable<Material> {
-    private Long id;
+    private int id;
     private MaterialType type;
     private String name;
     private Category category;
@@ -19,7 +19,7 @@ public class Material implements Comparable<Material> {
     private Double rateAve;
     private String info;
 
-    public Material(Long id, MaterialType type, String name, Category category, Date publicationDate, Author author,
+    public Material(int id, MaterialType type, String name, Category category, Date publicationDate, Author author,
             Publisher publisher, int pageCount, Situation situation, Location location, String info) {
         this.id = id;
         this.type = type;
@@ -39,11 +39,11 @@ public class Material implements Comparable<Material> {
         this.name = name;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

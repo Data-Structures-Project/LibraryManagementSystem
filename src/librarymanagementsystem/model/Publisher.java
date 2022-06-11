@@ -4,19 +4,19 @@ import java.util.List;
 import java.util.Objects;
 
 public class Publisher implements Comparable<Publisher>{
-    private Long id;
+    private int id;
     private String name;
     private List<Material> materials;
     private String info;
 
-    public Publisher(Long id, String name, List<Material> materials, String info) {
+    public Publisher(int id, String name, List<Material> materials, String info) {
         this.id = id;
         this.name = name;
         this.materials = materials;
         this.info = info;
     }
 
-    public Publisher(Long id, String name, String info) {
+    public Publisher(int id, String name, String info) {
         this.id = id;
         this.name = name;
         this.info = info;
@@ -35,11 +35,11 @@ public class Publisher implements Comparable<Publisher>{
         this.info = info;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

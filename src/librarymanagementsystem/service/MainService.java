@@ -30,9 +30,9 @@ public class MainService {
     static PublisherRepositoryImpl publishers = new PublisherRepositoryImpl();
 
     public static void mockData() {
-        Library library1 = new Library((long) 1, "Library1", City.ANKARA);
-        Library library2 = new Library((long) 2, "Library2", City.ISTANBUL);
-        Library library3 = new Library((long) 3, "Library3", City.IZMIR);
+        Library library1 = new Library(  1, "Library1", City.ANKARA);
+        Library library2 = new Library(  2, "Library2", City.ISTANBUL);
+        Library library3 = new Library(  3, "Library3", City.IZMIR);
         libraries.create(library1);
         libraries.create(library2);
         libraries.create(library3);
@@ -49,29 +49,54 @@ public class MainService {
         Administrator admin2 = new Administrator(2, "MustafaAdmin", "Mert", "Mustafa52Admin", "1234", library2);
         Administrator admin3 = new Administrator(3, "EmreAdmin", "Yılmaz", "Emre9180Admin", "1234", library3);
 
-        Publisher publisher1 = new Publisher((long) 1, "Is Bankasi", "Is Bankasi, klasik yayinlar");
-        Publisher publisher2 = new Publisher((long) 2, "Yapikredi", "Yapikredi, klasik yayinlar");
-        Publisher publisher3 = new Publisher((long) 3, "Can Yayinlari", "Can yayinlari, klasik yayinlar");
+        accounts.create(user1);
+        accounts.create(user2);
+        accounts.create(user3);
+        accounts.create(personal1);
+        accounts.create(personal2);
+        accounts.create(personal3);
+        accounts.create(admin1);
+        accounts.create(admin2);
+        accounts.create(admin3);
 
-        Author author1 = new Author((long) 1, "JRR Tolkien", "Tolkien", "Born in Turkey");
-        Author author2 = new Author((long) 1, "Lev Nicolovig", "Tolstoy", "Born in Russia");
-        Author author3 = new Author((long) 1, "Stefan", "Zweig", "Born in Germany");
+        Publisher publisher1 = new Publisher(  1, "Is Bankasi", "Is Bankasi, klasik yayinlar");
+        Publisher publisher2 = new Publisher(  2, "Yapikredi", "Yapikredi, klasik yayinlar");
+        Publisher publisher3 = new Publisher(  3, "Can Yayinlari", "Can yayinlari, klasik yayinlar");
 
-        Material material1 = new Material((long) 1, MaterialType.BOOK, "Beyaz Diş", Category.MYSTERY, new Date(1997513),
+        publishers.create(publisher1);
+        publishers.create(publisher2);
+        publishers.create(publisher3);
+
+        Author author1 = new Author(  1, "JRR Tolkien", "Tolkien", "Born in Turkey");
+        Author author2 = new Author(  1, "Lev Nicolovig", "Tolstoy", "Born in Russia");
+        Author author3 = new Author(  1, "Stefan", "Zweig", "Born in Germany");
+
+        authors.create(author1);
+        authors.create(author2);
+        authors.create(author3);
+
+        Material material1 = new Material(  1, MaterialType.BOOK, "Beyaz Diş", Category.MYSTERY, new Date(1997513),
                 author1, publisher1, 10, Situation.LIBRARY, Location.A1, "New Info");
-        Material material2 = new Material((long) 2, MaterialType.BOOK, "Beyaz Diş", Category.MYSTERY, new Date(1997513),
+        Material material2 = new Material(  2, MaterialType.BOOK, "Beyaz Diş", Category.MYSTERY, new Date(1997513),
                 author1, publisher1, 10, Situation.LIBRARY, Location.A1, "New Info");
-        Material material3 = new Material((long) 3, MaterialType.BOOK, "Beyaz Diş", Category.MYSTERY, new Date(1997513),
+        Material material3 = new Material(  3, MaterialType.BOOK, "Beyaz Diş", Category.MYSTERY, new Date(1997513),
                 author1, publisher1, 10, Situation.LIBRARY, Location.A1, "New Info");
-        Material material4 = new Material((long) 4, MaterialType.BOOK, "Beyaz Diş", Category.MYSTERY, new Date(1997513),
+        Material material4 = new Material(  4, MaterialType.BOOK, "Beyaz Diş", Category.MYSTERY, new Date(1997513),
                 author1, publisher1, 10, Situation.LIBRARY, Location.A1, "New Info");
-        Material material5 = new Material((long) 5, MaterialType.BOOK, "Beyaz Diş", Category.MYSTERY, new Date(1997513),
+        Material material5 = new Material(  5, MaterialType.BOOK, "Beyaz Diş", Category.MYSTERY, new Date(1997513),
                 author1, publisher1, 10, Situation.LIBRARY, Location.A1, "New Info");
+
+            
+        materials.create(material1);
+        materials.create(material2);
+        materials.create(material3);
+        materials.create(material4);
+        materials.create(material5);
 
     }
 
     public static void createLibrary(String name, City city) {
-        Library tempLib = new Library((long) 10, name, city);
+        libraries.create(new Library(  10, name, city));
     }
 
     public static Account login(String username, String password) {
@@ -81,10 +106,10 @@ public class MainService {
         return null;
     }
 
-    // TODO Register olurken kütüphane seçtirme
-    // TODO Longları düzenleme
+    // TODO intları düzenleme
     // TODO Id otomatik sectirme
-    public static boolean register(String name, String surname, String username, String password, Long libraryId) {
+
+    public static boolean register(String name, String surname, String username, String password, int libraryId) {
         if (accounts.viewInfo(username) == null) {
             accounts.create(new User(10, name, surname, username, password, libraries.findById(libraryId)));
             return true;
@@ -92,7 +117,7 @@ public class MainService {
             return false;
     }
 
-    public static boolean addLibraryManager(String name, String surname, String username, String password, Long libraryId) {
+    public static boolean addLibraryManager(String name, String surname, String username, String password, int libraryId) {
         if (accounts.viewInfo(username) == null) {
             accounts.create(new Personnel(10, name, surname, username, password, libraries.findById(libraryId)));
             return true;
@@ -100,7 +125,7 @@ public class MainService {
             return false;
     }
 
-    public static boolean addLibrarian(String name, String surname, String username, String password, Long libraryId) {
+    public static boolean addLibrarian(String name, String surname, String username, String password, int libraryId) {
         if (accounts.viewInfo(username) == null) {
             accounts.create(new Personnel(10, name, surname, username, password, libraries.findById(libraryId)));
             return true;

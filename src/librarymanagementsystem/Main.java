@@ -114,7 +114,7 @@ public class Main {
         System.out.print(ANSI_GREEN + "Password :  ");
         String password = sc.next();
 
-        MainService.register(name,surname,username,password,(long) libraryid);
+        MainService.register(name,surname,username,password, libraryid);
 
         loginMenu();
 
