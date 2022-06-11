@@ -1,12 +1,8 @@
 package librarymanagementsystem.dao;
 
 import librarymanagementsystem.model.Account;
-import utility.AVLTree;
-import utility.BinarySearchTree;
 
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 
 public class AccountRepositoryImpl implements AccountRepository{
     private HashMap<String, Account> accounts;
