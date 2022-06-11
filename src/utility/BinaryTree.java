@@ -3,6 +3,8 @@ package utility;
 import librarymanagementsystem.model.Author;
 
 import java.io.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 /** Class for a binary tree that stores type E objects.
  *   @author Koffman and Wolfgang
@@ -145,6 +147,26 @@ public class BinaryTree <E extends Comparable<? super E>>
      */
     public boolean isLeaf() {
         return (root.left == null && root.right == null);
+    }
+
+    public ArrayList<E> createListAuthor()
+    {
+        ArrayList<E> authorList = new ArrayList<>();
+        inOrderCreateList(root, authorList);
+        return authorList;
+    }
+
+    private void inOrderCreateList(Node<E> node, ArrayList<Author> list)
+    {
+        if (node == null) {
+            return;
+        }
+        else {
+            inOrderCreateList(node.left, list);
+            list.add((Author) node.data);
+            inOrderCreateList(node.right, list);
+        }
+        return;
     }
 
     public String toString() {

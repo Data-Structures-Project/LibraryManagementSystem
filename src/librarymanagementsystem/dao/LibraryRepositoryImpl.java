@@ -15,13 +15,13 @@ public class LibraryRepositoryImpl implements LibraryRepository{
     }
 
     @Override
-    public Graph findAll() {
-        return libraries;
+    public ArrayList<Library> findAll() {
+        return libraries.getLibraryList();
     }
 
     @Override
     public Library findById(int id) {
-        ArrayList<Library> libraryList = libraries.getVertexList();
+        ArrayList<Library> libraryList = libraries.getLibraryList();
         for(int i=0;i<libraryList.size();i++)
             if(libraryList.get(i).getId()==id) return libraryList.get(i);
         return null;
@@ -30,7 +30,7 @@ public class LibraryRepositoryImpl implements LibraryRepository{
     @Override
     public Library findByName(String name)
     {
-        ArrayList<Library> libraryList = libraries.getVertexList();
+        ArrayList<Library> libraryList = libraries.getLibraryList();
         for(int i=0;i<libraryList.size();i++)
             if(Objects.equals(libraryList.get(i).getName(), name)) return libraryList.get(i);
         return null;
@@ -54,7 +54,7 @@ public class LibraryRepositoryImpl implements LibraryRepository{
 
     @Override
     public Library viewInfo(String name) {
-        ArrayList<Library> libList = libraries.getVertexList();
+        ArrayList<Library> libList = (ArrayList<Library>) libraries.getLibraryList();
         for(int i=0;i<libList.size();++i)
         {
             if(libList.get(i).getName().equals(name))

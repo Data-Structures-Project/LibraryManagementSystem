@@ -1,6 +1,8 @@
 package utility;
 
 
+import librarymanagementsystem.model.Library;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,11 +15,11 @@ import java.util.Set;
 public class Graph< T
         extends Comparable < T >>{
     private Map<Vertex<T>, ArrayList<Vertex<T>>> adjLists;
-    private ArrayList<Vertex<T>> verList;
+    private ArrayList<Library> libraryList;
 
     public Graph() {
         this.adjLists = new HashMap<Vertex<T>, ArrayList<Vertex<T>>>();
-        this.verList = new ArrayList<>();
+        this.libraryList = new ArrayList<>();
     }
 
     /**
@@ -28,7 +30,7 @@ public class Graph< T
         if (!this.hasVertex(u)) {
             this.adjLists.put(u, new ArrayList<Vertex<T>>());
         }
-        verList.add(u);
+        libraryList.add((Library) u.getData());
 
     }
 
@@ -44,19 +46,10 @@ public class Graph< T
                 vAdjList.remove(u);
             }
         }
-        verList.remove(u);
-
-        for(int i=0;i<verList.size();++i)
-        {
-            if(verList.get(i).equals(u));
-            else
-            {
-                addEdge(u, verList.get(i));
-            }
-        }
+        libraryList.remove((Library) u.getData());
     }
 
-    public ArrayList<Vertex<T>> getVertexList(){return verList;}
+    public ArrayList<Library> getLibraryList(){return libraryList;}
 
     /**
      * Determines if a vertex (of any type) is in this graph.

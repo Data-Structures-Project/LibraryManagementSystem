@@ -2,25 +2,15 @@ package librarymanagementsystem.service;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import librarymanagementsystem.dao.AccountRepositoryImpl;
 import librarymanagementsystem.dao.AuthorRepositoryImpl;
 import librarymanagementsystem.dao.LibraryRepositoryImpl;
 import librarymanagementsystem.dao.MaterialRepositoryImpl;
 import librarymanagementsystem.dao.PublisherRepositoryImpl;
-import librarymanagementsystem.model.Account;
-import librarymanagementsystem.model.Administrator;
-import librarymanagementsystem.model.Author;
-import librarymanagementsystem.model.City;
-import librarymanagementsystem.model.Library;
-import librarymanagementsystem.model.Material;
-import librarymanagementsystem.model.MaterialType;
-import librarymanagementsystem.model.Personnel;
-import librarymanagementsystem.model.Publisher;
-import librarymanagementsystem.model.Situation;
-import librarymanagementsystem.model.User;
-import librarymanagementsystem.model.Category;
-import librarymanagementsystem.model.Location;
+import librarymanagementsystem.model.*;
+import utility.Vertex;
 
 public class MainService {
     static AccountRepositoryImpl accounts = new AccountRepositoryImpl();
@@ -41,9 +31,9 @@ public class MainService {
         User user2 = new User("Mustafa", "Mert", "Mustafa52", "1234", library2);
         User user3 = new User("Emre", "Yılmaz", "Emre9180", "1234", library3);
 
-        Personnel personal1 = new Personnel("SefaPersonal", "Cahyir", "scahyirPersonal", "1234", library1);
-        Personnel personal2 = new Personnel("MustafaPersonal", "Mert", "Mustafa52Personal", "1234", library2);
-        Personnel personal3 = new Personnel("EmrePersonal", "Yılmaz", "Emre9180Personal", "1234", library3);
+        LibraryManager libManager1 = new LibraryManager("SefaManager", "Cahyir", "scahyirPersonal", "1234", library1);
+        LibraryManager libManager2 = new LibraryManager("MustafaManager", "Mert", "Mustafa52Personal", "1234", library2);
+        LibraryManager libManager3 = new LibraryManager("EmreManager", "Yılmaz", "Emre9180Personal", "1234", library3);
 
         Administrator admin1 = new Administrator("SefaAdmin", "Cahyir", "scahyirAdmin", "1234", library1);
         Administrator admin2 = new Administrator("MustafaAdmin", "Mert", "Mustafa52Admin", "1234", library2);
@@ -52,9 +42,9 @@ public class MainService {
         accounts.create(user1);
         accounts.create(user2);
         accounts.create(user3);
-        accounts.create(personal1);
-        accounts.create(personal2);
-        accounts.create(personal3);
+        accounts.create(libManager1);
+        accounts.create(libManager2);
+        accounts.create(libManager3);
         accounts.create(admin1);
         accounts.create(admin2);
         accounts.create(admin3);
@@ -122,7 +112,7 @@ public class MainService {
 
     public static boolean addLibraryManager(String name, String surname, String username, String password, int libraryId) {
         if (accounts.viewInfo(username) == null) {
-            accounts.create(new Personnel(name, surname, username, password, libraries.findById(libraryId)));
+            accounts.create(new LibraryManager(name, surname, username, password, libraries.findById(libraryId)));
             return true;
         } else
             return false;
@@ -130,7 +120,7 @@ public class MainService {
 
     public static boolean addLibrarian(String name, String surname, String username, String password, int libraryId) {
         if (accounts.viewInfo(username) == null) {
-            accounts.create(new Personnel(name, surname, username, password, libraries.findById(libraryId)));
+            accounts.create(new Librarian(name, surname, username, password, libraries.findById(libraryId)));
             return true;
         } else
             return false;
@@ -143,7 +133,24 @@ public class MainService {
     }
 
     public static ArrayList<Library> listLibraries() {
-        ArrayList<Library> libList = libraries.findAll().getVertexList();
+        ArrayList<Library> libList = libraries.findAll();
         return libList;
     }
+
+    public static List<Material> searchByPublisher(String publisher)
+    {
+        return publishers.findByName(publisher).getBooks();
+    }
+
+    public static List<Material> searchByAuthor(String author)
+    {
+        return authors.findByName(author).getBooks();
+    }
+
+    public static Material searchByName(String name)
+    {
+        return materials.findByName(name);
+    }
+
+
 }

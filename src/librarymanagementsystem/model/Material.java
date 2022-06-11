@@ -14,14 +14,17 @@ public class Material implements Comparable<Material> {
     private Author author;
     private Publisher publisher;
     private int pageCount;
-    private Situation situation;
     private Location location;
     private Stack<Integer> rates;
     private Double rateAve;
     private String info;
 
+    private Library lib;
+
+    private boolean isLoaned;
+
     public Material(MaterialType type, String name, Category category, Date publicationDate, Author author,
-            Publisher publisher, int pageCount, Situation situation, Location location, String info) {
+            Publisher publisher, int pageCount, Location location, String info, Library lib) {
         this.id = count++;
         this.type = type;
         this.name = name;
@@ -30,9 +33,10 @@ public class Material implements Comparable<Material> {
         this.author = author;
         this.publisher = publisher;
         this.pageCount = pageCount;
-        this.situation = situation;
         this.location = location;
         this.info = info;
+        this.isLoaned = false;
+        this.lib = lib;
         rates = new Stack<>();
     }
 
@@ -104,14 +108,6 @@ public class Material implements Comparable<Material> {
         this.pageCount = pageCount;
     }
 
-    public Situation getSituation() {
-        return situation;
-    }
-
-    public void setSituation(Situation situation) {
-        this.situation = situation;
-    }
-
     public Location getLocation() {
         return location;
     }
@@ -136,6 +132,23 @@ public class Material implements Comparable<Material> {
         return rates.remove(rate);
     }
 
+    public void setIsLoaned(boolean loan)
+    {
+        this.isLoaned = loan;
+    }
+    public boolean getIsLoaned()
+    {
+        return this.isLoaned;
+    }
+
+    public void setLib(Library lib)
+    {
+        this.lib = lib;
+    }
+    public Library getLib()
+    {
+        return this.lib;
+    }
     public Double getRateAve() {
         for (Integer integer : rates) {
             this.rateAve += integer;
@@ -167,7 +180,8 @@ public class Material implements Comparable<Material> {
         this.location = newMaterial.location;
         this.publicationDate = newMaterial.publicationDate;
         this.rates = newMaterial.rates;
-        this.situation = newMaterial.situation;
+        this.isLoaned = newMaterial.isLoaned;
+        this.lib = newMaterial.lib;
     }
 
     /**
@@ -220,7 +234,6 @@ public class Material implements Comparable<Material> {
                 && getCategory() == material.getCategory()
                 && Objects.equals(getPublicationDate(), material.getPublicationDate())
                 && Objects.equals(getAuthor(), material.getAuthor())
-                && Objects.equals(getPublisher(), material.getPublisher()) && getSituation() == material.getSituation()
                 && getLocation() == material.getLocation() && Objects.equals(getRates(), material.getRates());
     }
 
@@ -235,8 +248,9 @@ public class Material implements Comparable<Material> {
                 ", author=" + author +
                 ", publisher=" + publisher +
                 ", pageCount=" + pageCount +
-                ", situation=" + situation +
                 ", location=" + location +
+                ", library=" + lib +
+                ", situation=" + isLoaned +
                 ", rates=" + rates +
                 '}';
     }

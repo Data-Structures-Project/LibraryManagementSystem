@@ -3,6 +3,8 @@ package librarymanagementsystem.dao;
 import librarymanagementsystem.model.Author;
 import utility.AVLTree;
 
+import java.util.ArrayList;
+
 /* NOT : FIND BY AUTHOR METODU BURADA OLACAK */
 /* NOT : FIND BY AUTHOR METODU BURADA OLACAK */
 /* NOT : FIND BY AUTHOR METODU BURADA OLACAK */
@@ -68,5 +70,11 @@ public class AuthorRepositoryImpl implements AuthorRepository{
     public Author viewInfo(String name) {
        Author targetAuthor = this.authors.find(new Author(name));
        return targetAuthor;
+    }
+
+    public ArrayList<Author> authorList()
+    {
+        ArrayList<Author> authorList = new ArrayList<>();
+
     }
 }
