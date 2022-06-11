@@ -2,12 +2,15 @@ package librarymanagementsystem;
 
 import librarymanagementsystem.dao.LibraryRepositoryImpl;
 import librarymanagementsystem.model.Account;
+import librarymanagementsystem.model.Author;
 import librarymanagementsystem.model.Library;
 import librarymanagementsystem.model.Material;
 import librarymanagementsystem.service.MainService;
 
 import javax.sound.midi.SysexMessage;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -676,6 +679,23 @@ public class Main {
 
     }
     static void searchByAuthor(){
+        System.out.println(ANSI_BLUE + "\n\n=================================================");
+        System.out.println(ANSI_BLUE + "|                    Authors                    |");
+        System.out.println(ANSI_BLUE + "=================================================");
+
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Author> authorList = MainService.authorList();
+        for (int i = 0; i < authorList.size() ; i++){
+            System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + authorList.get(i).getName() +"\t\t\t\t\t\t");
+        }
+        System.out.print(ANSI_GREEN + "  Choose one of the options : ");
+        int authorIndex = Integer.parseInt(sc.next());
+        List<Material> authorBooks = MainService.searchByAuthor(authorList.get(authorIndex).getName());
+        for (int i = 0; i < authorBooks.size() ; i++){
+            System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + authorBooks.get(i).getName() +"\t\t\t\t\t\t");
+        }
+
+
 
     }
     static void searchByPublisher(){
