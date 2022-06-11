@@ -185,28 +185,310 @@ public class Main {
 
 
     static void manageLibraries ( char userType){
+        System.out.println(ANSI_BLUE + "\n\n====== Manage Libraries ======");
+        if (userType == 'a'){
+            System.out.println(ANSI_CYAN + "1. Add library");
+            System.out.println(ANSI_CYAN + "2. Remove library");
+            System.out.println(ANSI_CYAN + "3. Edit library");
+            System.out.println(ANSI_CYAN + "0. Exit");
+            System.out.print(ANSI_GREEN + "Choose one of the options : ");
+            Scanner sc = new Scanner(System.in);
+            String input = sc.next();
+
+            switch (input) {
+                case "1":
+                    addLibrary();
+                    break;
+                case "2":
+                    removeLibrary();
+                    break;
+                case "3":
+                    editLibrary();
+                    break;
+                case "0":
+                    System.exit(0);
+                    break;
+                default:
+                    break;
+
+            }
+        }
+
+        else {
+
+            System.out.println(ANSI_CYAN + "1. Edit library");
+            System.out.println(ANSI_CYAN + "0. Exit");
+            System.out.print(ANSI_GREEN + "Choose one of the options : ");
+            Scanner sc = new Scanner(System.in);
+            String input = sc.next();
+
+            switch (input) {
+                case "1":
+                    editLibrary();
+                    break;
+                case "0":
+                    System.exit(0);
+                    break;
+                default:
+                    break;
+
+            }
+        }
 
     }
     static void manageLibraryManagers () {
+        System.out.println(ANSI_BLUE + "\n\n====== Manage Library Managers ======");
+        System.out.println(ANSI_CYAN + "1. Add library manager");
+        System.out.println(ANSI_CYAN + "2. Remmove library manager");
+        System.out.println(ANSI_CYAN + "3. Edit library manager");
+        System.out.print(ANSI_GREEN + "Choose one of the options : ");
 
+        Scanner sc = new Scanner(System.in);
+        String input = sc.next();
+
+        switch (input) {
+            case "1":
+                addManager();
+                break;
+            case "2":
+                removeManager();
+                break;
+            case "3":
+                editManager();
+                break;
+            case "0":
+                System.exit(0);
+                break;
+            default:
+                break;
+
+        }
     }
     static void manageLibrarians () {
+        System.out.println(ANSI_BLUE + "\n\n====== Manage Librarians ======");
+        System.out.println(ANSI_CYAN + "1. Add librarian");
+        System.out.println(ANSI_CYAN + "2. Remmove librarian");
+        System.out.println(ANSI_CYAN + "3. Edit librarian");
+        System.out.print(ANSI_GREEN + "Choose one of the options : ");
 
+        Scanner sc = new Scanner(System.in);
+        String input = sc.next();
+
+        switch (input) {
+            case "1":
+                addLibrarian();
+                break;
+            case "2":
+                removeLibrarian();
+                break;
+            case "3":
+                editLibrarian();
+                break;
+            case "0":
+                System.exit(0);
+                break;
+            default:
+                break;
+
+        }
     }
     static void manageReaders () {
+        System.out.println(ANSI_BLUE + "\n\n====== Manage Readers ======");
+        System.out.println(ANSI_CYAN + "1. Add reader");
+        System.out.println(ANSI_CYAN + "2. Remmove reader");
+        System.out.println(ANSI_CYAN + "3. Edit reader");
+        System.out.print(ANSI_GREEN + "Choose one of the options : ");
 
+        Scanner sc = new Scanner(System.in);
+        String input = sc.next();
+
+        switch (input) {
+            case "1":
+                addReader();
+                break;
+            case "2":
+                removeReader();
+                break;
+            case "3":
+                editReader();
+                break;
+            case "0":
+                System.exit(0);
+                break;
+            default:
+                break;
+
+        }
     }
-    static void manageLoanBooks () {
 
+
+
+
+    static void manageLoanBooks () {
+        System.out.println(ANSI_BLUE + "\n\n====== Manage Loan Books ======");
+        System.out.println(ANSI_CYAN + "1. Add loan book");
+        System.out.println(ANSI_CYAN + "2. Remmove loan book");
+        System.out.println(ANSI_CYAN + "3. Edit loan book");
+        System.out.print(ANSI_GREEN + "Choose one of the options : ");
+
+        Scanner sc = new Scanner(System.in);
+        String input = sc.next();
+
+        switch (input) {
+            case "1":
+                addLoanBook();
+                break;
+            case "2":
+                removeLoanBook();
+                break;
+            case "3":
+                editLoanBook();
+                break;
+            case "0":
+                System.exit(0);
+                break;
+            default:
+                break;
+
+        }
     }
     static void manageBooks () {
+        System.out.println(ANSI_BLUE + "\n\n====== Manage Books ======");
+        System.out.println(ANSI_CYAN + "1. Add book");
+        System.out.println(ANSI_CYAN + "2. Remmove book");
+        System.out.println(ANSI_CYAN + "3. Edit book");
+        System.out.print(ANSI_GREEN + "Choose one of the options : ");
 
+        Scanner sc = new Scanner(System.in);
+        String input = sc.next();
+
+        switch (input) {
+            case "1":
+                addBook();
+                break;
+            case "2":
+                removeBook();
+                break;
+            case "3":
+                editBook();
+                break;
+            case "0":
+                System.exit(0);
+                break;
+            default:
+                break;
+
+        }
     }
     static void manageMagazines () {
+        System.out.println(ANSI_BLUE + "\n\n====== Manage Magazines ======");
+        System.out.println(ANSI_CYAN + "1. Add magazine");
+        System.out.println(ANSI_CYAN + "2. Remmove magazine");
+        System.out.println(ANSI_CYAN + "3. Edit magazine");
+        System.out.print(ANSI_GREEN + "Choose one of the options : ");
 
+        Scanner sc = new Scanner(System.in);
+        String input = sc.next();
+
+        switch (input) {
+            case "1":
+                addMagazine();
+                break;
+            case "2":
+                removeMagazine();
+                break;
+            case "3":
+                editMagazine();
+                break;
+            case "0":
+                System.exit(0);
+                break;
+            default:
+                break;
+
+        }
     }
     static void searchBooks () {
 
     }
     static void rateBook() {}
+
+
+    static void addLibrary(){
+
+    }
+    static void removeLibrary(){
+
+    }
+    static void editLibrary(){
+
+    }
+
+
+    static void addManager(){
+
+    }
+    static void removeManager(){
+
+    }
+    static void editManager(){
+
+    }
+
+
+
+    static void addLibrarian(){
+
+    }
+    static void removeLibrarian(){
+
+    }
+    static void editLibrarian(){
+
+    }
+
+
+    static void addReader(){
+
+    }
+    static void removeReader(){
+
+    }
+    static void editReader(){
+
+    }
+
+
+
+    static void addLoanBook(){
+
+    }
+    static void removeLoanBook(){
+
+    }
+    static void editLoanBook(){
+
+    }
+
+
+    static void addBook(){
+
+    }
+    static void removeBook(){
+
+    }
+    static void editBook(){
+
+    }
+
+
+    static void addMagazine(){
+
+    }
+    static void removeMagazine(){
+
+    }
+    static void editMagazine(){
+
+    }
 }
