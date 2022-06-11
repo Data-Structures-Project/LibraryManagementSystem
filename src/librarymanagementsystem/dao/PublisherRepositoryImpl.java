@@ -36,7 +36,7 @@ public class PublisherRepositoryImpl implements PublisherRepository {
      */
     @Override
     public Publisher findByName(String name) {
-        return (Publisher) publishers.searchByName(name);
+        return (Publisher) publishers.find(new Publisher(name));
     }
 
     @Override
