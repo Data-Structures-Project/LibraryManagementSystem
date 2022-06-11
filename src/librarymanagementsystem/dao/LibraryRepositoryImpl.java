@@ -14,7 +14,7 @@ public class LibraryRepositoryImpl implements LibraryRepository{
 
     @Override
     public List<Library> findAll() {
-        return null;
+        return libraries;
     }
 
     @Override
@@ -29,7 +29,7 @@ public class LibraryRepositoryImpl implements LibraryRepository{
 
     @Override
     public void create(Library library) {
-
+        libraries.add(library);
     }
 
     @Override

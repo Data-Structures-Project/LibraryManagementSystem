@@ -3,10 +3,7 @@ package librarymanagementsystem;
 import librarymanagementsystem.dao.LibraryRepositoryImpl;
 import librarymanagementsystem.model.Account;
 import librarymanagementsystem.model.Library;
-import librarymanagementsystem.model.User;
 import librarymanagementsystem.service.MainService;
-
-import java.nio.charset.MalformedInputException;
 import java.util.Scanner;
 
 public class Main {

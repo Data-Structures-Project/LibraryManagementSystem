@@ -30,21 +30,24 @@ public class MainService {
     static PublisherRepositoryImpl publishers = new PublisherRepositoryImpl();
 
     public static void mockData() {
-        Library lib1 = new Library((long) 1, "Library1", City.ANKARA);
-        Library lib2 = new Library((long) 2, "Library2", City.ISTANBUL);
-        Library lib3 = new Library((long) 3, "Library3", City.IZMIR);
+        Library library1 = new Library((long) 1, "Library1", City.ANKARA);
+        Library library2 = new Library((long) 2, "Library2", City.ISTANBUL);
+        Library library3 = new Library((long) 3, "Library3", City.IZMIR);
+        libraries.create(library1);
+        libraries.create(library2);
+        libraries.create(library3);
 
-        User user1 = new User(1, "Sefa", "Cahyir", "scahyir", "1234", lib1);
-        User user2 = new User(2, "Mustafa", "Mert", "Mustafa52", "1234", lib1);
-        User user3 = new User(3, "Emre", "Yılmaz", "Emre9180", "1234", lib3);
+        User user1 = new User(1, "Sefa", "Cahyir", "scahyir", "1234", library1);
+        User user2 = new User(2, "Mustafa", "Mert", "Mustafa52", "1234", library2);
+        User user3 = new User(3, "Emre", "Yılmaz", "Emre9180", "1234", library3);
 
-        Personnel personal1 = new Personnel(1, "SefaPersonal", "Cahyir", "scahyirPersonal", "1234", lib1);
-        Personnel personal2 = new Personnel(2, "MustafaPersonal", "Mert", "Mustafa52Personal", "1234", lib1);
-        Personnel personal3 = new Personnel(3, "EmrePersonal", "Yılmaz", "Emre9180Personal", "1234", lib3);
+        Personnel personal1 = new Personnel(1, "SefaPersonal", "Cahyir", "scahyirPersonal", "1234", library1);
+        Personnel personal2 = new Personnel(2, "MustafaPersonal", "Mert", "Mustafa52Personal", "1234", library2);
+        Personnel personal3 = new Personnel(3, "EmrePersonal", "Yılmaz", "Emre9180Personal", "1234", library3);
 
-        Administrator admin1 = new Administrator(1, "SefaAdmin", "Cahyir", "scahyirAdmin", "1234", lib1);
-        Administrator admin2 = new Administrator(2, "MustafaAdmin", "Mert", "Mustafa52Admin", "1234", lib1);
-        Administrator admin3 = new Administrator(3, "EmreAdmin", "Yılmaz", "Emre9180Admin", "1234", lib3);
+        Administrator admin1 = new Administrator(1, "SefaAdmin", "Cahyir", "scahyirAdmin", "1234", library1);
+        Administrator admin2 = new Administrator(2, "MustafaAdmin", "Mert", "Mustafa52Admin", "1234", library2);
+        Administrator admin3 = new Administrator(3, "EmreAdmin", "Yılmaz", "Emre9180Admin", "1234", library3);
 
         Publisher publisher1 = new Publisher((long) 1, "Is Bankasi", "Is Bankasi, klasik yayinlar");
         Publisher publisher2 = new Publisher((long) 2, "Yapikredi", "Yapikredi, klasik yayinlar");
