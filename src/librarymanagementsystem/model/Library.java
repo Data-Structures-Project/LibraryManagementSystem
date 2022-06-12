@@ -1,5 +1,7 @@
 package librarymanagementsystem.model;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
 
@@ -64,4 +66,6 @@ public class Library implements Comparable<Library>{
     }
 
     public int getId(){return id;}
+
+
 }

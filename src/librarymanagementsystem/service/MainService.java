@@ -1,5 +1,6 @@
 package librarymanagementsystem.service;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -226,5 +227,44 @@ public class MainService {
     public static void addRate(Material material, int rate)
     {
         material.addRate(rate);
+    }
+
+    public static void addLibrary(String name, int cityInt)
+    {
+        City cityOfLib = null;
+
+        switch(cityInt)
+        {
+            case 0:
+                cityOfLib = City.ISTANBUL;
+                break;
+
+            case 1:
+                cityOfLib = City.ANKARA;
+                break;
+
+            case 2:
+                cityOfLib = City.IZMIR;
+                break;
+
+            case 3:
+                cityOfLib = City.KOCAELI;
+                break;
+
+            default:
+                break;
+        }
+        Library newLib = new Library(name, cityOfLib);
+        libraries.create(newLib);
+    }
+
+    public static ArrayList<Library> getLibraryList()
+    {
+        return libraries.findAll();
+    }
+
+    public static void removeLibrary(Library target)
+    {
+        libraries.remove(target);
     }
 }
