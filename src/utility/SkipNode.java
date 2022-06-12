@@ -166,7 +166,7 @@ class SkipNode<N extends Comparable<? super N>> {
                 materialList.add(current.data) ;
             current = current.getNext(0);
         }
-        return null;
+        return materialList;
     }
 
     ArrayList<N> nodeTraverseByLoan(ArrayList<N> materialList) {
