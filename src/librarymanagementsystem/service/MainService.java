@@ -317,8 +317,18 @@ public class MainService {
             publishers.remove(target.getPublisher());
 
         materials.remove(target);
+    }
 
+    public static void addLoanBook(String name)
+    {
+        Material target = searchByName(name);
+        target.setIsLoaned(true);
+    }
 
+    public static void removeLoanBook(String name)
+    {
+        Material target = searchByName(name);
+        target.setIsLoaned(false);
     }
 
 
