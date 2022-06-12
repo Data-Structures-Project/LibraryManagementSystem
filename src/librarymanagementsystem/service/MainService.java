@@ -293,4 +293,33 @@ public class MainService {
         return accounts.getLibraryManagerList();
     }
 
+    public static void addMaterial(Material newMaterial)
+    {
+        if(publishers.findByName(newMaterial.getPublisher().getName())==null)
+            publishers.create(newMaterial.getPublisher());
+
+        if(authors.findByName(newMaterial.getAuthor().getName())==null)
+            authors.create(newMaterial.getAuthor());
+
+        materials.create(newMaterial);
+    }
+
+    public static void removeMaterial(Material target)
+    {
+        target.getPublisher().remove(target);
+        target.getAuthor().removeBook(target);
+
+        if(target.getAuthor().getBooks().size()==0)
+            authors.remove(target.getAuthor());
+
+        if(target.getPublisher().getBooks().size()==0)
+            publishers.remove(target.getPublisher());
+
+        materials.remove(target);
+
+
+    }
+
+
+
 }
