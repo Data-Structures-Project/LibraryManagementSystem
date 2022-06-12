@@ -764,18 +764,27 @@ public class Main {
     static void removeManager() {
         Scanner sc = new Scanner(System.in);
 
-        ArrayList<LibraryManager> libraryList = MainService.getLibraryManagerList();
 
-        for (int i = 0; i < libraryList.size(); i++) {
-            System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + libraryList.get(i).getName() + "\t\t\t\t\t\t");
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.println(ANSI_BLUE + "|   Choose a Library Manager to remove          |");
+        ArrayList<LibraryManager> lMList = MainService.listLibraryManagers();
+        for (int i = 0; i < lMList.size(); i++) {
+            System.out.printf(ANSI_CYAN + "|\t\t%d. %-37s|\n",i, lMList.get(i).getName());
         }
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.print(ANSI_GREEN + "  Choose one of the options : ");
+        int lMid = Integer.parseInt(sc.next());
+        while (lMid < 0 || lMid > lMList.size() - 1) {
+            System.out.println(ANSI_RED + "      Invalid input!");
+            System.out.print(ANSI_GREEN + "   Choose one of the options : ");
+            lMid = Integer.parseInt(sc.next());
+        }
+        MainService.removeAccount(lMList.get(lMid));
 
-        System.out.print(ANSI_CYAN + "   Enter the number of Libray want to delete : ");
-        int libraryId = Integer.parseInt(sc.next());
+        ArrayList<LibraryManager> lMList2 = MainService.listLibraryManagers();
 
-        MainService.removeAccount(libraryList.get(libraryId));
-
-        ArrayList<LibraryManager> libraryList2 = MainService.getLibraryManagerList();
+        System.out.print(ANSI_GREEN + "   Success! \n");
+        administratorMenu();
     }
 
     static void editManager() {
