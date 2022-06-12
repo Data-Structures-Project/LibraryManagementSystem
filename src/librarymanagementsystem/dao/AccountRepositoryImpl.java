@@ -2,6 +2,8 @@ package librarymanagementsystem.dao;
 
 import librarymanagementsystem.model.Account;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AccountRepositoryImpl implements AccountRepository{
@@ -14,6 +16,17 @@ public class AccountRepositoryImpl implements AccountRepository{
     @Override
     public HashMap<String,Account> findAll() {
         return accounts;
+    }
+
+    public ArrayList<Account> getAccountList()
+    {
+        ArrayList<Account> accountList = new ArrayList<>();
+
+        // using for-each loop for iteration over Map.entrySet()
+        for (HashMap.Entry<String,Account> entry : accounts.entrySet())
+           accountList.add(entry.getValue());
+
+        return accountList;
     }
 
     @Override

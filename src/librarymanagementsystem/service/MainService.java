@@ -272,4 +272,15 @@ public class MainService {
     {
         accounts.create(newAccount);
     }
+
+    public static void removeAccount(Account newAccount)
+    {
+        accounts.remove(newAccount);
+    }
+
+    public static ArrayList<Account> getAccountList()
+    {
+        return accounts.getAccountList();
+    }
+
 }
