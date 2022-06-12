@@ -267,4 +267,9 @@ public class MainService {
     {
         libraries.remove(target);
     }
+
+    public static void addAccount(Account newAccount)
+    {
+        accounts.create(newAccount);
+    }
 }
