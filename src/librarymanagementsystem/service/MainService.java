@@ -503,10 +503,15 @@ public class MainService {
      *
      * @param name The name of the book to be added to the loaned list.
      */
-    public static void addLoanBook(String name)
+    public static boolean addLoanBook(String name)
     {
         Material target = searchByName(name);
-        target.setIsLoaned(true);
+        if(target!=null)
+        {
+            target.setIsLoaned(true);
+            return true;
+        }
+        else return false;
     }
 
     /**
@@ -514,10 +519,15 @@ public class MainService {
      *
      * @param name The name of the book to be removed from the loaned list.
      */
-    public static void removeLoanBook(String name)
+    public static boolean removeLoanBook(String name)
     {
         Material target = searchByName(name);
-        target.setIsLoaned(false);
+        if(target!=null)
+        {
+            target.setIsLoaned(false);
+            return true;
+        }
+        else return false;
     }
 
     /**
