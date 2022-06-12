@@ -691,7 +691,6 @@ public class Main {
         }
         MainService.removeLibrary(libList.get(libraryid));
 
-        ArrayList<Library> libraryList2 = MainService.listLibraries();
 
         System.out.print(ANSI_GREEN + "   Success! \n");
         administratorMenu();
@@ -781,13 +780,36 @@ public class Main {
         }
         MainService.removeAccount(lMList.get(lMid));
 
-        ArrayList<LibraryManager> lMList2 = MainService.listLibraryManagers();
 
         System.out.print(ANSI_GREEN + "   Success! \n");
         administratorMenu();
     }
 
     static void editManager() {
+        Scanner sc = new Scanner(System.in);
+
+
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.println(ANSI_BLUE + "|   Choose a Library Manager to change password |");
+        ArrayList<LibraryManager> lMList = MainService.listLibraryManagers();
+        for (int i = 0; i < lMList.size(); i++) {
+            System.out.printf(ANSI_CYAN + "|\t\t%d. %-37s|\n",i, lMList.get(i).getUsername());
+        }
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.print(ANSI_GREEN + "  Choose one of the options : ");
+        int lMid = Integer.parseInt(sc.next());
+        while (lMid < 0 || lMid > lMList.size() - 1) {
+            System.out.println(ANSI_RED + "      Invalid input!");
+            System.out.print(ANSI_GREEN + "   Choose one of the options : ");
+            lMid = Integer.parseInt(sc.next());
+        }
+
+        System.out.print(ANSI_CYAN + "   Enter new password : ");
+        String newPass = sc.next();
+        MainService.editAccount(newPass, lMList.get(lMid).getUsername());
+        System.out.print(ANSI_GREEN + "   Success! \n");
+        administratorMenu();
+
 
     }
 
@@ -795,82 +817,182 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         ArrayList<Library> libraryList = MainService.listLibraries();
-
-        for (int i = 0; i < libraryList.size(); i++) {
-            System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + libraryList.get(i).getName() + "\t\t\t\t\t\t");
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.println(ANSI_BLUE + "|   Choose a Library to add librarian           |");
+        ArrayList<Library> libList = MainService.listLibraries();
+        for (int i = 0; i < libList.size(); i++) {
+            System.out.printf(ANSI_CYAN + "|\t\t%d. %-37s|\n",i, libList.get(i).getName());
+        }
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.print(ANSI_GREEN + "  Choose one of the options : ");
+        int libraryid = Integer.parseInt(sc.next());
+        while (libraryid < 0 || libraryid > libList.size() - 1) {
+            System.out.println(ANSI_RED + "      Invalid input!");
+            System.out.print(ANSI_GREEN + "   Choose one of the options : ");
+            libraryid = Integer.parseInt(sc.next());
         }
 
-        // TODO Kullanıcıdan bilgiler alınıp sonra librariler arasından birini secmesini
-        // istenilecek
 
-        System.out.print(ANSI_CYAN + "   Enter the number of Libray want to add : ");
-        int libraryId = Integer.parseInt(sc.next());
+        System.out.print(ANSI_GREEN + "         Name :  ");
+        String name = sc.next();
+        System.out.print(ANSI_GREEN + "         Surname :  ");
+        String surname = sc.next();
+        System.out.print(ANSI_GREEN + "         Username :  ");
+        String username = sc.next();
+        while (!MainService.isUniqueUserName(username)) {
+            System.out.println(ANSI_RED + "   This username already taken! Please try another one.");
+            System.out.print(ANSI_GREEN + "         Username :  ");
+            username = sc.next();
+        }
+        System.out.print(ANSI_GREEN + "         Password :  ");
+        String password = sc.next();
 
-        MainService.addAccount(new Librarian("sefa", "cahyir", "newUserName", "1234", libraryList.get(1)));
 
-        ArrayList<Librarian> libraryList2 = MainService.listLibrarians();
+        MainService.addAccount(new Librarian(name, surname, username, password, libraryList.get(1)));
+        System.out.print(ANSI_GREEN + "   Success! \n");
+        libraryManagerMenu();
     }
 
     static void removeLibrarian() {
         Scanner sc = new Scanner(System.in);
 
-        ArrayList<Librarian> libraryList = MainService.listLibrarians();
 
-        for (int i = 0; i < libraryList.size(); i++) {
-            System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + libraryList.get(i).getName() + "\t\t\t\t\t\t");
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.println(ANSI_BLUE + "|   Choose a Librarian to remove                |");
+        ArrayList<Librarian> lList = MainService.listLibrarians();
+        for (int i = 0; i < lList.size(); i++) {
+            System.out.printf(ANSI_CYAN + "|\t\t%d. %-37s|\n",i, lList.get(i).getName());
         }
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.print(ANSI_GREEN + "  Choose one of the options : ");
+        int lid = Integer.parseInt(sc.next());
+        while (lid < 0 || lid > lList.size() - 1) {
+            System.out.println(ANSI_RED + "      Invalid input!");
+            System.out.print(ANSI_GREEN + "   Choose one of the options : ");
+            lid = Integer.parseInt(sc.next());
+        }
+        MainService.removeAccount(lList.get(lid));
 
-        System.out.print(ANSI_CYAN + "   Enter the number of Libray want to delete : ");
-        int libraryId = Integer.parseInt(sc.next());
 
-        MainService.removeAccount(libraryList.get(libraryId));
-
-        ArrayList<Librarian> libraryList2 = MainService.listLibrarians();
+        System.out.print(ANSI_GREEN + "   Success! \n");
+        libraryManagerMenu();
     }
 
     static void editLibrarian() {
+        Scanner sc = new Scanner(System.in);
 
+
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.println(ANSI_BLUE + "|   Choose a Librarian to change password       |");
+        ArrayList<Librarian> lList = MainService.listLibrarians();
+        for (int i = 0; i < lList.size(); i++) {
+            System.out.printf(ANSI_CYAN + "|\t\t%d. %-37s|\n",i, lList.get(i).getName());
+        }
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.print(ANSI_GREEN + "  Choose one of the options : ");
+        int lid = Integer.parseInt(sc.next());
+        while (lid < 0 || lid > lList.size() - 1) {
+            System.out.println(ANSI_RED + "      Invalid input!");
+            System.out.print(ANSI_GREEN + "   Choose one of the options : ");
+            lid = Integer.parseInt(sc.next());
+        }
+
+        System.out.print(ANSI_CYAN + "   Enter new password : ");
+        String newPass = sc.next();
+        MainService.editAccount(newPass, lList.get(lid).getUsername());
+        System.out.print(ANSI_GREEN + "   Success! \n");
+        administratorMenu();
     }
 
     static void addReader() {
         Scanner sc = new Scanner(System.in);
 
         ArrayList<Library> libraryList = MainService.listLibraries();
-
-        for (int i = 0; i < libraryList.size(); i++) {
-            System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + libraryList.get(i).getName() + "\t\t\t\t\t\t");
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.println(ANSI_BLUE + "|   Choose a Library to add reader              |");
+        ArrayList<Library> libList = MainService.listLibraries();
+        for (int i = 0; i < libList.size(); i++) {
+            System.out.printf(ANSI_CYAN + "|\t\t%d. %-37s|\n",i, libList.get(i).getName());
+        }
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.print(ANSI_GREEN + "  Choose one of the options : ");
+        int libraryid = Integer.parseInt(sc.next());
+        while (libraryid < 0 || libraryid > libList.size() - 1) {
+            System.out.println(ANSI_RED + "      Invalid input!");
+            System.out.print(ANSI_GREEN + "   Choose one of the options : ");
+            libraryid = Integer.parseInt(sc.next());
         }
 
-        // TODO Kullanıcıdan bilgiler alınıp sonra librariler arasından birini secmesini
-        // istenilecek
 
-        System.out.print(ANSI_CYAN + "   Enter the number of Libray want to add : ");
-        int libraryId = Integer.parseInt(sc.next());
+        System.out.print(ANSI_GREEN + "         Name :  ");
+        String name = sc.next();
+        System.out.print(ANSI_GREEN + "         Surname :  ");
+        String surname = sc.next();
+        System.out.print(ANSI_GREEN + "         Username :  ");
+        String username = sc.next();
+        while (!MainService.isUniqueUserName(username)) {
+            System.out.println(ANSI_RED + "   This username already taken! Please try another one.");
+            System.out.print(ANSI_GREEN + "         Username :  ");
+            username = sc.next();
+        }
+        System.out.print(ANSI_GREEN + "         Password :  ");
+        String password = sc.next();
 
-        MainService.addAccount(new Librarian("sefa", "cahyir", "newUserName", "1234", libraryList.get(1)));
 
-        ArrayList<User> libraryList2 = MainService.listReaders();
+        MainService.addAccount(new User(name, surname, username, password, libraryList.get(1)));
+        System.out.print(ANSI_GREEN + "   Success! \n");
+        librarianMenu();
     }
 
     static void removeReader() {
         Scanner sc = new Scanner(System.in);
 
-        ArrayList<User> libraryList = MainService.listReaders();
 
-        for (int i = 0; i < libraryList.size(); i++) {
-            System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + libraryList.get(i).getName() + "\t\t\t\t\t\t");
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.println(ANSI_BLUE + "|   Choose a Reader to remove                   |");
+        ArrayList<User> rList = MainService.listReaders();
+        for (int i = 0; i < rList.size(); i++) {
+            System.out.printf(ANSI_CYAN + "|\t\t%d. %-37s|\n",i, rList.get(i).getName());
         }
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.print(ANSI_GREEN + "  Choose one of the options : ");
+        int rid = Integer.parseInt(sc.next());
+        while (rid < 0 || rid > rList.size() - 1) {
+            System.out.println(ANSI_RED + "      Invalid input!");
+            System.out.print(ANSI_GREEN + "   Choose one of the options : ");
+            rid = Integer.parseInt(sc.next());
+        }
+        MainService.removeAccount(rList.get(rid));
 
-        System.out.print(ANSI_CYAN + "   Enter the number of Libray want to delete : ");
-        int libraryId = Integer.parseInt(sc.next());
 
-        MainService.removeAccount(libraryList.get(libraryId));
-
-        ArrayList<User> libraryList2 = MainService.listReaders();
+        System.out.print(ANSI_GREEN + "   Success! \n");
+        librarianMenu();
     }
 
     static void editReader() {
+        Scanner sc = new Scanner(System.in);
 
+
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.println(ANSI_BLUE + "|   Choose a Reader to change password          |");
+        ArrayList<User> rList = MainService.listReaders();
+        for (int i = 0; i < rList.size(); i++) {
+            System.out.printf(ANSI_CYAN + "|\t\t%d. %-37s|\n",i, rList.get(i).getName());
+        }
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.print(ANSI_GREEN + "  Choose one of the options : ");
+        int rid = Integer.parseInt(sc.next());
+        while (rid < 0 || rid > rList.size() - 1) {
+            System.out.println(ANSI_RED + "      Invalid input!");
+            System.out.print(ANSI_GREEN + "   Choose one of the options : ");
+            rid = Integer.parseInt(sc.next());
+        }
+
+        System.out.print(ANSI_CYAN + "   Enter new password : ");
+        String newPass = sc.next();
+        MainService.editAccount(newPass, rList.get(rid).getUsername());
+        System.out.print(ANSI_GREEN + "   Success! \n");
+        administratorMenu();
     }
 
     static void addLoanBook() {
