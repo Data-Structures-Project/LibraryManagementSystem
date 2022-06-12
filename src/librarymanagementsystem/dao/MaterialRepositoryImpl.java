@@ -120,8 +120,20 @@ public class MaterialRepositoryImpl implements MaterialRepository {
      */
     @Override
     public Material viewInfo(String name) {
-        Material targetMaterial = this.materials.traverseByName(name);
+        Material targetMaterial = materials.search(new Material(name));
         return targetMaterial;
+    }
+
+    public ArrayList<Material> listAllMaterials()
+    {
+        ArrayList<Material> allMaterials = new ArrayList<>();
+        return this.materials.traverseAll(allMaterials);
+    }
+
+    public ArrayList<Material> listLoanMaterials()
+    {
+        ArrayList<Material> allLoanMaterials = new ArrayList<>();
+        return this.materials.traverseByLoan(allLoanMaterials);
     }
 
 

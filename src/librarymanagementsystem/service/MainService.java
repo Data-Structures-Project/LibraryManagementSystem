@@ -1,5 +1,6 @@
 package librarymanagementsystem.service;
 
+import java.io.Reader;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
@@ -164,12 +165,28 @@ public class MainService {
     }
 
 
-    public static String getCategoryList()
+    public static ArrayList<String> getCategoryList()
     {
-        String str = "0. Horror\n1. Thriller\n2. Mystery\n3. Literary Fiction\n4. History\n5. Science-fiction\n6. Biographies\n7. Autobiographies\n8. Poetry";
-        return str;
+        ArrayList<String> categories = new ArrayList<>();
+        categories.add("Horror");
+        categories.add("Thriller");
+        categories.add("Mystery");
+        categories.add("Literary Fiction");
+        categories.add("History");
+        categories.add("Science-fiction");
+        categories.add("Biographies");
+        categories.add("Autobiographies");
+        categories.add("Poetry");
+
+        return categories;
     }
 
+    /**
+     * It takes in a category choice, and returns an ArrayList of Material objects that have that category
+     *
+     * @param categoryChoice The category choice is the number that the user inputs to select the category.
+     * @return An ArrayList of Material objects.
+     */
     public static ArrayList<Material> searchByCategory(int categoryChoice)
     {
         Category category = null;
@@ -258,11 +275,6 @@ public class MainService {
         libraries.create(newLib);
     }
 
-    public static ArrayList<Library> getLibraryList()
-    {
-        return libraries.findAll();
-    }
-
     public static void removeLibrary(Library target)
     {
         libraries.remove(target);
@@ -273,26 +285,51 @@ public class MainService {
         accounts.create(newAccount);
     }
 
+    /**
+     * This function removes an account from the list of accounts
+     *
+     * @param newAccount The account to be removed from the list.
+     */
     public static void removeAccount(Account newAccount)
     {
         accounts.remove(newAccount);
     }
 
+    /**
+     * This function returns an ArrayList of Librarian objects.
+     *
+     * @return The list of librarians.
+     */
     public static ArrayList<Librarian> getLibrarianList()
     {
         return accounts.getLibrarianList();
     }
 
+    /**
+     * This function returns an ArrayList of User objects that are readers
+     *
+     * @return An ArrayList of User objects.
+     */
     public static ArrayList<User> getReaderList()
     {
         return accounts.getReaderList();
     }
 
+    /**
+     * > This function returns an ArrayList of LibraryManager objects
+     *
+     * @return The list of library managers.
+     */
     public static ArrayList<LibraryManager> getLibraryManagerList()
     {
         return accounts.getLibraryManagerList();
     }
 
+    /**
+     * If the publisher and author of the new material don't exist in the database, add them. Then add the material
+     *
+     * @param newMaterial The material to be added to the database.
+     */
     public static void addMaterial(Material newMaterial)
     {
         if(publishers.findByName(newMaterial.getPublisher().getName())==null)
@@ -304,6 +341,11 @@ public class MainService {
         materials.create(newMaterial);
     }
 
+    /**
+     * > Removes a material from the library
+     *
+     * @param name The name of the material to be removed
+     */
     public static void removeMaterial(String name)
     {
         Material target = searchByName(name);
@@ -319,17 +361,74 @@ public class MainService {
         materials.remove(target);
     }
 
+    /**
+     * This function takes a string as an argument and searches for a material with that name. If it finds a material with
+     * that name, it sets the material's isLoaned attribute to true
+     *
+     * @param name The name of the book to be added to the loaned list.
+     */
     public static void addLoanBook(String name)
     {
         Material target = searchByName(name);
         target.setIsLoaned(true);
     }
 
+    /**
+     * This function removes a loaned book from the library
+     *
+     * @param name The name of the book to be removed from the loaned list.
+     */
     public static void removeLoanBook(String name)
     {
         Material target = searchByName(name);
         target.setIsLoaned(false);
     }
+
+    /**
+     * This function edits the name and surname of a user.
+     *
+     * @param name The new name of the user
+     * @param surname The new surname of the user
+     * @param username The username of the user you want to edit.
+     */
+    public void editUser(String name, String surname, String username)
+    {
+        Account targetUser = accounts.viewInfo(username);
+        targetUser.setName(name);
+        targetUser.setSurname(surname);
+    }
+
+    /**
+     * Edits the password of a user
+     * @param password Updated password
+     * @param targetUsername Target username
+     */
+    public void editUser(String password, String targetUsername)
+    {
+        Account targetUser = accounts.viewInfo(targetUsername);
+        targetUser.setPassword(password);
+    }
+
+    /**
+     * This function returns an ArrayList of all the materials in the database.
+     *
+     * @return An ArrayList of Material objects.
+     */
+    public ArrayList<Material> listAllMaterial()
+    {
+        return materials.listAllMaterials();
+    }
+
+    /**
+     * This function returns an ArrayList of Materials that are currently on loan.
+     *
+     * @return An ArrayList of Material objects.
+     */
+    public ArrayList<Material> listLoanMaterial()
+    {
+        return materials.listLoanMaterials();
+    }
+
 
 
 

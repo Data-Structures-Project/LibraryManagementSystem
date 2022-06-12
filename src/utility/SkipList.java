@@ -67,10 +67,11 @@ public class SkipList<T extends Comparable<? super T>> implements SkippableList<
 
     /**
      * Traverses the SkipList, searches the Materials to find the given name
-     * @param name Target name
      * @return Return the found material
      */
-    public Material traverseByName(String name){return (Material) head.nodeTraverseByName(name);}
+    public ArrayList<T> traverseAll(ArrayList<T> materialList){return head.nodeTraverseAll(materialList);}
+
+    public ArrayList<T> traverseByLoan(ArrayList<T> materialList){return head.nodeTraverseByLoan(materialList);}
 
     /**
      * Traverses the Skip List, searches the Materials by given ID.

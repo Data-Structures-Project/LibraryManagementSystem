@@ -3,6 +3,7 @@ package librarymanagementsystem.model;
 public enum Category {
     LITERARY_FICTION, MYSTERY, THRILLER, HORROR, HISTORY, SCIENCE_FICTION, BIOGRAPHIES, AUTOBIOGRAPHIES, POETRY;
 
+
     @Override
     public String toString(){
         switch (this){

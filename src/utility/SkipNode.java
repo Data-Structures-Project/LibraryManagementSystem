@@ -1,7 +1,6 @@
 package utility;
 
 import java.util.ArrayList;
-import java.util.Locale.Category;
 
 import librarymanagementsystem.model.Material;
 
@@ -159,18 +158,26 @@ class SkipNode<N extends Comparable<? super N>> {
     /**
      * Traverses the Skip List, searches the Materials by given Name.
      *
-     * @param name Target Name
      * @return Return the found data
      */
-    N nodeTraverseByName(String name) {
+    ArrayList<N> nodeTraverseAll(ArrayList<N> materialList) {
         SkipNode<N> current = this.getNext(0); // levela dikat.
         while (current != null) {
-            if ((current.compareByName(name) == true))
-                return current.data;
+                materialList.add(current.data) ;
             current = current.getNext(0);
         }
         return null;
     }
+
+    ArrayList<N> nodeTraverseByLoan(ArrayList<N> materialList) {
+        SkipNode<N> current = this.getNext(0); // levela dikat.
+        while (current != null) {
+            if(((Material)current.data).getIsLoaned()==true) materialList.add(current.data) ;
+            current = current.getNext(0);
+        }
+        return null;
+    }
+
 
 
 
