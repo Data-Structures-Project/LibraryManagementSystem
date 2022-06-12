@@ -897,7 +897,7 @@ public class Main {
         System.out.println(ANSI_BLUE + "|   Choose a Librarian to remove                |");
         ArrayList<Librarian> lList = MainService.listLibrarians();
         if(lList.size()==0){
-            System.out.println(ANSI_RED + "|  There is no Librarian to remove               |");
+            System.out.println(ANSI_RED + "|  There is no Librarian to remove              |");
             System.out.println(ANSI_BLUE + "=================================================");
             libraryManagerMenu();
             return;
@@ -928,7 +928,7 @@ public class Main {
         System.out.println(ANSI_BLUE + "|   Choose a Librarian to change password       |");
         ArrayList<Librarian> lList = MainService.listLibrarians();
         if(lList.size()==0){
-            System.out.println(ANSI_RED + "|  There is no Librarian to change password      |");
+            System.out.println(ANSI_RED + "|  There is no Librarian to change password     |");
             System.out.println(ANSI_BLUE + "=================================================");
             libraryManagerMenu();
             return;
@@ -959,7 +959,7 @@ public class Main {
         System.out.println(ANSI_BLUE + "|   Choose a Library to add reader              |");
         ArrayList<Library> libList = MainService.listLibraries();
         if(libList.size()==0){
-            System.out.println(ANSI_RED + "|  There is no Library to add Reader             |");
+            System.out.println(ANSI_RED + "|  There is no Library to add Reader            |");
             System.out.println(ANSI_BLUE + "=================================================");
             librarianMenu();
             return;
@@ -1005,7 +1005,7 @@ public class Main {
         System.out.println(ANSI_BLUE + "|   Choose a Reader to remove                   |");
         ArrayList<User> rList = MainService.listReaders();
         if(rList.size()==0){
-            System.out.println(ANSI_RED + "|  There is no Reader to remove                  |");
+            System.out.println(ANSI_RED + "|  There is no Reader to remove                 |");
             System.out.println(ANSI_BLUE + "=================================================");
             librarianMenu();
             return;
@@ -1036,7 +1036,7 @@ public class Main {
         System.out.println(ANSI_BLUE + "|   Choose a Reader to change password          |");
         ArrayList<User> rList = MainService.listReaders();
         if(rList.size()==0){
-            System.out.println(ANSI_RED + "|  There is no Librarian to change password      |");
+            System.out.println(ANSI_RED + "|  There is no Librarian to change password     |");
             System.out.println(ANSI_BLUE + "=================================================");
             librarianMenu();
             return;
@@ -1061,29 +1061,34 @@ public class Main {
     }
 
     static void addLoanBook() {
+
         Scanner sc = new Scanner(System.in);
-        
-        // TODO Kullanıcıdan kitabın ismi alınacak, kitap varsa loan olmaya ismi gidecek 
+        System.out.print(ANSI_CYAN + "   Name of the book you want to change status : ");
+        String loanName = sc.next();
 
-        System.out.print(ANSI_CYAN + "   Enter the number of Libray want to add : ");
-        String bookName = sc.next();
-
-        MainService.addLoanBook(bookName);
+        if (MainService.addLoanBook(loanName)){
+            System.out.print(ANSI_GREEN + "   Success! \n");
+            librarianMenu();
+            return;
+        }
+        else
+            System.out.println(ANSI_RED + "|  There is no book to change status");
+        librarianMenu();
     }
 
     static void removeLoanBook() {
         Scanner sc = new Scanner(System.in);
-        
-        // TODO Kullanıcıdan kitabın ismi alınacak, kitap varsa loan olmaya ismi gidecek 
+        System.out.print(ANSI_CYAN + "   Name of the book you want to change status : ");
+        String loanName = sc.next();
 
-        System.out.print(ANSI_CYAN + "   Enter the number of Libray want to add : ");
-        String bookName = sc.next();
-
-        MainService.removeLoanBook(bookName);
-    }
-
-    static void editLoanBook() {
-
+        if (MainService.removeLoanBook(loanName)){
+            System.out.print(ANSI_GREEN + "   Success! \n");
+            librarianMenu();
+            return;
+        }
+        else
+            System.out.println(ANSI_RED + "|  There is no book to change status");
+        librarianMenu();
     }
 
     static void addBook() {
@@ -1091,6 +1096,12 @@ public class Main {
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.println(ANSI_BLUE + "|   Choose a Library to add the book            |");
         ArrayList<Library> libList = MainService.listLibraries();
+        if(libList.size()==0){
+            System.out.println(ANSI_RED + "|  There is no Library to add Book              |");
+            System.out.println(ANSI_BLUE + "=================================================");
+            librarianMenu();
+            return;
+        }
         for (int i = 0; i < libList.size(); i++) {
             System.out.printf(ANSI_CYAN + "|\t\t%d. %-37s|\n",i, libList.get(i).getName());
         }
@@ -1109,6 +1120,12 @@ public class Main {
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.println(ANSI_BLUE + "|   Choose a Category                           |");
         ArrayList<String> catList = MainService.listCategories();
+        if(catList.size()==0){
+            System.out.println(ANSI_RED + "|  There is no Category to add Book             |");
+            System.out.println(ANSI_BLUE + "=================================================");
+            librarianMenu();
+            return;
+        }
         for (int i = 0; i < catList.size(); i++) {
             System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + catList.get(i) + "\t\t\t\t\t\t");
         }
@@ -1125,15 +1142,20 @@ public class Main {
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.println(ANSI_BLUE + "|   Choose an Author                            |");
         ArrayList<Author> authList = MainService.listAuthors();
-        for (int i = 0; i < authList.size(); i++) {
-            System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + authList.get(i) + "\t\t\t\t\t\t");
+        if(authList.size()==0){
+            System.out.println(ANSI_RED + "|  There is no Author to add Book               |");
+        }
+        else {
+            for (int i = 0; i < authList.size(); i++) {
+                System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + authList.get(i) + "\t\t\t\t\t\t");
+            }
         }
         System.out.println(ANSI_BLUE + "| to add new author press 'A'                   |");
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.print(ANSI_GREEN + "  Choose one of the options : ");
         String authinput = sc.next();
         int authid = Integer.parseInt(authinput);
-        while (authid < 0 || authid > authList.size() - 1|| authinput == "A") {
+        while (authid < 0 || authid > authList.size() - 1|| authinput != "A") {
             System.out.println(ANSI_RED + "      Invalid input!");
             System.out.print(ANSI_GREEN + "   Choose one of the options : ");
             authinput = sc.next();
@@ -1156,15 +1178,20 @@ public class Main {
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.println(ANSI_BLUE + "|   Choose an Publisher                         |");
         ArrayList<Publisher> pubList = MainService.listPublishers();
-        for (int i = 0; i < pubList.size(); i++) {
-            System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + pubList.get(i) + "\t\t\t\t\t\t");
+        if(pubList.size()==0){
+            System.out.println(ANSI_RED + "|  There is no Author to add Book               |");
+        }
+        else {
+            for (int i = 0; i < authList.size(); i++) {
+                System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + pubList.get(i) + "\t\t\t\t\t\t");
+            }
         }
         System.out.println(ANSI_BLUE + "| to add new publisher press 'A'                |");
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.print(ANSI_GREEN + "  Choose one of the options : ");
         String pubinput = sc.next();
         int pubid = Integer.parseInt(pubinput);
-        while (pubid < 0 || pubid > pubList.size() - 1|| pubinput == "A") {
+        while (pubid < 0 || pubid > pubList.size() - 1|| pubinput != "A") {
             System.out.println(ANSI_RED + "      Invalid input!");
             System.out.print(ANSI_GREEN + "   Choose one of the options : ");
             pubinput = sc.next();
