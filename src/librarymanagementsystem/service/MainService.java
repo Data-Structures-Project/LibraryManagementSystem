@@ -262,7 +262,7 @@ public class MainService {
      *
      * @return An ArrayList of Publisher objects.
      */
-    public static ArrayList<Publisher> publisherList() {
+    public static ArrayList<Publisher> listPublishers() {
         return publishers.publisherList();
     }
 
@@ -612,10 +612,11 @@ public class MainService {
      * @param lib The library that the material is in.
      * @return A new Material object.
      */
-    public Material addMaterial(MaterialType type, String name, Category category, Date publicationDate, Author author,
+    public Material addMaterial(MaterialType type, String name, int category, Date publicationDate, Author author,
                                 Publisher publisher, int pageCount, String location, String info, Library lib)
     {
-        Material newMaterial = new Material(type, name, category, publicationDate, author,
+        Category theCategory = Category.values()[category];
+        Material newMaterial = new Material(type, name, theCategory, publicationDate, author,
             publisher, pageCount, location, info, lib);
 
         addMaterial(newMaterial);
