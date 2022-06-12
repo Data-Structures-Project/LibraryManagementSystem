@@ -163,4 +163,12 @@ public class Publisher implements Comparable<Publisher>{
 
         return -1;
     }
+
+    /**
+     * The toString() function returns the name of the object.
+     *
+     * @return The name of the object.
+     */
+    public String toString()
+    {return name;}
 }

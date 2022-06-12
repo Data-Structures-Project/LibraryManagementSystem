@@ -177,4 +177,7 @@ public class Author implements Comparable<Author>{
     public int compareTo(Author author) {
         return this.name.compareTo(author.getName());
     }
+
+    public String toString()
+    {return String.format(name+' '+surname);}
 }
