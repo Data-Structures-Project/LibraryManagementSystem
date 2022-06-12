@@ -550,7 +550,7 @@ public class MainService {
      *
      * @return An ArrayList of Material objects.
      */
-    public ArrayList<Material> listAllMaterial()
+    public ArrayList<Material> listMaterials()
     {
         return materials.listAllMaterials();
     }
@@ -560,7 +560,7 @@ public class MainService {
      *
      * @return An ArrayList of Material objects.
      */
-    public ArrayList<Material> listLoanMaterial()
+    public ArrayList<Material> listLoanMaterials()
     {
         return materials.listLoanMaterials();
     }
