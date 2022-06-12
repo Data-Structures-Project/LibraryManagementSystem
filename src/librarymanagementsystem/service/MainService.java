@@ -436,7 +436,7 @@ public class MainService {
      *
      * @return The list of librarians.
      */
-    public static ArrayList<Librarian> getLibrarianList()
+    public static ArrayList<Librarian> listLibrarians()
     {
         return accounts.getLibrarianList();
     }
@@ -446,7 +446,7 @@ public class MainService {
      *
      * @return An ArrayList of User objects.
      */
-    public static ArrayList<User> getReaderList()
+    public static ArrayList<User> listReaders()
     {
         return accounts.getReaderList();
     }
@@ -456,7 +456,7 @@ public class MainService {
      *
      * @return The list of library managers.
      */
-    public static ArrayList<LibraryManager> getLibraryManagerList()
+    public static ArrayList<LibraryManager> listLibraryManagers()
     {
         return accounts.getLibraryManagerList();
     }
