@@ -46,7 +46,7 @@ public class MainService {
         LibraryManager libManager1 = new LibraryManager("SefaManager", "Cahyir", "scahyirPersonal", "1234", library1);
         LibraryManager libManager2 = new LibraryManager("MustafaManager", "Mert", "Mustafa52Personal", "1234",
                 library2);
-        LibraryManager libManager3 = new LibraryManager("EmreManager", "Yılmaz", "Emre9180Personal", "1234", library3);
+        Librarian libManager3 = new Librarian("EmreLibrarian", "Yılmaz", "l", "1", library3);
 
         Administrator admin1 = new Administrator("SefaAdmin", "Cahyir", "scahyirAdmin", "1234", library1);
         Administrator admin2 = new Administrator("MustafaAdmin", "Mert", "Mustafa52Admin", "1234", library2);
@@ -527,7 +527,7 @@ public class MainService {
      * @param surname The new surname of the user
      * @param username The username of the user you want to edit.
      */
-    public static void editAccount(String name, String surname, String username)
+    public void editAccount(String name, String surname, String username)
     {
         Account targetUser = accounts.viewInfo(username);
         targetUser.setName(name);
@@ -539,7 +539,7 @@ public class MainService {
      * @param password Updated password
      * @param targetUsername Target username
      */
-    public static void editAccount(String password, String targetUsername)
+    public void editAccount(String password, String targetUsername)
     {
         Account targetUser = accounts.viewInfo(targetUsername);
         targetUser.setPassword(password);
@@ -551,7 +551,7 @@ public class MainService {
      * @param target The publisher to edit
      * @param info The new info for the publisher.
      */
-    public static void editPublisherInfo(Publisher target, String info)
+    public void editPublisherInfo(Publisher target, String info)
     {
         target.setInfo(info);
     }
@@ -562,7 +562,7 @@ public class MainService {
      * @param target The author to edit
      * @param info The new info for the author.
      */
-    public static void editAuthorInfo(Author target, String info)
+    public void editAuthorInfo(Author target, String info)
     {
         target.setInfo(info);
     }
@@ -584,7 +584,7 @@ public class MainService {
      * @param target The material to edit.
      * @param info The information of the material.
      */
-    public static void editMaterialInfo(Material target, String info)
+    public void editMaterialInfo(Material target, String info)
     {
         target.setInfo(info);
     }
@@ -594,7 +594,7 @@ public class MainService {
      *
      * @return An ArrayList of Material objects.
      */
-    public static ArrayList<Material> listMaterials()
+    public ArrayList<Material> listMaterials()
     {
         return materials.listAllMaterials();
     }
@@ -604,7 +604,7 @@ public class MainService {
      *
      * @return An ArrayList of Material objects.
      */
-    public static ArrayList<Material> listLoanMaterials()
+    public ArrayList<Material> listLoanMaterials()
     {
         return materials.listLoanMaterials();
     }
@@ -634,7 +634,7 @@ public class MainService {
      * @param info The information about the publisher.
      * @return The newPublisher object is being returned.
      */
-    public static Publisher addPublisher(String name, String info)
+    public Publisher addPublisher(String name, String info)
     {
         Publisher newPublisher = new Publisher(name, info);
         if(publishers.findByName(newPublisher.getName())==null)
@@ -656,7 +656,7 @@ public class MainService {
      * @param lib The library that the material is in.
      * @return A new Material object.
      */
-    public static Material addMaterial(MaterialType type, String name, int category, Date publicationDate, Author author,
+    public Material addMaterial(MaterialType type, String name, int category, Date publicationDate, Author author,
                                 Publisher publisher, int pageCount, String location, String info, Library lib)
     {
         Category theCategory = Category.values()[category];
