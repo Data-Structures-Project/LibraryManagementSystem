@@ -1500,12 +1500,16 @@ public class Main {
     static void listAll(char userType) {
         Scanner sc = new Scanner(System.in);
         System.out.println(ANSI_BLUE + "=================================================");
-        System.out.println(ANSI_BLUE + "|   Choose a Magazine to remove                 |");
+        System.out.println(ANSI_BLUE + "|   All Materials                               |");
         ArrayList<Material> mList = MainService.listMaterials();
         if(mList.size()==0){
-            System.out.println(ANSI_RED + "|  There is no Magazine to remove               |");
+            System.out.println(ANSI_RED + "|  There is no Material                         |");
             System.out.println(ANSI_BLUE + "=================================================");
-            librarianMenu();
+            if (userType == 'l'){
+                librarianMenu();
+            }
+            else
+                readerMenu();
             return;
         }
         for (int i = 0; i < mList.size(); i++) {
