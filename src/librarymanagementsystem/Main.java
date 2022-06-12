@@ -147,7 +147,7 @@ public class Main {
     static void administratorMenu() {
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.println(ANSI_CYAN + "|         1. Manage Libraries                   |");
-        System.out.println(ANSI_CYAN + "|         2. Manege Library Managers            |");
+        System.out.println(ANSI_CYAN + "|         2. Manage Library Managers            |");
         System.out.println(ANSI_CYAN + "|         3. Logout                             |");
         System.out.println(ANSI_CYAN + "|         0. Exit                               |");
         System.out.println(ANSI_BLUE + "=================================================");
@@ -663,11 +663,11 @@ public class Main {
         System.out.print(ANSI_CYAN + "   Enter the name of the Library : ");
         String libraryName = sc.next();
 
-        System.out.print(ANSI_CYAN + "   Enter the number of the City : ");
+        System.out.print(ANSI_CYAN + "   Enter the code of the City : ");
         int libraryCity = Integer.parseInt(sc.next());
 
         MainService.addLibrary(libraryName, libraryCity);
-        System.out.print(ANSI_GREEN + "   Success! ");
+        System.out.print(ANSI_GREEN + "   Success! \n");
         administratorMenu();
     }
 
@@ -693,7 +693,7 @@ public class Main {
 
         ArrayList<Library> libraryList2 = MainService.listLibraries();
 
-        System.out.print(ANSI_GREEN + "   Success! ");
+        System.out.print(ANSI_GREEN + "   Success! \n");
         administratorMenu();
     }
 
@@ -716,7 +716,7 @@ public class Main {
         System.out.print(ANSI_CYAN + "   Enter new name : ");
         String newName = sc.next();
         MainService.editLibraryName(libList.get(libraryid), newName);
-        System.out.print(ANSI_GREEN + "   Success! ");
+        System.out.print(ANSI_GREEN + "   Success! \n");
         administratorMenu();
 
     }
@@ -725,18 +725,40 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         ArrayList<Library> libraryList = MainService.listLibraries();
-
-
-        for (int i = 0; i < libraryList.size(); i++) {
-            System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + libraryList.get(i).getName() + "\t\t\t\t\t\t");
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.println(ANSI_BLUE + "|   Choose a Library to add manager             |");
+        ArrayList<Library> libList = MainService.listLibraries();
+        for (int i = 0; i < libList.size(); i++) {
+            System.out.printf(ANSI_CYAN + "|\t\t%d. %-37s|\n",i, libList.get(i).getName());
+        }
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.print(ANSI_GREEN + "  Choose one of the options : ");
+        int libraryid = Integer.parseInt(sc.next());
+        while (libraryid < 0 || libraryid > libList.size() - 1) {
+            System.out.println(ANSI_RED + "      Invalid input!");
+            System.out.print(ANSI_GREEN + "   Choose one of the options : ");
+            libraryid = Integer.parseInt(sc.next());
         }
 
-        System.out.print(ANSI_CYAN + "   Enter the number of Libray want to add : ");
-        int libraryId = Integer.parseInt(sc.next());
 
-        MainService.addAccount(new LibraryManager("sefa", "cahyir", "newUserName", "1234", libraryList.get(1)));
+        System.out.print(ANSI_GREEN + "         Name :  ");
+        String name = sc.next();
+        System.out.print(ANSI_GREEN + "         Surname :  ");
+        String surname = sc.next();
+        System.out.print(ANSI_GREEN + "         Username :  ");
+        String username = sc.next();
+        while (!MainService.isUniqueUserName(username)) {
+            System.out.println(ANSI_RED + "   This username already taken! Please try another one.");
+            System.out.print(ANSI_GREEN + "         Username :  ");
+            username = sc.next();
+        }
+        System.out.print(ANSI_GREEN + "         Password :  ");
+        String password = sc.next();
 
-        ArrayList<LibraryManager> libraryList2 = MainService.getLibraryManagerList();
+
+        MainService.addAccount(new LibraryManager(name, surname, username, password, libraryList.get(1)));
+        System.out.print(ANSI_GREEN + "   Success! \n");
+        administratorMenu();
     }
 
     static void removeManager() {
