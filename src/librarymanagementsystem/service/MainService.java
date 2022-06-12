@@ -278,9 +278,19 @@ public class MainService {
         accounts.remove(newAccount);
     }
 
-    public static ArrayList<Account> getAccountList()
+    public static ArrayList<Librarian> geLibrarianList()
     {
-        return accounts.getAccountList();
+        return accounts.getLibrarianList();
+    }
+
+    public static ArrayList<User> getReaderList()
+    {
+        return accounts.getReaderList();
+    }
+
+    public static ArrayList<LibraryManager> getLibraryManagerList()
+    {
+        return accounts.getLibraryManagerList();
     }
 
 }

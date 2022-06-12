@@ -1,7 +1,11 @@
 package librarymanagementsystem.dao;
 
 import librarymanagementsystem.model.Account;
+import librarymanagementsystem.model.Librarian;
+import librarymanagementsystem.model.LibraryManager;
+import librarymanagementsystem.model.User;
 
+import java.io.Reader;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,13 +22,35 @@ public class AccountRepositoryImpl implements AccountRepository{
         return accounts;
     }
 
-    public ArrayList<Account> getAccountList()
+    public ArrayList<User> getReaderList()
     {
-        ArrayList<Account> accountList = new ArrayList<>();
+        ArrayList<User> accountList = new ArrayList<>();
 
         // using for-each loop for iteration over Map.entrySet()
         for (HashMap.Entry<String,Account> entry : accounts.entrySet())
-           accountList.add(entry.getValue());
+           if(entry.getValue().getClass().getName().compareTo("User")==0) accountList.add((User) entry.getValue());
+
+        return accountList;
+    }
+
+    public ArrayList<Librarian> getLibrarianList()
+    {
+        ArrayList<Librarian> accountList = new ArrayList<>();
+
+        // using for-each loop for iteration over Map.entrySet()
+        for (HashMap.Entry<String,Account> entry : accounts.entrySet())
+            if(entry.getValue().getClass().getName().compareTo("Librarian")==0) accountList.add((Librarian) entry.getValue());
+
+        return accountList;
+    }
+
+    public ArrayList<LibraryManager> getLibraryManagerList()
+    {
+        ArrayList<LibraryManager> accountList = new ArrayList<>();
+
+        // using for-each loop for iteration over Map.entrySet()
+        for (HashMap.Entry<String,Account> entry : accounts.entrySet())
+            if(entry.getValue().getClass().getName().compareTo("LibraryManager")==0) accountList.add((LibraryManager) entry.getValue());
 
         return accountList;
     }
