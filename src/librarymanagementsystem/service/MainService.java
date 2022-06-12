@@ -304,8 +304,9 @@ public class MainService {
         materials.create(newMaterial);
     }
 
-    public static void removeMaterial(Material target)
+    public static void removeMaterial(String name)
     {
+        Material target = searchByName(name);
         target.getPublisher().remove(target);
         target.getAuthor().removeBook(target);
 
