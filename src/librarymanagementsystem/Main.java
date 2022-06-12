@@ -901,7 +901,7 @@ public class Main {
         String newPass = sc.next();
         MainService.editAccount(newPass, lList.get(lid).getUsername());
         System.out.print(ANSI_GREEN + "   Success! \n");
-        administratorMenu();
+        libraryManagerMenu();
     }
 
     static void addReader() {
@@ -992,7 +992,7 @@ public class Main {
         String newPass = sc.next();
         MainService.editAccount(newPass, rList.get(rid).getUsername());
         System.out.print(ANSI_GREEN + "   Success! \n");
-        administratorMenu();
+        librarianMenu();
     }
 
     static void addLoanBook() {
