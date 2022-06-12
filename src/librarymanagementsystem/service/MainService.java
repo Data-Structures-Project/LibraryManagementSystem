@@ -165,7 +165,7 @@ public class MainService {
     }
 
 
-    public static ArrayList<String> getCategoryList()
+    public static ArrayList<String> listCategories()
     {
         ArrayList<String> categories = new ArrayList<>();
         categories.add("Horror");
