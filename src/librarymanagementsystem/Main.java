@@ -808,13 +808,13 @@ public class Main {
 
         MainService.addAccount(new Librarian("sefa", "cahyir", "newUserName", "1234", libraryList.get(1)));
 
-        ArrayList<Librarian> libraryList2 = MainService.getLibrarianList();
+        ArrayList<Librarian> libraryList2 = MainService.listLibrarians();
     }
 
     static void removeLibrarian() {
         Scanner sc = new Scanner(System.in);
 
-        ArrayList<Librarian> libraryList = MainService.getLibrarianList();
+        ArrayList<Librarian> libraryList = MainService.listLibrarians();
 
         for (int i = 0; i < libraryList.size(); i++) {
             System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + libraryList.get(i).getName() + "\t\t\t\t\t\t");
@@ -825,7 +825,7 @@ public class Main {
 
         MainService.removeAccount(libraryList.get(libraryId));
 
-        ArrayList<Librarian> libraryList2 = MainService.getLibrarianList();
+        ArrayList<Librarian> libraryList2 = MainService.listLibrarians();
     }
 
     static void editLibrarian() {
@@ -849,13 +849,13 @@ public class Main {
 
         MainService.addAccount(new Librarian("sefa", "cahyir", "newUserName", "1234", libraryList.get(1)));
 
-        ArrayList<User> libraryList2 = MainService.getReaderList();
+        ArrayList<User> libraryList2 = MainService.listReaders();
     }
 
     static void removeReader() {
         Scanner sc = new Scanner(System.in);
 
-        ArrayList<User> libraryList = MainService.getReaderList();
+        ArrayList<User> libraryList = MainService.listReaders();
 
         for (int i = 0; i < libraryList.size(); i++) {
             System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + libraryList.get(i).getName() + "\t\t\t\t\t\t");
@@ -866,7 +866,7 @@ public class Main {
 
         MainService.removeAccount(libraryList.get(libraryId));
 
-        ArrayList<User> libraryList2 = MainService.getReaderList();
+        ArrayList<User> libraryList2 = MainService.listReaders();
     }
 
     static void editReader() {
