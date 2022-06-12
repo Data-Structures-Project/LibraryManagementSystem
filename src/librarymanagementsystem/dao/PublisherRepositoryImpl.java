@@ -6,12 +6,11 @@ import utility.AVLTree;
 import java.util.ArrayList;
 import java.util.List;
 
-/* NOT : FIND BY Publisher METODU BURADA OLACAK */
-/* NOT : FIND BY Publisher METODU BURADA OLACAK */
-/* NOT : FIND BY Publisher METODU BURADA OLACAK */
-/* NOT : FIND BY Publisher METODU BURADA OLACAK */
-/* NOT : FIND BY Publisher METODU BURADA OLACAK */
+/**
+ * It's a class that implements the PublisherRepository interface
+ */
 public class PublisherRepositoryImpl implements PublisherRepository {
+    // Creating a new AVLTree object.
     private AVLTree<Publisher> publishers; //BBST OLSUN
 
     public PublisherRepositoryImpl(){
@@ -19,11 +18,13 @@ public class PublisherRepositoryImpl implements PublisherRepository {
     }
 
     @Override
+    // Returning the publishers.
     public AVLTree<Publisher> findAll() {
         return publishers;
     }
 
     @Override
+    // Searching the publisher by ID.
     public Publisher findById(int ID) {
         return (Publisher) publishers.serchByID(ID);
     }
@@ -40,11 +41,13 @@ public class PublisherRepositoryImpl implements PublisherRepository {
     }
 
     @Override
+    // Adding the publisher to the publisher data.
     public void create(Publisher publisher) {
         publishers.add(publisher);
     }
 
 
+    // Updating the target publisher with the new publisher.
     public Publisher update(Publisher targetPublisher, Publisher newPublisher) {
         Publisher target = publishers.find(targetPublisher);
         target.setPublisher(newPublisher);
@@ -61,11 +64,13 @@ public class PublisherRepositoryImpl implements PublisherRepository {
     }
 
     @Override
+    // A method that returns the publisher with the given name.
     public Publisher viewInfo(String name) {
         Publisher targetPublisher = this.publishers.find(new Publisher(name));
         return targetPublisher;
     }
 
+    // Creating a list of publishers.
     public ArrayList<Publisher> publisherList()
     {
         return (ArrayList<Publisher>) publishers.createList();

@@ -5,6 +5,9 @@ import utility.SkipList;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * It's a repository class that stores the materials in a skip list
+ */
 public class MaterialRepositoryImpl implements MaterialRepository {
 
     /**
@@ -124,12 +127,22 @@ public class MaterialRepositoryImpl implements MaterialRepository {
         return targetMaterial;
     }
 
+    /**
+     * Traverse the tree and add all the materials to the list.
+     *
+     * @return An ArrayList of all the materials in the library.
+     */
     public ArrayList<Material> listAllMaterials()
     {
         ArrayList<Material> allMaterials = new ArrayList<>();
         return this.materials.traverseAll(allMaterials);
     }
 
+    /**
+     * Return an ArrayList of all the materials that are currently on loan.
+     *
+     * @return An ArrayList of all the materials that are on loan.
+     */
     public ArrayList<Material> listLoanMaterials()
     {
         ArrayList<Material> allLoanMaterials = new ArrayList<>();
