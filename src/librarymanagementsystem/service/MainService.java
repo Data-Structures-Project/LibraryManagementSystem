@@ -31,7 +31,7 @@ public class MainService {
         libraries.create(library3);
 
         User user1 = new User("Sefa", "Cahyir", "scahyir", "1234", library1);
-        User user2 = new User("Mustafa", "Mert", "Mustafa52", "1234", library2);
+        User user2 = new User("Mustafa", "Mert", "q", "1", library2);
         User user3 = new User("Emre", "Yılmaz", "Emre9180", "1234", library3);
 
         LibraryManager libManager1 = new LibraryManager("SefaManager", "Cahyir", "scahyirPersonal", "1234", library1);

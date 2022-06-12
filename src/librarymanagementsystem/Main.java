@@ -34,6 +34,11 @@ public class Main {
 
     public static void main(String[] args) {
         MainService.mockData();
+        mainMenu();
+
+    }
+
+    static void mainMenu(){
         Scanner sc = new Scanner(System.in);
         System.out.println(ANSI_BLUE + "==================================================");
         System.out.println(ANSI_BLUE + "|      Welcome to Library Management System      |");
@@ -63,7 +68,6 @@ public class Main {
 
             }
         }
-
     }
 
     static void loginMenu() {
@@ -82,18 +86,19 @@ public class Main {
             System.out.println(ANSI_RED + "Username or possword is wrong!");
             loginMenu();
         } else {
+            helloBanner(newLogin.getName());
             switch (newLogin.getClass().getName()) {
                 case "librarymanagementsystem.model.Administrator":
-                    administratorMenu(newLogin.getName());
+                    administratorMenu();
                     break;
                 case "librarymanagementsystem.model.LibraryManager":
-                    libraryManagerMenu(newLogin.getName());
+                    libraryManagerMenu();
                     break;
                 case "librarymanagementsystem.model.Librarian":
-                    librarianMenu(newLogin.getName());
+                    librarianMenu();
                     break;
                 case "librarymanagementsystem.model.User":
-                    readerMenu(newLogin.getName());
+                    readerMenu();
                     break;
             }
         }
@@ -138,12 +143,16 @@ public class Main {
 
     }
 
-    static void administratorMenu(String usersName) {
+    static void helloBanner(String usersName){
         System.out.println(ANSI_BLUE + "\n\n=================================================");
-        System.out.println(ANSI_BLUE + "|\t\t\t\tHello " + usersName + "\t\t\t\t\t|");
+        System.out.printf(ANSI_BLUE + "|\t\t\t\tHello %-26s|\n", usersName);
+    }
+
+    static void administratorMenu() {
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.println(ANSI_CYAN + "|         1. Manage Libraries                   |");
         System.out.println(ANSI_CYAN + "|         2. Manege Library Managers            |");
+        System.out.println(ANSI_CYAN + "|         3. Logout                             |");
         System.out.println(ANSI_CYAN + "|         0. Exit                               |");
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.print(ANSI_GREEN + "Choose one of the options : ");
@@ -158,22 +167,25 @@ public class Main {
             case "2":
                 manageLibraryManagers();
                 break;
+            case "3":
+                mainMenu();
+                break;
             case "0":
                 System.exit(0);
                 break;
             default:
+                System.out.print(ANSI_RED + "Invalid input!" + ANSI_GREEN + "\nPlease choose again : ");
                 break;
 
         }
 
     }
 
-    static void libraryManagerMenu(String usersName) {
-        System.out.println(ANSI_BLUE + "\n\n=================================================");
-        System.out.println(ANSI_BLUE + "|\t\t\t\tHello " + usersName + "\t\t\t\t\t|");
+    static void libraryManagerMenu() {
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.println(ANSI_CYAN + "|         1. Edit Libraries                     |");
         System.out.println(ANSI_CYAN + "|         2. Manege Librarians                  |");
+        System.out.println(ANSI_CYAN + "|         3. Logout                             |");
         System.out.println(ANSI_CYAN + "|         0. Exit                               |");
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.print(ANSI_GREEN + "   Choose one of the options : ");
@@ -188,24 +200,27 @@ public class Main {
             case "2":
                 manageLibrarians();
                 break;
+            case "3":
+                mainMenu();
+                break;
             case "0":
                 System.exit(0);
                 break;
             default:
+                System.out.print(ANSI_RED + "Invalid input!" + ANSI_GREEN + "\nPlease choose again : ");
                 break;
 
         }
     }
 
-    static void librarianMenu(String usersName) {
-        System.out.println(ANSI_BLUE + "\n\n=================================================");
-        System.out.println(ANSI_BLUE + "|\t\t\t\tHello " + usersName + "\t\t\t\t\t|");
+    static void librarianMenu() {
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.println(ANSI_CYAN + "|         1. Manage Readers                     |");
         System.out.println(ANSI_CYAN + "|         2. Manege loan books                  |");
         System.out.println(ANSI_CYAN + "|         3. Manege books                       |");
         System.out.println(ANSI_CYAN + "|         4. Manege magazines                   |");
         System.out.println(ANSI_CYAN + "|         5. Search books                       |");
+        System.out.println(ANSI_CYAN + "|         6. Logout                             |");
         System.out.println(ANSI_CYAN + "|         0. Exit                               |");
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.print(ANSI_GREEN + "Choose one of the options : ");
@@ -229,21 +244,24 @@ public class Main {
             case "5":
                 searchMaterials();
                 break;
+            case "6":
+                mainMenu();
+                break;
             case "0":
                 System.exit(0);
                 break;
             default:
+                System.out.print(ANSI_RED + "Invalid input!" + ANSI_GREEN + "\nPlease choose again : ");
                 break;
 
         }
     }
 
-    static void readerMenu(String usersName) {
-        System.out.println(ANSI_BLUE + "\n\n=================================================");
-        System.out.println(ANSI_BLUE + "|\t\t\t\tHello " + usersName + "\t\t\t\t\t|");
+    static void readerMenu() {
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.println(ANSI_CYAN + "|         1. Search materials                   |");
         System.out.println(ANSI_CYAN + "|         2. Rate a materials                   |");
+        System.out.println(ANSI_CYAN + "|         3. Logout                             |");
         System.out.println(ANSI_CYAN + "|         0. Exit                               |");
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.print(ANSI_GREEN + "   Choose one of the options : ");
@@ -258,10 +276,14 @@ public class Main {
             case "2":
                 rateMaterials();
                 break;
+            case "3":
+                mainMenu();
+                break;
             case "0":
                 System.exit(0);
                 break;
             default:
+                System.out.print(ANSI_RED + "Invalid input!" + ANSI_GREEN + "\nPlease choose again : ");
                 break;
 
         }
@@ -275,8 +297,9 @@ public class Main {
         System.out.println(ANSI_BLUE + "=================================================");
         if (userType == 'a') {
             System.out.println(ANSI_CYAN + "|         1. Add library                        |");
-            System.out.println(ANSI_CYAN + "|         2. Remmove library                    |");
+            System.out.println(ANSI_CYAN + "|         2. Remove library                     |");
             System.out.println(ANSI_CYAN + "|         3. Edit library                       |");
+            System.out.println(ANSI_CYAN + "|         4. Back                               |");
             System.out.println(ANSI_CYAN + "|         0. Exit                               |");
             System.out.println(ANSI_BLUE + "=================================================");
             System.out.print(ANSI_GREEN + "   Choose one of the options : ");
@@ -293,10 +316,15 @@ public class Main {
                 case "3":
                     editLibrary();
                     break;
+                case "4":
+                    System.out.println("\n\n\n");
+                    administratorMenu();
+                    break;
                 case "0":
                     System.exit(0);
                     break;
                 default:
+                    System.out.print(ANSI_RED + "Invalid input!" + ANSI_GREEN + "\nPlease choose again : ");
                     break;
 
             }
@@ -304,7 +332,8 @@ public class Main {
 
         else {
 
-            System.out.println(ANSI_CYAN + "|         3. Edit library                       |");
+            System.out.println(ANSI_CYAN + "|         1. Edit library                       |");
+            System.out.println(ANSI_CYAN + "|         2. Back                               |");
             System.out.println(ANSI_CYAN + "|         0. Exit                               |");
             System.out.println(ANSI_BLUE + "=================================================");
             System.out.print(ANSI_GREEN + "   Choose one of the options : ");
@@ -315,10 +344,15 @@ public class Main {
                 case "1":
                     editLibrary();
                     break;
+                case "2":
+                    System.out.println("\n\n\n");
+                    libraryManagerMenu();
+                    break;
                 case "0":
                     System.exit(0);
                     break;
                 default:
+                    System.out.print(ANSI_RED + "Invalid input!" + ANSI_GREEN + "\nPlease choose again : ");
                     break;
 
             }
@@ -353,6 +387,7 @@ public class Main {
                 System.exit(0);
                 break;
             default:
+                System.out.print(ANSI_RED + "Invalid input!" + ANSI_GREEN + "\nPlease choose again : ");
                 break;
 
         }
@@ -386,6 +421,7 @@ public class Main {
                 System.exit(0);
                 break;
             default:
+                System.out.print(ANSI_RED + "Invalid input!" + ANSI_GREEN + "\nPlease choose again : ");
                 break;
 
         }
@@ -419,6 +455,7 @@ public class Main {
                 System.exit(0);
                 break;
             default:
+                System.out.print(ANSI_RED + "Invalid input!" + ANSI_GREEN + "\nPlease choose again : ");
                 break;
 
         }
@@ -452,6 +489,7 @@ public class Main {
                 System.exit(0);
                 break;
             default:
+                System.out.print(ANSI_RED + "Invalid input!" + ANSI_GREEN + "\nPlease choose again : ");
                 break;
 
         }
@@ -485,6 +523,7 @@ public class Main {
                 System.exit(0);
                 break;
             default:
+                System.out.print(ANSI_RED + "Invalid input!" + ANSI_GREEN + "\nPlease choose again : ");
                 break;
 
         }
@@ -518,6 +557,7 @@ public class Main {
                 System.exit(0);
                 break;
             default:
+                System.out.print(ANSI_RED + "Invalid input!" + ANSI_GREEN + "\nPlease choose again : ");
                 break;
 
         }
@@ -559,6 +599,7 @@ public class Main {
                 System.exit(0);
                 break;
             default:
+                System.out.print(ANSI_RED + "Invalid input!" + ANSI_GREEN + "\nPlease choose again : ");
                 break;
 
         }
@@ -573,22 +614,7 @@ public class Main {
             System.out.println(ANSI_RED + "   The book your searched couldn't find :(");
             searchByName();
         } else {
-            System.out.println(ANSI_BLUE + "\n\n=================================================");
-            System.out.println(ANSI_BLUE + "|\t\t\t\t" + newMat.getName() + "\t\t\t\t\t|");
-            System.out.println(ANSI_BLUE + "=================================================");
-            if (newMat.getIsLoaned())
-                System.out.println(ANSI_RED + "|\t\t\t\tSituation : Loaned\t\t\t\t\t|");
-            else
-                System.out.println(ANSI_GREEN + "|\t\t\t\tSituation : Avaliable\t\t\t\t\t|");
-            System.out.println(ANSI_CYAN + "|\t\t\t\tAuthor : " + newMat.getAuthor().getName() + "\t\t\t\t\t|");
-            System.out.println(ANSI_CYAN + "|\t\t\t\tPage : " + newMat.getPageCount() + "\t\t\t\t\t|");
-            System.out.println(ANSI_CYAN + "|\t\t\t\tPublisher : " + newMat.getPublisher().getName() + "\t\t\t\t\t|");
-            System.out.println(ANSI_CYAN + "|\t\t\t\tCategory : " + newMat.getCategory() + "\t\t\t\t\t|");
-            System.out.println(ANSI_CYAN + "|\t\t\t\tLocation : " + newMat.getLocation().toString() + "\t\t\t\t\t|");
-            System.out.println(ANSI_BLUE + "|\t\t\t\tRate : " + newMat.getRateAve() + "\t\t\t\t\t|");
-            System.out.println(ANSI_BLUE + "|\t\t\t\tType : " + newMat.getType() + "\t\t\t\t\t|");
-            System.out.println(ANSI_BLUE + newMat.getInfo());
-            System.out.println(ANSI_BLUE + "=================================================");
+            printBook(newMat);
         }
 
         System.out.print(ANSI_CYAN + "   Enter the Rate : ");
@@ -961,4 +987,25 @@ public class Main {
         }
     }
 
+
+
+
+    static void printBook(Material newMat){
+        System.out.println(ANSI_BLUE + "\n\n=================================================");
+        System.out.println(ANSI_BLUE + "|\t\t\t\t" + newMat.getName() + "\t\t\t\t\t|");
+        System.out.println(ANSI_BLUE + "=================================================");
+        if (newMat.getIsLoaned())
+            System.out.println(ANSI_RED + "|\t\t\t\tSituation : Loaned\t\t\t\t\t|");
+        else
+            System.out.println(ANSI_GREEN + "|\t\t\t\tSituation : Avaliable\t\t\t|");
+        System.out.println(ANSI_CYAN + "|\t\t\t\tAuthor : " + newMat.getAuthor().getName() + "\t\t\t|");
+        System.out.println(ANSI_CYAN + "|\t\t\t\tPage : " + newMat.getPageCount() + "\t\t\t\t\t\t|");
+        System.out.println(ANSI_CYAN + "|\t\t\t\tPublisher : " + newMat.getPublisher().getName() + "\t\t\t|");
+        System.out.println(ANSI_CYAN + "|\t\t\t\tCategory : " + newMat.getCategory() + "\t\t\t|");
+        System.out.println(ANSI_CYAN + "|\t\t\t\tLocation : " + newMat.getLocation().toString() + "\t\t\t\t|");
+        System.out.println(ANSI_BLUE + "|\t\t\t\tRate : " + newMat.getRateAve() + "\t\t\t\t\t\t|");
+        System.out.println(ANSI_BLUE + "|\t\t\t\tType : " + newMat.getType() + "\t\t\t\t\t\t|");
+        System.out.println(ANSI_BLUE + newMat.getInfo());
+        System.out.println(ANSI_BLUE + "=================================================");
+    }
 }
