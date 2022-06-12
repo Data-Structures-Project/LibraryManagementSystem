@@ -363,6 +363,7 @@ public class Main {
         System.out.println(ANSI_CYAN + "|         1. Add library manager                |");
         System.out.println(ANSI_CYAN + "|         2. Remmove library manager            |");
         System.out.println(ANSI_CYAN + "|         3. Edit library manager               |");
+        System.out.println(ANSI_CYAN + "|         4. Back                               |");
         System.out.println(ANSI_CYAN + "|         0. Exit                               |");
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.print(ANSI_GREEN + "   Choose one of the options : ");
@@ -396,6 +397,7 @@ public class Main {
         System.out.println(ANSI_CYAN + "|         1. Add librarians                     |");
         System.out.println(ANSI_CYAN + "|         2. Remmove librarians                 |");
         System.out.println(ANSI_CYAN + "|         3. Edit librarians                    |");
+        System.out.println(ANSI_CYAN + "|         4. Back                               |");
         System.out.println(ANSI_CYAN + "|         0. Exit                               |");
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.print(ANSI_GREEN + "   Choose one of the options : ");
@@ -430,6 +432,7 @@ public class Main {
         System.out.println(ANSI_CYAN + "|         1. Add readers                        |");
         System.out.println(ANSI_CYAN + "|         2. Remmove readers                    |");
         System.out.println(ANSI_CYAN + "|         3. Edit readers                       |");
+        System.out.println(ANSI_CYAN + "|         4. Back                               |");
         System.out.println(ANSI_CYAN + "|         0. Exit                               |");
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.print(ANSI_GREEN + "   Choose one of the options : ");
@@ -464,6 +467,7 @@ public class Main {
         System.out.println(ANSI_CYAN + "|         1. Add loan book                      |");
         System.out.println(ANSI_CYAN + "|         2. Remmove loan book                  |");
         System.out.println(ANSI_CYAN + "|         3. Edit loan book                     |");
+        System.out.println(ANSI_CYAN + "|         4. Back                               |");
         System.out.println(ANSI_CYAN + "|         0. Exit                               |");
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.print(ANSI_GREEN + "   Choose one of the options : ");
@@ -498,6 +502,7 @@ public class Main {
         System.out.println(ANSI_CYAN + "|         1. Add book                           |");
         System.out.println(ANSI_CYAN + "|         2. Remmove book                       |");
         System.out.println(ANSI_CYAN + "|         3. Edit book                          |");
+        System.out.println(ANSI_CYAN + "|         4. Back                               |");
         System.out.println(ANSI_CYAN + "|         0. Exit                               |");
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.print(ANSI_GREEN + "   Choose one of the options : ");
@@ -532,6 +537,7 @@ public class Main {
         System.out.println(ANSI_CYAN + "|         1. Add magazine                       |");
         System.out.println(ANSI_CYAN + "|         2. Remmove magazine                   |");
         System.out.println(ANSI_CYAN + "|         3. Edit magazine                      |");
+        System.out.println(ANSI_CYAN + "|         4. Back                               |");
         System.out.println(ANSI_CYAN + "|         0. Exit                               |");
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.print(ANSI_GREEN + "   Choose one of the options : ");
@@ -808,6 +814,21 @@ public class Main {
 
     static void addBook() {
         Scanner sc = new Scanner(System.in);
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.println(ANSI_BLUE + "|   Choose a Library to add the book            |");
+        ArrayList<Library> libList = MainService.listLibraries();
+        for (int i = 0; i < libList.size(); i++) {
+            System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + libList.get(i).getName() + "\t\t\t\t\t\t");
+        }
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.print(ANSI_GREEN + "  Choose one of the options : ");
+        int libraryid = Integer.parseInt(sc.next());
+        while (libraryid < 0 || libraryid > libList.size() - 1) {
+            System.out.println(ANSI_RED + "      Invalid input!");
+            System.out.print(ANSI_GREEN + "   Choose one of the options : ");
+            libraryid = Integer.parseInt(sc.next());
+        }
+
 
         // ArrayList<Category> ct = MainService.getCategoryList();
 
@@ -817,13 +838,41 @@ public class Main {
         // istenilecek
         // TODO CategoryList gelecek
 
-        // TODO kullanıcı libraryList arasından sececek int
-        System.out.print(ANSI_CYAN + "   Enter the number of Libray want to add : ");
-        int libraryId = Integer.parseInt(sc.next());
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.println(ANSI_BLUE + "|   Choose an Author                            |");
+        ArrayList<Author> authList = MainService.listAuthors();
+        for (int i = 0; i < authList.size(); i++) {
+            System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + authList.get(i) + "\t\t\t\t\t\t");
+        }
+        System.out.println(ANSI_BLUE + "| to add new author press 'A'                   |");
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.print(ANSI_GREEN + "  Choose one of the options : ");
+        String authinput = sc.next();
+        int authid = Integer.parseInt(authinput);
+        while (authid < 0 || authid > authList.size() - 1|| authinput == "A") {
+            System.out.println(ANSI_RED + "      Invalid input!");
+            System.out.print(ANSI_GREEN + "   Choose one of the options : ");
+            authinput = sc.next();
+            authid = Integer.parseInt(authinput);
+        }
+        if (authinput == "A"){
+            System.out.print(ANSI_CYAN + "\n\n| Author's Name : ");
+            String authorName = sc.next();
+            System.out.print(ANSI_CYAN + "\n\n| Author's Surname : ");
+            String authorSurname = sc.next();
+            System.out.println(ANSI_CYAN + "\n\n| Author's Info : ");
+            String authorInfo = sc.next();
+            Author nAuth = MainService.addAuthor(authorName, authorSurname, authorInfo);
+        }
+        else {
+            Author nAuth = authList.get(authid);
+        }
+
+
 
         new Material(MaterialType.BOOK, "sefa2", Category.AUTOBIOGRAPHIES, new Date(1997513),
                 new Author("authName", "authSurname", "authInfo"),
-                new Publisher("publisherName", "publisherInfo"), 1045, Location.A1, "bookInfo", ct.get(libraryId));
+                new Publisher("publisherName", "publisherInfo"), 1045, Location.A1, "bookInfo", libList.get(libraryid));
 
     }
 
@@ -845,13 +894,22 @@ public class Main {
     static void addMagazine() {
         Scanner sc = new Scanner(System.in);
 
-        // ArrayList<Category> ct = MainService.getCategoryList();
 
-        ArrayList<Library> ct = MainService.getLibraryList();
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.println(ANSI_BLUE + "|   Choose a Category                           |");
+        ArrayList<String> catList = MainService.listCategories();
+        for (int i = 0; i < catList.size(); i++) {
+            System.out.println(ANSI_CYAN + "|        " + i + ". " + catList.get(i) + "\t\t\t\t\t\t");
+        }
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.print(ANSI_GREEN + "  Choose one of the options : ");
+        int catid = Integer.parseInt(sc.next());
+        while (catid < 0 || catid > catList.size() - 1) {
+            System.out.println(ANSI_RED + "      Invalid input!");
+            System.out.print(ANSI_GREEN + "   Choose one of the options : ");
+            catid = Integer.parseInt(sc.next());
+        }
 
-        // TODO Kullanıcıdan bilgiler alınıp sonra librariler arasından birini secmesini
-        // istenilecek
-        // TODO CategoryList gelecek
 
         // TODO kullanıcı libraryList arasından sececek int
         System.out.print(ANSI_CYAN + "   Enter the number of Libray want to add : ");
@@ -865,7 +923,7 @@ public class Main {
     static void removeMagazine() {
         Scanner sc = new Scanner(System.in);
 
-        // TODO Kullanıcıdan kitabın ismi alınacak, kitap varsa silmeye ismi gönderilecek 
+        // TODO Kullanıcıdan kitabın ismi alınacak, kitap varsa silmeye ismi gönderilecek
 
         System.out.print(ANSI_CYAN + "   Enter the number of Libray want to add : ");
         String bookName = sc.next();
@@ -911,7 +969,7 @@ public class Main {
         System.out.println(ANSI_BLUE + "=================================================");
 
         Scanner sc = new Scanner(System.in);
-        ArrayList<Author> authorList = MainService.authorList();
+        ArrayList<Author> authorList = MainService.listAuthors();
         for (int i = 0; i < authorList.size(); i++) {
             System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + authorList.get(i).getName() + "\t\t\t\t\t\t");
         }

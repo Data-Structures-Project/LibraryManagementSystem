@@ -253,7 +253,7 @@ public class MainService {
      *
      * @return An ArrayList of Author objects.
      */
-    public static ArrayList<Author> authorList() {
+    public static ArrayList<Author> listAuthors() {
         return authors.authorList();
     }
 
@@ -574,7 +574,7 @@ public class MainService {
      * @param info a short description of the author
      * @return Author
      */
-    public Author addAuthor(String name, String surname, String info)
+    public static Author addAuthor(String name, String surname, String info)
     {
         Author newAuthor = new Author(name, surname, info);
         if(authors.findByName(newAuthor.getName())==null)
