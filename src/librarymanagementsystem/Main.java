@@ -674,16 +674,22 @@ public class Main {
     static void removeLibrary() {
         Scanner sc = new Scanner(System.in);
 
-        ArrayList<Library> libraryList = MainService.listLibraries();
 
-        for (int i = 0; i < libraryList.size(); i++) {
-            System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + libraryList.get(i).getName() + "\t\t\t\t\t\t");
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.println(ANSI_BLUE + "|   Choose a Library to remove                  |");
+        ArrayList<Library> libList = MainService.listLibraries();
+        for (int i = 0; i < libList.size(); i++) {
+            System.out.printf(ANSI_CYAN + "|\t\t%d. %-37s|\n",i, libList.get(i).getName());
         }
-
-        System.out.print(ANSI_CYAN + "   Choose one of the options : ");
-        int libraryId = Integer.parseInt(sc.next());
-
-        MainService.removeLibrary(libraryList.get(libraryId));
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.print(ANSI_GREEN + "  Choose one of the options : ");
+        int libraryid = Integer.parseInt(sc.next());
+        while (libraryid < 0 || libraryid > libList.size() - 1) {
+            System.out.println(ANSI_RED + "      Invalid input!");
+            System.out.print(ANSI_GREEN + "   Choose one of the options : ");
+            libraryid = Integer.parseInt(sc.next());
+        }
+        MainService.removeLibrary(libList.get(libraryid));
 
         ArrayList<Library> libraryList2 = MainService.listLibraries();
 
@@ -693,16 +699,23 @@ public class Main {
 
     static void editLibrary() {
         Scanner sc = new Scanner(System.in);
-        ArrayList<Library> libraryList = MainService.listLibraries();
-
-        for (int i = 0; i < libraryList.size(); i++) {
-            System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + libraryList.get(i).getName() + "\t\t\t\t\t\t");
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.println(ANSI_BLUE + "|   Choose a Library to edit name               |");
+        ArrayList<Library> libList = MainService.listLibraries();
+        for (int i = 0; i < libList.size(); i++) {
+            System.out.printf(ANSI_CYAN + "|\t\t%d. %-37s|\n",i, libList.get(i).getName());
         }
-        System.out.print(ANSI_CYAN + "   Choose one of the options : ");
-        int libraryId = Integer.parseInt(sc.next());
+        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.print(ANSI_GREEN + "  Choose one of the options : ");
+        int libraryid = Integer.parseInt(sc.next());
+        while (libraryid < 0 || libraryid > libList.size() - 1) {
+            System.out.println(ANSI_RED + "      Invalid input!");
+            System.out.print(ANSI_GREEN + "   Choose one of the options : ");
+            libraryid = Integer.parseInt(sc.next());
+        }
         System.out.print(ANSI_CYAN + "   Enter new name : ");
         String newName = sc.next();
-        MainService.editLibraryName(libraryList.get(libraryId), newName);
+        MainService.editLibraryName(libList.get(libraryid), newName);
         System.out.print(ANSI_GREEN + "   Success! ");
         administratorMenu();
 
@@ -713,12 +726,10 @@ public class Main {
 
         ArrayList<Library> libraryList = MainService.listLibraries();
 
+
         for (int i = 0; i < libraryList.size(); i++) {
             System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + libraryList.get(i).getName() + "\t\t\t\t\t\t");
         }
-
-        // TODO Kullanıcıdan bilgiler alınıp sonra librariler arasından birini secmesini
-        // istenilecek
 
         System.out.print(ANSI_CYAN + "   Enter the number of Libray want to add : ");
         int libraryId = Integer.parseInt(sc.next());
@@ -863,7 +874,7 @@ public class Main {
         System.out.println(ANSI_BLUE + "|   Choose a Library to add the book            |");
         ArrayList<Library> libList = MainService.listLibraries();
         for (int i = 0; i < libList.size(); i++) {
-            System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + libList.get(i).getName() + "\t\t\t\t\t\t");
+            System.out.printf(ANSI_CYAN + "|\t\t%d. %-37s|\n",i, libList.get(i).getName());
         }
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.print(ANSI_GREEN + "  Choose one of the options : ");
@@ -993,8 +1004,9 @@ public class Main {
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.println(ANSI_BLUE + "|   Choose a Library to add the book            |");
         ArrayList<Library> libList = MainService.listLibraries();
+
         for (int i = 0; i < libList.size(); i++) {
-            System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + libList.get(i).getName() + "\t\t\t\t\t\t");
+            System.out.printf(ANSI_CYAN + "|\t\t%d. %-37s|\n",i, libList.get(i).getName());
         }
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.print(ANSI_GREEN + "  Choose one of the options : ");
