@@ -546,6 +546,50 @@ public class MainService {
     }
 
     /**
+     * This function edits the info of a publisher.
+     *
+     * @param target The publisher to edit
+     * @param info The new info for the publisher.
+     */
+    public void editPublisherInfo(Publisher target, String info)
+    {
+        target.setInfo(info);
+    }
+
+    /**
+     * This function edits the info of the author.
+     *
+     * @param target The author to edit
+     * @param info The new info for the author.
+     */
+    public void editAuthorInfo(Author target, String info)
+    {
+        target.setInfo(info);
+    }
+
+    /**
+     * This function edits the name of a library.
+     *
+     * @param target The Library object to edit.
+     * @param name The name of the library.
+     */
+    public void editLibraryName(Library target, String name)
+    {
+        target.setName(name);
+    }
+
+    /**
+     * This function edits the information of a material.
+     *
+     * @param target The material to edit.
+     * @param info The information of the material.
+     */
+    public void editMaterialInfo(Material target, String info)
+    {
+        target.setInfo(info);
+    }
+
+    /**
      * This function returns an ArrayList of all the materials in the database.
      *
      * @return An ArrayList of Material objects.

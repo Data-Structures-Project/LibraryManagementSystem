@@ -82,6 +82,15 @@ public class Library implements Comparable<Library>{
     }
 
     /**
+     * This function sets the name of the object to the value of the parameter.
+     *
+     * @param name The name of the parameter.
+     */
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+    /**
      * This function returns the id of the object.
      *
      * @return The id variable is being returned.
