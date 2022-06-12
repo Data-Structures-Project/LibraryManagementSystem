@@ -678,6 +678,12 @@ public class Main {
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.println(ANSI_BLUE + "|   Choose a Library to remove                  |");
         ArrayList<Library> libList = MainService.listLibraries();
+        if(libList.size()==0){
+            System.out.println(ANSI_RED + "|   There is no Library to remove                |");
+            System.out.println(ANSI_BLUE + "=================================================");
+            administratorMenu();
+            return;
+        }
         for (int i = 0; i < libList.size(); i++) {
             System.out.printf(ANSI_CYAN + "|\t\t%d. %-37s|\n",i, libList.get(i).getName());
         }
@@ -701,6 +707,12 @@ public class Main {
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.println(ANSI_BLUE + "|   Choose a Library to edit name               |");
         ArrayList<Library> libList = MainService.listLibraries();
+        if(libList.size()==0){
+            System.out.println(ANSI_RED + "|   There is no Library to remove                |");
+            System.out.println(ANSI_BLUE + "=================================================");
+            administratorMenu();
+            return;
+        }
         for (int i = 0; i < libList.size(); i++) {
             System.out.printf(ANSI_CYAN + "|\t\t%d. %-37s|\n",i, libList.get(i).getName());
         }
@@ -727,6 +739,12 @@ public class Main {
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.println(ANSI_BLUE + "|   Choose a Library to add manager             |");
         ArrayList<Library> libList = MainService.listLibraries();
+        if(libList.size()==0){
+            System.out.println(ANSI_RED + "|   There is no Library to remove                |");
+            System.out.println(ANSI_BLUE + "=================================================");
+            administratorMenu();
+            return;
+        }
         for (int i = 0; i < libList.size(); i++) {
             System.out.printf(ANSI_CYAN + "|\t\t%d. %-37s|\n",i, libList.get(i).getName());
         }
@@ -767,6 +785,12 @@ public class Main {
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.println(ANSI_BLUE + "|   Choose a Library Manager to remove          |");
         ArrayList<LibraryManager> lMList = MainService.listLibraryManagers();
+        if(lMList.size()==0){
+            System.out.println(ANSI_RED + "|   There is no Library Manager to remove                |");
+            System.out.println(ANSI_BLUE + "=================================================");
+            administratorMenu();
+            return;
+        }
         for (int i = 0; i < lMList.size(); i++) {
             System.out.printf(ANSI_CYAN + "|\t\t%d. %-37s|\n",i, lMList.get(i).getName());
         }
@@ -790,8 +814,14 @@ public class Main {
 
 
         System.out.println(ANSI_BLUE + "=================================================");
-        System.out.println(ANSI_BLUE + "|   Choose a Library Manager to change password |");
+        System.out.println(ANSI_BLUE + "|  Choose a Library Manager to change password |");
         ArrayList<LibraryManager> lMList = MainService.listLibraryManagers();
+        if(lMList.size()==0){
+            System.out.println(ANSI_RED + "|  There is no Library Manager to change password|");
+            System.out.println(ANSI_BLUE + "=================================================");
+            administratorMenu();
+            return;
+        }
         for (int i = 0; i < lMList.size(); i++) {
             System.out.printf(ANSI_CYAN + "|\t\t%d. %-37s|\n",i, lMList.get(i).getUsername());
         }
@@ -820,6 +850,12 @@ public class Main {
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.println(ANSI_BLUE + "|   Choose a Library to add librarian           |");
         ArrayList<Library> libList = MainService.listLibraries();
+        if(libList.size()==0){
+            System.out.println(ANSI_RED + "|  There is no Library to add Librarian          |");
+            System.out.println(ANSI_BLUE + "=================================================");
+            libraryManagerMenu();
+            return;
+        }
         for (int i = 0; i < libList.size(); i++) {
             System.out.printf(ANSI_CYAN + "|\t\t%d. %-37s|\n",i, libList.get(i).getName());
         }
@@ -860,6 +896,12 @@ public class Main {
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.println(ANSI_BLUE + "|   Choose a Librarian to remove                |");
         ArrayList<Librarian> lList = MainService.listLibrarians();
+        if(lList.size()==0){
+            System.out.println(ANSI_RED + "|  There is no Librarian to remove               |");
+            System.out.println(ANSI_BLUE + "=================================================");
+            libraryManagerMenu();
+            return;
+        }
         for (int i = 0; i < lList.size(); i++) {
             System.out.printf(ANSI_CYAN + "|\t\t%d. %-37s|\n",i, lList.get(i).getName());
         }
@@ -885,6 +927,12 @@ public class Main {
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.println(ANSI_BLUE + "|   Choose a Librarian to change password       |");
         ArrayList<Librarian> lList = MainService.listLibrarians();
+        if(lList.size()==0){
+            System.out.println(ANSI_RED + "|  There is no Librarian to change password      |");
+            System.out.println(ANSI_BLUE + "=================================================");
+            libraryManagerMenu();
+            return;
+        }
         for (int i = 0; i < lList.size(); i++) {
             System.out.printf(ANSI_CYAN + "|\t\t%d. %-37s|\n",i, lList.get(i).getName());
         }
@@ -907,10 +955,15 @@ public class Main {
     static void addReader() {
         Scanner sc = new Scanner(System.in);
 
-        ArrayList<Library> libraryList = MainService.listLibraries();
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.println(ANSI_BLUE + "|   Choose a Library to add reader              |");
         ArrayList<Library> libList = MainService.listLibraries();
+        if(libList.size()==0){
+            System.out.println(ANSI_RED + "|  There is no Library to add Reader             |");
+            System.out.println(ANSI_BLUE + "=================================================");
+            librarianMenu();
+            return;
+        }
         for (int i = 0; i < libList.size(); i++) {
             System.out.printf(ANSI_CYAN + "|\t\t%d. %-37s|\n",i, libList.get(i).getName());
         }
@@ -939,7 +992,7 @@ public class Main {
         String password = sc.next();
 
 
-        MainService.addAccount(new User(name, surname, username, password, libraryList.get(1)));
+        MainService.addAccount(new User(name, surname, username, password, libList.get(1)));
         System.out.print(ANSI_GREEN + "   Success! \n");
         librarianMenu();
     }
@@ -951,6 +1004,12 @@ public class Main {
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.println(ANSI_BLUE + "|   Choose a Reader to remove                   |");
         ArrayList<User> rList = MainService.listReaders();
+        if(rList.size()==0){
+            System.out.println(ANSI_RED + "|  There is no Reader to remove                  |");
+            System.out.println(ANSI_BLUE + "=================================================");
+            librarianMenu();
+            return;
+        }
         for (int i = 0; i < rList.size(); i++) {
             System.out.printf(ANSI_CYAN + "|\t\t%d. %-37s|\n",i, rList.get(i).getName());
         }
@@ -976,6 +1035,12 @@ public class Main {
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.println(ANSI_BLUE + "|   Choose a Reader to change password          |");
         ArrayList<User> rList = MainService.listReaders();
+        if(rList.size()==0){
+            System.out.println(ANSI_RED + "|  There is no Librarian to change password      |");
+            System.out.println(ANSI_BLUE + "=================================================");
+            librarianMenu();
+            return;
+        }
         for (int i = 0; i < rList.size(); i++) {
             System.out.printf(ANSI_CYAN + "|\t\t%d. %-37s|\n",i, rList.get(i).getName());
         }
@@ -1436,7 +1501,10 @@ public class Main {
         }
         System.out.print(ANSI_GREEN + "  Choose one of the options : ");
         int bookIndex = Integer.parseInt(sc.next());
-        printBook(newMaterials.get(bookIndex));
+        if(newMaterials.size()==0)
+            System.out.print(ANSI_RED + "  No material found for your search criteria ");
+        else
+            printBook(newMaterials.get(bookIndex));
         System.out.print(ANSI_GREEN + "  Press any key and Enter to go back : ");
         sc.next();
         if (userType == 'l'){
