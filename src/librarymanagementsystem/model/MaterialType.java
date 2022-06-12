@@ -13,9 +13,9 @@ public enum MaterialType {
     public String toString(){
         switch (this){
             case BOOK:
-                return "book";
+                return "Book";
             case MAGAZINE:
-                return "magazine";
+                return "Magazine";
             default:
                 return "";
         }

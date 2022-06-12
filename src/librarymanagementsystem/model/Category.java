@@ -10,23 +10,23 @@ public enum Category {
     public String toString(){
         switch (this){
             case LITERARY_FICTION:
-                return "literary fiction";
+                return "Literary Fiction";
             case MYSTERY:
-                return "mystery";
+                return "Mystery";
             case THRILLER:
-                return "thriller";
+                return "Thriller";
             case HORROR:
-                return "horror";
+                return "Horror";
             case HISTORY:
-                return "history";
+                return "History";
             case SCIENCE_FICTION:
-                return "science fiction";
+                return "Science fiction";
             case BIOGRAPHIES:
-                return "biographies";
+                return "Biographies";
             case AUTOBIOGRAPHIES:
-                return "autobiographies";
+                return "Autobiographies";
             case POETRY:
-                return "poetry";
+                return "Poetry";
             default:
                 return "";
         }
