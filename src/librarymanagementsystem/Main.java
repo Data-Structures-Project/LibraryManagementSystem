@@ -2,13 +2,24 @@ package librarymanagementsystem;
 
 import librarymanagementsystem.model.Account;
 import librarymanagementsystem.model.Author;
+import librarymanagementsystem.model.City;
+import librarymanagementsystem.model.Librarian;
+import librarymanagementsystem.model.Library;
+import librarymanagementsystem.model.LibraryManager;
+import librarymanagementsystem.model.Location;
 import librarymanagementsystem.model.Material;
+import librarymanagementsystem.model.MaterialType;
 import librarymanagementsystem.model.Publisher;
+import librarymanagementsystem.model.User;
+import librarymanagementsystem.model.Category;
 import librarymanagementsystem.service.MainService;
+
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Locale.Category;
+
+import javax.xml.crypto.Data;
 
 public class Main {
 
@@ -584,16 +595,40 @@ public class Main {
         int materialRate = Integer.parseInt(sc.next());
         MainService.addRate(newMat, materialRate);
 
-        System.out.println( newMat.getRateAve());
+        System.out.println(newMat.getRateAve());
 
     }
 
     static void addLibrary() {
+        Scanner sc = new Scanner(System.in);
 
+        System.out.print(ANSI_CYAN + "   Enter the name of the Library : ");
+        String libraryName = sc.next();
+
+        System.out.print(ANSI_CYAN + "   Enter the number of the City : ");
+        int libraryCity = Integer.parseInt(sc.next());
+
+        // TODO update city
+        MainService.addLibrary(libraryName, libraryCity);
+
+        ArrayList<Library> libraryList = MainService.getLibraryList();
     }
 
     static void removeLibrary() {
+        Scanner sc = new Scanner(System.in);
 
+        ArrayList<Library> libraryList = MainService.getLibraryList();
+
+        for (int i = 0; i < libraryList.size(); i++) {
+            System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + libraryList.get(i).getName() + "\t\t\t\t\t\t");
+        }
+
+        System.out.print(ANSI_CYAN + "   Enter the number of Libray want to delete : ");
+        int libraryId = Integer.parseInt(sc.next());
+
+        MainService.removeLibrary(libraryList.get(libraryId));
+
+        ArrayList<Library> libraryList2 = MainService.getLibraryList();
     }
 
     static void editLibrary() {
@@ -601,11 +636,40 @@ public class Main {
     }
 
     static void addManager() {
+        Scanner sc = new Scanner(System.in);
 
+        ArrayList<Library> libraryList = MainService.getLibraryList();
+
+        for (int i = 0; i < libraryList.size(); i++) {
+            System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + libraryList.get(i).getName() + "\t\t\t\t\t\t");
+        }
+
+        // TODO Kullanıcıdan bilgiler alınıp sonra librariler arasından birini secmesini
+        // istenilecek
+
+        System.out.print(ANSI_CYAN + "   Enter the number of Libray want to add : ");
+        int libraryId = Integer.parseInt(sc.next());
+
+        MainService.addAccount(new LibraryManager("sefa", "cahyir", "newUserName", "1234", libraryList.get(1)));
+
+        ArrayList<LibraryManager> libraryList2 = MainService.getLibraryManagerList();
     }
 
     static void removeManager() {
+        Scanner sc = new Scanner(System.in);
 
+        ArrayList<LibraryManager> libraryList = MainService.getLibraryManagerList();
+
+        for (int i = 0; i < libraryList.size(); i++) {
+            System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + libraryList.get(i).getName() + "\t\t\t\t\t\t");
+        }
+
+        System.out.print(ANSI_CYAN + "   Enter the number of Libray want to delete : ");
+        int libraryId = Integer.parseInt(sc.next());
+
+        MainService.removeAccount(libraryList.get(libraryId));
+
+        ArrayList<LibraryManager> libraryList2 = MainService.getLibraryManagerList();
     }
 
     static void editManager() {
@@ -613,11 +677,40 @@ public class Main {
     }
 
     static void addLibrarian() {
+        Scanner sc = new Scanner(System.in);
 
+        ArrayList<Library> libraryList = MainService.getLibraryList();
+
+        for (int i = 0; i < libraryList.size(); i++) {
+            System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + libraryList.get(i).getName() + "\t\t\t\t\t\t");
+        }
+
+        // TODO Kullanıcıdan bilgiler alınıp sonra librariler arasından birini secmesini
+        // istenilecek
+
+        System.out.print(ANSI_CYAN + "   Enter the number of Libray want to add : ");
+        int libraryId = Integer.parseInt(sc.next());
+
+        MainService.addAccount(new Librarian("sefa", "cahyir", "newUserName", "1234", libraryList.get(1)));
+
+        ArrayList<Librarian> libraryList2 = MainService.getLibrarianList();
     }
 
     static void removeLibrarian() {
+        Scanner sc = new Scanner(System.in);
 
+        ArrayList<Librarian> libraryList = MainService.getLibrarianList();
+
+        for (int i = 0; i < libraryList.size(); i++) {
+            System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + libraryList.get(i).getName() + "\t\t\t\t\t\t");
+        }
+
+        System.out.print(ANSI_CYAN + "   Enter the number of Libray want to delete : ");
+        int libraryId = Integer.parseInt(sc.next());
+
+        MainService.removeAccount(libraryList.get(libraryId));
+
+        ArrayList<Librarian> libraryList2 = MainService.getLibrarianList();
     }
 
     static void editLibrarian() {
@@ -625,11 +718,40 @@ public class Main {
     }
 
     static void addReader() {
+        Scanner sc = new Scanner(System.in);
 
+        ArrayList<Library> libraryList = MainService.getLibraryList();
+
+        for (int i = 0; i < libraryList.size(); i++) {
+            System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + libraryList.get(i).getName() + "\t\t\t\t\t\t");
+        }
+
+        // TODO Kullanıcıdan bilgiler alınıp sonra librariler arasından birini secmesini
+        // istenilecek
+
+        System.out.print(ANSI_CYAN + "   Enter the number of Libray want to add : ");
+        int libraryId = Integer.parseInt(sc.next());
+
+        MainService.addAccount(new Librarian("sefa", "cahyir", "newUserName", "1234", libraryList.get(1)));
+
+        ArrayList<User> libraryList2 = MainService.getReaderList();
     }
 
     static void removeReader() {
+        Scanner sc = new Scanner(System.in);
 
+        ArrayList<User> libraryList = MainService.getReaderList();
+
+        for (int i = 0; i < libraryList.size(); i++) {
+            System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + libraryList.get(i).getName() + "\t\t\t\t\t\t");
+        }
+
+        System.out.print(ANSI_CYAN + "   Enter the number of Libray want to delete : ");
+        int libraryId = Integer.parseInt(sc.next());
+
+        MainService.removeAccount(libraryList.get(libraryId));
+
+        ArrayList<User> libraryList2 = MainService.getReaderList();
     }
 
     static void editReader() {
@@ -637,11 +759,25 @@ public class Main {
     }
 
     static void addLoanBook() {
+        Scanner sc = new Scanner(System.in);
+        
+        // TODO Kullanıcıdan kitabın ismi alınacak, kitap varsa loan olmaya ismi gidecek 
 
+        System.out.print(ANSI_CYAN + "   Enter the number of Libray want to add : ");
+        String bookName = sc.next();
+
+        MainService.addLoanBook(bookName);
     }
 
     static void removeLoanBook() {
+        Scanner sc = new Scanner(System.in);
+        
+        // TODO Kullanıcıdan kitabın ismi alınacak, kitap varsa loan olmaya ismi gidecek 
 
+        System.out.print(ANSI_CYAN + "   Enter the number of Libray want to add : ");
+        String bookName = sc.next();
+
+        MainService.removeLoanBook(bookName);
     }
 
     static void editLoanBook() {
@@ -649,11 +785,35 @@ public class Main {
     }
 
     static void addBook() {
+        Scanner sc = new Scanner(System.in);
+
+        // ArrayList<Category> ct = MainService.getCategoryList();
+
+        ArrayList<Library> ct = MainService.getLibraryList();
+
+        // TODO Kullanıcıdan bilgiler alınıp sonra librariler arasından birini secmesini
+        // istenilecek
+        // TODO CategoryList gelecek
+
+        // TODO kullanıcı libraryList arasından sececek int
+        System.out.print(ANSI_CYAN + "   Enter the number of Libray want to add : ");
+        int libraryId = Integer.parseInt(sc.next());
+
+        new Material(MaterialType.BOOK, "sefa2", Category.AUTOBIOGRAPHIES, new Date(1997513),
+                new Author("authName", "authSurname", "authInfo"),
+                new Publisher("publisherName", "publisherInfo"), 1045, Location.A1, "bookInfo", ct.get(libraryId));
 
     }
 
     static void removeBook() {
+        Scanner sc = new Scanner(System.in);
+        
+        // TODO Kullanıcıdan kitabın ismi alınacak, kitap varsa silmeye ismi gönderilecek 
 
+        System.out.print(ANSI_CYAN + "   Enter the number of Libray want to add : ");
+        String bookName = sc.next();
+
+        MainService.removeMaterial(bookName);
     }
 
     static void editBook() {
@@ -661,11 +821,34 @@ public class Main {
     }
 
     static void addMagazine() {
+        Scanner sc = new Scanner(System.in);
 
+        // ArrayList<Category> ct = MainService.getCategoryList();
+
+        ArrayList<Library> ct = MainService.getLibraryList();
+
+        // TODO Kullanıcıdan bilgiler alınıp sonra librariler arasından birini secmesini
+        // istenilecek
+        // TODO CategoryList gelecek
+
+        // TODO kullanıcı libraryList arasından sececek int
+        System.out.print(ANSI_CYAN + "   Enter the number of Libray want to add : ");
+        int libraryId = Integer.parseInt(sc.next());
+
+        new Material(MaterialType.MAGAZINE, "sefa2", Category.AUTOBIOGRAPHIES, new Date(1997513),
+                new Author("authName", "authSurname", "authInfo"),
+                new Publisher("publisherName", "publisherInfo"), 1045, Location.A1, "bookInfo", ct.get(1));
     }
 
     static void removeMagazine() {
+        Scanner sc = new Scanner(System.in);
 
+        // TODO Kullanıcıdan kitabın ismi alınacak, kitap varsa silmeye ismi gönderilecek 
+
+        System.out.print(ANSI_CYAN + "   Enter the number of Libray want to add : ");
+        String bookName = sc.next();
+
+        MainService.removeMaterial(bookName);
     }
 
     static void editMagazine() {
