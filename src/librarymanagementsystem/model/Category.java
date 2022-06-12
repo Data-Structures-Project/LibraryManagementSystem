@@ -1,10 +1,12 @@
 package librarymanagementsystem.model;
 
+// Creating a new type called Category.
 public enum Category {
     LITERARY_FICTION, MYSTERY, THRILLER, HORROR, HISTORY, SCIENCE_FICTION, BIOGRAPHIES, AUTOBIOGRAPHIES, POETRY;
 
 
     @Override
+    // A method that returns a string representation of the object.
     public String toString(){
         switch (this){
             case LITERARY_FICTION:

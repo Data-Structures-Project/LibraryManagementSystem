@@ -2,11 +2,9 @@ package librarymanagementsystem;
 
 import librarymanagementsystem.model.Account;
 import librarymanagementsystem.model.Author;
-import librarymanagementsystem.model.City;
 import librarymanagementsystem.model.Librarian;
 import librarymanagementsystem.model.Library;
 import librarymanagementsystem.model.LibraryManager;
-import librarymanagementsystem.model.Location;
 import librarymanagementsystem.model.Material;
 import librarymanagementsystem.model.MaterialType;
 import librarymanagementsystem.model.Publisher;
@@ -18,8 +16,6 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-import javax.xml.crypto.Data;
 
 public class Main {
 

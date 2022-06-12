@@ -5,11 +5,19 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
 
+/**
+ * A Library is a place where you can borrow books
+ */
 public class Library implements Comparable<Library>{
+    // A private variable that is used to store the id of the library.
     private int id;
+    // A static variable that is used to keep track of the number of libraries that have been created.
     private static int count;
+    // Declaring a variable called name that is of type String.
     private String name;
+    // A variable that is used to store the city that the library is in.
     private City city;
+    // Creating an array of doubles called coordinates.
     private double [] coordinates;
     //private List<Material> materials;
 
@@ -25,6 +33,7 @@ public class Library implements Comparable<Library>{
     }
 
     @Override
+    // Checking if the object is equal to the library.
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Library)) return false;
@@ -33,11 +42,13 @@ public class Library implements Comparable<Library>{
     }
 
     @Override
+    // A method that is used to generate a hash code for the library.
     public int hashCode() {
         return Objects.hash(id, name, city);
     }
 
     @Override
+    // Comparing the library to another library.
     public int compareTo(Library library) {
         try {
             if(library == null){
@@ -61,10 +72,20 @@ public class Library implements Comparable<Library>{
         return -1;
     }
 
+    /**
+     * The function getName() returns the name of the object
+     *
+     * @return The name of the person.
+     */
     public String getName(){
         return name;
     }
 
+    /**
+     * This function returns the id of the object.
+     *
+     * @return The id variable is being returned.
+     */
     public int getId(){return id;}
 
 
