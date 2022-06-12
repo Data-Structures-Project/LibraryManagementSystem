@@ -615,8 +615,11 @@ public class MainService {
     public Material addMaterial(MaterialType type, String name, Category category, Date publicationDate, Author author,
                                 Publisher publisher, int pageCount, String location, String info, Library lib)
     {
-        return new Material(type, name, category, publicationDate, author,
+        Material newMaterial = new Material(type, name, category, publicationDate, author,
             publisher, pageCount, location, info, lib);
+
+        addMaterial(newMaterial);
+        return newMaterial;
     }
 
 
