@@ -1724,7 +1724,23 @@ public class Main {
         }
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.print(ANSI_GREEN + "  Choose one of the options : ");
-        int authorIndex = Integer.parseInt(sc.next());
+        int authorIndex = 0;
+        boolean inputFlag = false;
+        do {
+            if(sc.hasNextInt()){
+                authorIndex = sc.nextInt();
+                if(authorIndex < 0 || authorIndex > authorList.size() -1){
+                    System.out.println(ANSI_RED + "|      Invalid input!                           |");
+                    System.out.print(ANSI_GREEN + "|  Choose one of the options : ");
+                }
+                else
+                    inputFlag =true;
+            }else{
+                System.out.println(ANSI_RED + "|      Invalid input!                           |");
+                System.out.print(ANSI_GREEN + "|  Choose one of the options : ");
+            }
+            sc.nextLine();
+        }while (!inputFlag);
         List<Material> authorBooks = MainService.searchByAuthor(authorList.get(authorIndex).getName());
         if (authorBooks == null){
             System.out.println(ANSI_RED + "|  There is no materıal for author              |");
@@ -1739,12 +1755,23 @@ public class Main {
         }
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.print(ANSI_GREEN + "  Choose one of the options : ");
-        int bookIndex = Integer.parseInt(sc.next());
-        while (bookIndex < 0 || bookIndex > authorBooks.size() - 1) {
-            System.out.println(ANSI_RED + "      Invalid input!");
-            System.out.print(ANSI_GREEN + "   Choose one of the options : ");
-            bookIndex = Integer.parseInt(sc.next());
-        }
+        int bookIndex = 0;
+        boolean bookinputFlag = false;
+        do {
+            if(sc.hasNextInt()){
+                bookIndex = sc.nextInt();
+                if(bookIndex < 0 || bookIndex > authorBooks.size() -1){
+                    System.out.println(ANSI_RED + "|      Invalid input!                           |");
+                    System.out.print(ANSI_GREEN + "|  Choose one of the options : ");
+                }
+                else
+                    bookinputFlag =true;
+            }else{
+                System.out.println(ANSI_RED + "|      Invalid input!                           |");
+                System.out.print(ANSI_GREEN + "|  Choose one of the options : ");
+            }
+            sc.nextLine();
+        }while (!bookinputFlag);
         printBook(authorBooks.get(bookIndex));
         System.out.print(ANSI_GREEN + "  Press any key and Enter to go back : ");
         sc.next();
@@ -1774,7 +1801,24 @@ public class Main {
         }
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.print(ANSI_GREEN + "  Choose one of the options : ");
-        int publisherIndex = Integer.parseInt(sc.next());
+        int publisherIndex = 0;
+        boolean inputFlag = false;
+        do {
+            if(sc.hasNextInt()){
+                publisherIndex = sc.nextInt();
+                if(publisherIndex < 0 || publisherIndex > publisherList.size() -1){
+                    System.out.println(ANSI_RED + "|      Invalid input!                           |");
+                    System.out.print(ANSI_GREEN + "|  Choose one of the options : ");
+                }
+                else
+                    inputFlag =true;
+            }else{
+                System.out.println(ANSI_RED + "|      Invalid input!                           |");
+                System.out.print(ANSI_GREEN + "|  Choose one of the options : ");
+            }
+            sc.nextLine();
+        }while (!inputFlag);
+
         List<Material> publisherBooks = MainService.searchByPublisher(publisherList.get(publisherIndex).getName());
         if (publisherBooks == null){
             System.out.println(ANSI_RED + "|  There is no materıal for pubisher            |");
@@ -1789,12 +1833,23 @@ public class Main {
         }
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.print(ANSI_GREEN + "  Choose one of the options : ");
-        int bookIndex = Integer.parseInt(sc.next());
-        while (bookIndex < 0 || bookIndex > publisherBooks.size() - 1) {
-            System.out.println(ANSI_RED + "      Invalid input!");
-            System.out.print(ANSI_GREEN + "   Choose one of the options : ");
-            bookIndex = Integer.parseInt(sc.next());
-        }
+        int bookIndex = 0;
+        boolean bookinputFlag = false;
+        do {
+            if(sc.hasNextInt()){
+                bookIndex = sc.nextInt();
+                if(bookIndex < 0 || bookIndex > publisherBooks.size() -1){
+                    System.out.println(ANSI_RED + "|      Invalid input!                           |");
+                    System.out.print(ANSI_GREEN + "|  Choose one of the options : ");
+                }
+                else
+                    bookinputFlag =true;
+            }else{
+                System.out.println(ANSI_RED + "|      Invalid input!                           |");
+                System.out.print(ANSI_GREEN + "|  Choose one of the options : ");
+            }
+            sc.nextLine();
+        }while (!bookinputFlag);
         printBook(publisherBooks.get(bookIndex));
         System.out.print(ANSI_GREEN + "  Press any key and Enter to go back : ");
         sc.next();
@@ -1823,8 +1878,26 @@ public class Main {
             System.out.printf(ANSI_CYAN + "|\t\t%d. %-37s|\n",i, categoryList.get(i));
         }
         System.out.println(ANSI_BLUE + "=================================================");
-        System.out.print(ANSI_GREEN + "  Choose one of the options : ");
-        int categoryIndex = Integer.parseInt(sc.next());
+        System.out.print(ANSI_GREEN + "|  Choose one of the options : ");
+        int categoryIndex = 0;
+        boolean inputFlag = false;
+        do {
+            if(sc.hasNextInt()){
+                categoryIndex = sc.nextInt();
+                if(categoryIndex < 0 || categoryIndex > categoryList.size()-1 ){
+                    System.out.println(ANSI_RED + "|      Invalid input!                           |");
+                    System.out.print(ANSI_GREEN + "|  Choose one of the options : ");
+                }
+                else
+                    inputFlag =true;
+            }else{
+                System.out.println(ANSI_RED + "|      Invalid input!                           |");
+                System.out.print(ANSI_GREEN + "|  Choose one of the options : ");
+            }
+            sc.nextLine();
+        }while (!inputFlag);
+
+
         List<Material> categoryBooks = MainService.searchByCategory(categoryIndex);
         if (categoryBooks == null){
             System.out.println(ANSI_RED + "|  There is no materıal for category            |");
@@ -1839,12 +1912,25 @@ public class Main {
         }
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.print(ANSI_GREEN + "  Choose one of the options : ");
-        int bookIndex = Integer.parseInt(sc.next());
-        while (bookIndex < 0 || bookIndex > categoryBooks.size() - 1) {
-            System.out.println(ANSI_RED + "      Invalid input!");
-            System.out.print(ANSI_GREEN + "   Choose one of the options : ");
-            bookIndex = Integer.parseInt(sc.next());
-        }
+
+        int bookIndex = 0;
+        boolean bookinputFlag = false;
+        do {
+            if(sc.hasNextInt()){
+                bookIndex = sc.nextInt();
+                if(bookIndex < 0 || bookIndex > categoryBooks.size() -1 ){
+                    System.out.println(ANSI_RED + "|      Invalid input!                           |");
+                    System.out.print(ANSI_GREEN + "|  Choose one of the options : ");
+                }
+                else
+                    bookinputFlag =true;
+            }else{
+                System.out.println(ANSI_RED + "|      Invalid input!                           |");
+                System.out.print(ANSI_GREEN + "|  Choose one of the options : ");
+            }
+            sc.nextLine();
+        }while (!bookinputFlag);
+
         printBook(categoryBooks.get(bookIndex));
         System.out.print(ANSI_GREEN + "  Press any key and Enter to go back : ");
         sc.next();
@@ -1876,6 +1962,7 @@ public class Main {
             }else{
                 System.out.print(ANSI_CYAN + "   Enter the rate of Book : ");
             }
+            sc.nextLine();
         }while (!inputFlag);
 
         List<Material> newMaterials = MainService.searchByRate(materialRate);
@@ -1890,12 +1977,23 @@ public class Main {
 
         }
         System.out.print(ANSI_GREEN + "  Choose one of the options : ");
-        int bookIndex = Integer.parseInt(sc.next());
-        while (bookIndex < 0 || bookIndex > newMaterials.size() - 1) {
-            System.out.println(ANSI_RED + "      Invalid input!");
-            System.out.print(ANSI_GREEN + "   Choose one of the options : ");
-            bookIndex = Integer.parseInt(sc.next());
-        }
+        int bookIndex = 0;
+        boolean bookinputFlag = false;
+        do {
+            if(sc.hasNextInt()){
+                bookIndex = sc.nextInt();
+                if(bookIndex < 0 || bookIndex > newMaterials.size() -1){
+                    System.out.println(ANSI_RED + "|      Invalid input!                           |");
+                    System.out.print(ANSI_GREEN + "|  Choose one of the options : ");
+                }
+                else
+                    bookinputFlag =true;
+            }else{
+                System.out.println(ANSI_RED + "|      Invalid input!                           |");
+                System.out.print(ANSI_GREEN + "|  Choose one of the options : ");
+            }
+            sc.nextLine();
+        }while (!bookinputFlag);
         printBook(newMaterials.get(bookIndex));
         System.out.print(ANSI_GREEN + "  Press any key and Enter to go back : ");
         sc.next();
