@@ -1712,6 +1712,7 @@ public class Main {
         int authorIndex = Integer.parseInt(sc.next());
         List<Material> authorBooks = MainService.searchByAuthor(authorList.get(authorIndex).getName());
         if (authorBooks == null){
+            System.out.println(ANSI_RED + "|  There is no materıal for author              |");
             searchMaterials(userType);
             return;
         }
@@ -1723,6 +1724,11 @@ public class Main {
         }
         System.out.print(ANSI_GREEN + "  Choose one of the options : ");
         int bookIndex = Integer.parseInt(sc.next());
+        while (bookIndex < 0 || bookIndex > authorBooks.size() - 1) {
+            System.out.println(ANSI_RED + "      Invalid input!");
+            System.out.print(ANSI_GREEN + "   Choose one of the options : ");
+            bookIndex = Integer.parseInt(sc.next());
+        }
         printBook(authorBooks.get(bookIndex));
         System.out.print(ANSI_GREEN + "  Press any key and Enter to go back : ");
         sc.next();
@@ -1754,6 +1760,7 @@ public class Main {
         int publisherIndex = Integer.parseInt(sc.next());
         List<Material> publisherBooks = MainService.searchByPublisher(publisherList.get(publisherIndex).getName());
         if (publisherBooks == null){
+            System.out.println(ANSI_RED + "|  There is no materıal for pubisher            |");
             searchMaterials(userType);
             return;
         }
@@ -1762,6 +1769,11 @@ public class Main {
         }
         System.out.print(ANSI_GREEN + "  Choose one of the options : ");
         int bookIndex = Integer.parseInt(sc.next());
+        while (bookIndex < 0 || bookIndex > publisherBooks.size() - 1) {
+            System.out.println(ANSI_RED + "      Invalid input!");
+            System.out.print(ANSI_GREEN + "   Choose one of the options : ");
+            bookIndex = Integer.parseInt(sc.next());
+        }
         printBook(publisherBooks.get(bookIndex));
         System.out.print(ANSI_GREEN + "  Press any key and Enter to go back : ");
         sc.next();
@@ -1791,6 +1803,7 @@ public class Main {
         int categoryIndex = Integer.parseInt(sc.next());
         List<Material> categoryBooks = MainService.searchByCategory(categoryIndex);
         if (categoryBooks == null){
+            System.out.println(ANSI_RED + "|  There is no materıal for category            |");
             searchMaterials(userType);
             return;
         }
@@ -1799,6 +1812,11 @@ public class Main {
         }
         System.out.print(ANSI_GREEN + "  Choose one of the options : ");
         int bookIndex = Integer.parseInt(sc.next());
+        while (bookIndex < 0 || bookIndex > categoryBooks.size() - 1) {
+            System.out.println(ANSI_RED + "      Invalid input!");
+            System.out.print(ANSI_GREEN + "   Choose one of the options : ");
+            bookIndex = Integer.parseInt(sc.next());
+        }
         printBook(categoryBooks.get(bookIndex));
         System.out.print(ANSI_GREEN + "  Press any key and Enter to go back : ");
         sc.next();
