@@ -35,7 +35,7 @@ public interface MaterialRepository {
     List<Material> findByCategories(Category category);
 
     /* List<Material> findByPublisher(Publisher publisher); */
-    List<Material> findByRate(Integer rate);
+    List<Material> findByRate(Double rate);
 
     /**
      * Create a new material.

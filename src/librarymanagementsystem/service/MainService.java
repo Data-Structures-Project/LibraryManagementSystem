@@ -354,7 +354,7 @@ public class MainService {
      * @param rate The rate of the material
      * @return An ArrayList of Materials
      */
-    public static ArrayList<Material> searchByRate(int rate)
+    public static ArrayList<Material> searchByRate(double rate)
     {
         return materials.findByRate(rate);
     }
@@ -365,7 +365,7 @@ public class MainService {
      * @param material The material you want to add a rate to.
      * @param rate The rate at which the material will be mined.
      */
-    public static void addRate(Material material, int rate)
+    public static void addRate(Material material, double rate)
     {
         material.addRate(rate);
     }

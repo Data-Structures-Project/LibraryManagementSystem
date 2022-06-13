@@ -194,7 +194,7 @@ class SkipNode<N extends Comparable<? super N>> {
         return materialList;
     }
 
-    ArrayList<N> nodeTraverseByRate(int rate, ArrayList<N> materialList) {
+    ArrayList<N> nodeTraverseByRate(double rate, ArrayList<N> materialList) {
         SkipNode<N> current = this.getNext(0); // levela dikat.
 
         while (current != null) {

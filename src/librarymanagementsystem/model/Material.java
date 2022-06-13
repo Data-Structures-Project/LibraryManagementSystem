@@ -29,7 +29,7 @@ public class Material implements Comparable<Material> {
     // Used to store the location of the material in the library.
     private String location;
     // Used to store the rates of the material.
-    private Stack<Integer> rates;
+    private Stack<Double> rates;
     // Used to store the average rate of the material.
     private Double rateAve = 0.0;
     // Used to store the information about the material.
@@ -231,7 +231,7 @@ public class Material implements Comparable<Material> {
      *
      * @return The rates stack.
      */
-    public Stack<Integer> getRates() {
+    public Stack<Double> getRates() {
         return rates;
     }
 
@@ -240,7 +240,7 @@ public class Material implements Comparable<Material> {
      *
      * @param rates A stack of integers representing the rates of the different levels of the game.
      */
-    public void setRates(Stack<Integer> rates) {
+    public void setRates(Stack<Double> rates) {
         this.rates = rates;
     }
 
@@ -250,7 +250,7 @@ public class Material implements Comparable<Material> {
      * @param rate the rate to be added
      * @return A boolean value.
      */
-    public boolean addRate(Integer rate) {
+    public boolean addRate(Double rate) {
         rates.add(rate);
         rateAve = ((rateAve*(rates.size()-1))+ rate)/rates.size();
         return true;
@@ -262,7 +262,7 @@ public class Material implements Comparable<Material> {
      * @param rate The rate to remove from the list.
      * @return A boolean value.
      */
-    public boolean removeRate(Integer rate) {
+    public boolean removeRate(Double rate) {
         return rates.remove(rate);
     }
 

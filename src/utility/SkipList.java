@@ -92,7 +92,7 @@ public class SkipList<T extends Comparable<? super T>> implements SkippableList<
      * @param
      * @return Return the found data
      */
-    public ArrayList<T> traverseByRate(int rate, ArrayList<T> materialList) {
+    public ArrayList<T> traverseByRate(double rate, ArrayList<T> materialList) {
         return head.nodeTraverseByRate(rate, materialList);
     }
 

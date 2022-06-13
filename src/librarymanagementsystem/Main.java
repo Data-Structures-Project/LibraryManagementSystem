@@ -1842,7 +1842,20 @@ public class Main {
     static void searchByRate(char userType) {
         System.out.print(ANSI_CYAN + "   Enter the rate of Book : ");
         Scanner sc = new Scanner(System.in);
-        int materialRate = Integer.parseInt(sc.next());
+        double materialRate = 0;
+
+        if(sc.hasNextInt()){
+            materialRate = sc.nextDouble();
+            if(materialRate < 0 || materialRate >5){
+
+            }
+        }else{
+            System.out.println("your message");
+        }
+
+
+
+//        int materialRate = Integer.parseInt(sc.next());
         List<Material> newMaterials = MainService.searchByRate(materialRate);
         if (newMaterials == null) {
             System.out.println(ANSI_RED + "   The book your searched couldn't find :(");
