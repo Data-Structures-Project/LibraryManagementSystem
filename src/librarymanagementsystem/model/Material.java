@@ -388,12 +388,7 @@ public class Material implements Comparable<Material> {
         if (!(o instanceof Material))
             return false;
         Material material = (Material) o;
-        return getPageCount() == material.getPageCount() && Objects.equals(getId(), material.getId())
-                && getType() == material.getType() && Objects.equals(getName(), material.getName())
-                && getCategory() == material.getCategory()
-                && Objects.equals(getPublicationDate(), material.getPublicationDate())
-                && Objects.equals(getAuthor(), material.getAuthor())
-                && getLocation() == material.getLocation() && Objects.equals(getRates(), material.getRates());
+        return getName()==((Material) o).getName();
     }
 
     @Override
@@ -412,5 +407,21 @@ public class Material implements Comparable<Material> {
                 ", situation=" + isLoaned +
                 ", rates=" + rates +
                 '}';
+    }
+
+    /**
+     * If the average rating of the current object is equal to the average rating of the object being compared to, return
+     * 0. If the average rating of the current object is greater than the average rating of the object being compared to,
+     * return 1. If the average rating of the current object is less than the average rating of the object being compared
+     * to, return -1
+     *
+     * @param obj the object to be compared.
+     * @return The return value is an integer.
+     */
+    public int compareToRate(Material obj)
+    {
+        if(this.getRateAve()==obj.getRateAve()) return 0;
+        else if(this.getRateAve()>obj.getRateAve()) return 1;
+        else return -1;
     }
 }

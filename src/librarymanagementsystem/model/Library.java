@@ -18,8 +18,6 @@ public class Library implements Comparable<Library>{
     // A variable that is used to store the city that the library is in.
     private City city;
     // Creating an array of doubles called coordinates.
-    private double [] coordinates;
-    //private List<Material> materials;
 
     public Library(String name, City city){
         this.id = count++;
@@ -27,9 +25,6 @@ public class Library implements Comparable<Library>{
         this.city = city;
 
         Random rand = new Random();
-        coordinates = new double[2];
-        coordinates[0] = rand.nextDouble(200);
-        coordinates[1] = rand.nextDouble(200);
     }
 
     @Override
@@ -97,5 +92,9 @@ public class Library implements Comparable<Library>{
      */
     public int getId(){return id;}
 
+    public String toString()
+    {
+        return getName();
+    }
 
 }

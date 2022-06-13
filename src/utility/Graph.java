@@ -1,6 +1,7 @@
 package utility;
 
 
+import librarymanagementsystem.model.Account;
 import librarymanagementsystem.model.Library;
 
 import java.util.ArrayList;
@@ -31,6 +32,11 @@ public class Graph< T
             this.adjLists.put(u, new ArrayList<Vertex<T>>());
         }
         libraryList.add((Library) u.getData());
+
+        for (Map.Entry<Vertex<T>, ArrayList<Vertex<T>>> entry : adjLists.entrySet())
+        {
+            addEdge(u, entry.getKey());
+        }
 
     }
 

@@ -13,7 +13,7 @@ public class SkipList<T extends Comparable<? super T>> implements SkippableList<
 
     /**
      * Insert the data to the Skip List
-     * 
+     *
      * @param data
      */
     @Override
@@ -63,7 +63,7 @@ public class SkipList<T extends Comparable<? super T>> implements SkippableList<
 
     /**
      * Traverses the SkipList, searches the Materials to find the given name
-     * 
+     *
      * @return Return the found material
      */
     public ArrayList<T> traverseAll(ArrayList<T> materialList) {

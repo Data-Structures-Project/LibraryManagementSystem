@@ -148,6 +148,4 @@ public class MaterialRepositoryImpl implements MaterialRepository {
         ArrayList<Material> allLoanMaterials = new ArrayList<>();
         return this.materials.traverseByLoan(allLoanMaterials);
     }
-
-
 }

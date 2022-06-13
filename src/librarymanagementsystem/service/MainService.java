@@ -5,6 +5,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import utility.MergeSort;
 
 import librarymanagementsystem.dao.AccountRepositoryImpl;
 import librarymanagementsystem.dao.AuthorRepositoryImpl;
@@ -356,7 +357,14 @@ public class MainService {
      */
     public static ArrayList<Material> searchByRate(double rate)
     {
-        return materials.findByRate(rate);
+        ArrayList<Material> materialList =  materials.findByRate(rate);
+
+        Material [] matList = materialList.toArray(new Material[materialList.size()]);
+        MergeSort.sort(matList);
+        for(int i=0;i<materialList.size();++i)
+            materialList.set(i,matList[i]);
+        return materialList;
+
     }
 
     /**

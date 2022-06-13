@@ -46,7 +46,8 @@ public class LibraryRepositoryImpl implements LibraryRepository{
     @Override
     // Adding a new library to the graph.
     public void create(Library library) {
-        libraries.addVertex(new Vertex(library));
+        Vertex newVertex = new Vertex(library);
+        libraries.addVertex(newVertex);
     }
 
     @Override
