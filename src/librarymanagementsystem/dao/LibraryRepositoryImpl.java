@@ -48,11 +48,6 @@ public class LibraryRepositoryImpl implements LibraryRepository{
     public void create(Library library) {
         Vertex newVertex = new Vertex(library);
         libraries.addVertex(newVertex);
-
-        ArrayList<Vertex> verList = this.libraries.getLibraryList();
-
-        for (Vertex ver: verList)
-            libraries.addEdge(newVertex, ver);
     }
 
     @Override

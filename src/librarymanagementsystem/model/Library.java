@@ -92,5 +92,9 @@ public class Library implements Comparable<Library>{
      */
     public int getId(){return id;}
 
+    public String toString()
+    {
+        return getName();
+    }
 
 }
