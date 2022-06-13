@@ -13,6 +13,7 @@ public class SkipList<T extends Comparable<? super T>> implements SkippableList<
 
     /**
      * Insert the data to the Skip List
+     * 
      * @param data
      */
     @Override
@@ -28,17 +29,12 @@ public class SkipList<T extends Comparable<? super T>> implements SkippableList<
 
     @Override
     public boolean delete(T target) {
-        System.out.println("Deleting " + target);
-        T victim = search(target, true);
-        if (victim == null)
-            return false;
-        victim = null;
+        deleteWithSearch(target);
 
         for (int i = 0; i < LEVELS; i++) {
             head.refreshAfterDelete(i);
         }
 
-        System.out.println("deleted...");
         return true;
     }
 
@@ -67,25 +63,31 @@ public class SkipList<T extends Comparable<? super T>> implements SkippableList<
 
     /**
      * Traverses the SkipList, searches the Materials to find the given name
+     * 
      * @return Return the found material
      */
-    public ArrayList<T> traverseAll(ArrayList<T> materialList){return head.nodeTraverseAll(materialList);}
+    public ArrayList<T> traverseAll(ArrayList<T> materialList) {
+        return head.nodeTraverseAll(materialList);
+    }
 
-    public ArrayList<T> traverseByLoan(ArrayList<T> materialList){return head.nodeTraverseByLoan(materialList);}
+    public ArrayList<T> traverseByLoan(ArrayList<T> materialList) {
+        return head.nodeTraverseByLoan(materialList);
+    }
 
     /**
      * Traverses the Skip List, searches the Materials by given ID.
      * 
-     * @param cat Target category type
-     * @param materialList ArrayList that will store the Materials with category type "cat"
-     * @return Returns the ArrayList that store the Materials with category type "cat".
-     *      */
+     * @param cat          Target category type
+     * @param materialList ArrayList that will store the Materials with category
+     *                     type "cat"
+     * @return Returns the ArrayList that store the Materials with category type
+     *         "cat".
+     */
     public ArrayList<T> traverseByCategory(librarymanagementsystem.model.Category cat, ArrayList<T> materialList) {
         return head.nodeTraverseByCategory(cat, materialList);
     }
 
-
-        /**
+    /**
      * Traverses the Skip List, searches the Materials by given ID.
      *
      * @param
@@ -114,6 +116,12 @@ public class SkipList<T extends Comparable<? super T>> implements SkippableList<
         if (result == null)
             return null;
         return result.data;
+    }
+
+    private void deleteWithSearch(T data) {
+        for (int i = LEVELS - 1; i >= 0; i--) {
+            head.deleteWithSearch(data, i);
+        }
     }
 
 }

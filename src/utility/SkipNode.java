@@ -56,6 +56,20 @@ class SkipNode<N extends Comparable<? super N>> {
         return result;
     }
 
+    SkipNode<N> deleteWithSearch(N data, int level) {
+        SkipNode<N> result = null;
+        SkipNode<N> current = this.getNext(level);
+        while (current != null && current.data != null && current.data.compareTo(data) != 1) {
+            if (current.data.compareTo(data) == 0) {
+                current.data = null;
+            }
+
+            current = current.getNext(level);
+        }
+
+        return result;
+    }
+
     void insert(SkipNode<N> skipNode, int level) {
         SkipNode<N> current = this.getNext(level);
         if (current == null) {
