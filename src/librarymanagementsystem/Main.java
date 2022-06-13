@@ -1,14 +1,6 @@
 package librarymanagementsystem;
 
-import librarymanagementsystem.model.Account;
-import librarymanagementsystem.model.Author;
-import librarymanagementsystem.model.Librarian;
-import librarymanagementsystem.model.Library;
-import librarymanagementsystem.model.LibraryManager;
-import librarymanagementsystem.model.Material;
-import librarymanagementsystem.model.MaterialType;
-import librarymanagementsystem.model.Publisher;
-import librarymanagementsystem.model.User;
+import librarymanagementsystem.model.*;
 import librarymanagementsystem.service.MainService;
 
 import java.sql.Date;
@@ -1745,6 +1737,7 @@ public class Main {
         for (int i = 0; i < authorBooks.size(); i++) {
             System.out.printf(ANSI_CYAN + "|\t\t%d. %-37s|\n",i, authorBooks.get(i).getName());
         }
+        System.out.println(ANSI_BLUE + "=================================================");
         System.out.print(ANSI_GREEN + "  Choose one of the options : ");
         int bookIndex = Integer.parseInt(sc.next());
         while (bookIndex < 0 || bookIndex > authorBooks.size() - 1) {
@@ -1777,8 +1770,9 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         ArrayList<Publisher> publisherList = MainService.listPublishers();
         for (int i = 0; i < publisherList.size(); i++) {
-            System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + publisherList.get(i).getName() + "\t\t\t\t\t\t");
+            System.out.printf(ANSI_CYAN + "|\t\t%d. %-37s|\n",i, publisherList.get(i).getName());
         }
+        System.out.println(ANSI_BLUE + "=================================================");
         System.out.print(ANSI_GREEN + "  Choose one of the options : ");
         int publisherIndex = Integer.parseInt(sc.next());
         List<Material> publisherBooks = MainService.searchByPublisher(publisherList.get(publisherIndex).getName());
@@ -1787,9 +1781,13 @@ public class Main {
             searchMaterials(userType);
             return;
         }
+        System.out.println(ANSI_BLUE + "\n\n=================================================");
+        System.out.println(ANSI_BLUE + "|                    Books                      |");
+        System.out.println(ANSI_BLUE + "=================================================");
         for (int i = 0; i < publisherBooks.size(); i++) {
-            System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + publisherBooks.get(i).getName() + "\t\t\t\t\t\t");
+            System.out.printf(ANSI_CYAN + "|\t\t%d. %-37s|\n",i, publisherBooks.get(i).getName());
         }
+        System.out.println(ANSI_BLUE + "=================================================");
         System.out.print(ANSI_GREEN + "  Choose one of the options : ");
         int bookIndex = Integer.parseInt(sc.next());
         while (bookIndex < 0 || bookIndex > publisherBooks.size() - 1) {
@@ -1820,8 +1818,11 @@ public class Main {
         System.out.println(ANSI_BLUE + "=================================================");
 
         Scanner sc = new Scanner(System.in);
-        System.out.printf("%s", MainService.listCategories());
-
+        ArrayList<String> categoryList = MainService.listCategories();
+        for (int i = 0; i < categoryList.size(); i++) {
+            System.out.printf(ANSI_CYAN + "|\t\t%d. %-37s|\n",i, categoryList.get(i));
+        }
+        System.out.println(ANSI_BLUE + "=================================================");
         System.out.print(ANSI_GREEN + "  Choose one of the options : ");
         int categoryIndex = Integer.parseInt(sc.next());
         List<Material> categoryBooks = MainService.searchByCategory(categoryIndex);
@@ -1830,9 +1831,13 @@ public class Main {
             searchMaterials(userType);
             return;
         }
+        System.out.println(ANSI_BLUE + "\n\n=================================================");
+        System.out.println(ANSI_BLUE + "|                    Books                      |");
+        System.out.println(ANSI_BLUE + "=================================================");
         for (int i = 0; i < categoryBooks.size(); i++) {
-            System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + categoryBooks.get(i).getName() + "\t\t\t\t\t\t");
+            System.out.printf(ANSI_CYAN + "|\t\t%d. %-37s|\n",i, categoryBooks.get(i).getName());
         }
+        System.out.println(ANSI_BLUE + "=================================================");
         System.out.print(ANSI_GREEN + "  Choose one of the options : ");
         int bookIndex = Integer.parseInt(sc.next());
         while (bookIndex < 0 || bookIndex > categoryBooks.size() - 1) {
