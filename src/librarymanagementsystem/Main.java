@@ -711,14 +711,27 @@ public class Main {
         Material newMat = MainService.searchByName(materialName);
         if (newMat == null) {
             System.out.println(ANSI_RED + "   The book your searched couldn't find :(");
-            searchByName('r');
+            searchByRate('r');
             return;
         } else {
             printBook(newMat);
         }
-
         System.out.print(ANSI_CYAN + "|   Enter the Rate 0-5 : ");
-        int materialRate = Integer.parseInt(sc.next());
+        double materialRate = 0 ;
+        boolean inputFlag = false;
+        do {
+            if(sc.hasNextInt()){
+                materialRate = sc.nextDouble();
+                if(materialRate < 0 || materialRate >5){
+                    System.out.print(ANSI_CYAN + "   Enter the Rate : ");
+                }
+                else
+                    inputFlag =true;
+            }else{
+                System.out.print(ANSI_CYAN + "   Enter the Rate : ");
+            }
+        }while (!inputFlag);
+
         MainService.addRate(newMat, materialRate);
         System.out.printf(ANSI_BLUE + "|   New average rate => %-24.2f|\n", newMat.getRateAve());
         System.out.println(ANSI_BLUE + "=================================================\n\n\n");
@@ -1857,18 +1870,13 @@ public class Main {
             }
         }while (!inputFlag);
 
-
-
-
-//        int materialRate = Integer.parseInt(sc.next());
         List<Material> newMaterials = MainService.searchByRate(materialRate);
         if (newMaterials.size() == 0) {
             System.out.print(ANSI_RED + "  No material found for your search criteria:( ");
             searchMaterials(userType);
         } else {
             for (int i = 0; i < newMaterials.size(); i++) {
-                System.out.println(ANSI_CYAN + "|\t\t" + i + ". " + newMaterials.get(i).getName() + "\t\t"
-                        + newMaterials.get(i).getRateAve() + "\t\t\t\t\t\t");
+                System.out.printf(ANSI_CYAN + "|\t\t%d. %-32s%-5.1f|\n",i, newMaterials.get(i).getName(),newMaterials.get(i).getRateAve());
             }
             System.out.println(ANSI_BLUE + "=================================================");
 
