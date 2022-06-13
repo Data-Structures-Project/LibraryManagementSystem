@@ -633,7 +633,7 @@ public class Main {
      */
     static void searchMaterials(char userType) {
         System.out.println(ANSI_BLUE + "\n\n=================================================");
-        System.out.println(ANSI_BLUE + "|                  Search Materials             |");
+        System.out.println(ANSI_BLUE + "|                Search Materials               |");
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.println(ANSI_CYAN + "|         1. List all Books and Magazines       |");
         System.out.println(ANSI_CYAN + "|         2. Search by Name                     |");
@@ -1871,7 +1871,7 @@ public class Main {
     static void searchByCategory(char userType) {
 
         System.out.println(ANSI_BLUE + "\n\n=================================================");
-        System.out.println(ANSI_BLUE + "|                    Category                    |");
+        System.out.println(ANSI_BLUE + "|                    Category                   |");
         System.out.println(ANSI_BLUE + "=================================================");
 
         Scanner sc = new Scanner(System.in);
@@ -2021,16 +2021,16 @@ public class Main {
         System.out.printf(ANSI_BLUE + "|\t\t\t\t%-32s|\n", newMat.getName());
         System.out.println(ANSI_BLUE + "=================================================");
         if (newMat.getIsLoaned())
-            System.out.println(ANSI_RED + "|\t\t\tSituation : Loaned              |");
+            System.out.println(ANSI_RED + "|\t\tSituation : Loaned                      |");
         else
-            System.out.println(ANSI_GREEN + "|\t\t\tSituation : Avaliable               |");
-        System.out.printf(ANSI_CYAN + "|\t\t\tAuthor : %-27s|\n", newMat.getAuthor().getName());
-        System.out.printf(ANSI_CYAN + "|\t\t\tPage : %-29d|\n", newMat.getPageCount());
-        System.out.printf(ANSI_CYAN + "|\t\t\tPublisher : %-24s|\n", newMat.getPublisher().getName());
-        System.out.printf(ANSI_CYAN + "|\t\t\tCategory : %-25s|\n", newMat.getCategory());
-        System.out.printf(ANSI_CYAN + "|\t\t\tLodation : %-25s|\n", newMat.getLocation());
-        System.out.printf(ANSI_CYAN + "|\t\t\tRate : %-29s|\n", newMat.getRateAve());
-        System.out.printf(ANSI_CYAN + "|\t\t\tType : %-29s|\n", newMat.getType());
+            System.out.println(ANSI_GREEN + "|\t\tSituation : Avaliable                   |");
+        System.out.printf(ANSI_CYAN + "|\t\tAuthor : %-31s|\n", newMat.getAuthor().getName());
+        System.out.printf(ANSI_CYAN + "|\t\tPage : %-33d|\n", newMat.getPageCount());
+        System.out.printf(ANSI_CYAN + "|\t\tPublisher : %-28s|\n", newMat.getPublisher().getName());
+        System.out.printf(ANSI_CYAN + "|\t\tCategory : %-29s|\n", newMat.getCategory());
+        System.out.printf(ANSI_CYAN + "|\t\tLodation : %-29s|\n", newMat.getLocation());
+        System.out.printf(ANSI_CYAN + "|\t\tRate : %-33s|\n", newMat.getRateAve());
+        System.out.printf(ANSI_CYAN + "|\t\tType : %-33s|\n", newMat.getType());
 
         String[] paragraph = paragraphString(newMat.getInfo());
         int i = 0;
@@ -2046,7 +2046,7 @@ public class Main {
     static String[] paragraphString(String line) {
 
         String[] words = line.split(" ");
-        String[] paragraph = new String[10];
+        String[] paragraph = new String[20];
         int pindex = 0;
         for (int i = 0; i < words.length; i++) {
             if(paragraph[pindex]==null){
