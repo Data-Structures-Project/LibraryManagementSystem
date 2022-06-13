@@ -1843,22 +1843,27 @@ public class Main {
         System.out.print(ANSI_CYAN + "   Enter the rate of Book : ");
         Scanner sc = new Scanner(System.in);
         double materialRate = 0;
-
-        if(sc.hasNextInt()){
-            materialRate = sc.nextDouble();
-            if(materialRate < 0 || materialRate >5){
-
+        boolean inputFlag = false;
+        do {
+            if(sc.hasNextInt()){
+                materialRate = sc.nextDouble();
+                if(materialRate < 0 || materialRate >5){
+                    System.out.print(ANSI_CYAN + "   Enter the rate of Book : ");
+                }
+                else
+                    inputFlag =true;
+            }else{
+                System.out.print(ANSI_CYAN + "   Enter the rate of Book : ");
             }
-        }else{
-            System.out.println("your message");
-        }
+        }while (!inputFlag);
+
 
 
 
 //        int materialRate = Integer.parseInt(sc.next());
         List<Material> newMaterials = MainService.searchByRate(materialRate);
-        if (newMaterials == null) {
-            System.out.println(ANSI_RED + "   The book your searched couldn't find :(");
+        if (newMaterials.size() == 0) {
+            System.out.print(ANSI_RED + "  No material found for your search criteria:( ");
             searchMaterials(userType);
         } else {
             for (int i = 0; i < newMaterials.size(); i++) {
@@ -1870,10 +1875,12 @@ public class Main {
         }
         System.out.print(ANSI_GREEN + "  Choose one of the options : ");
         int bookIndex = Integer.parseInt(sc.next());
-        if(newMaterials.size()==0)
-            System.out.print(ANSI_RED + "  No material found for your search criteria ");
-        else
-            printBook(newMaterials.get(bookIndex));
+        while (bookIndex < 0 || bookIndex > newMaterials.size() - 1) {
+            System.out.println(ANSI_RED + "      Invalid input!");
+            System.out.print(ANSI_GREEN + "   Choose one of the options : ");
+            bookIndex = Integer.parseInt(sc.next());
+        }
+        printBook(newMaterials.get(bookIndex));
         System.out.print(ANSI_GREEN + "  Press any key and Enter to go back : ");
         sc.next();
         if (userType == 'l'){
