@@ -491,16 +491,19 @@ public class MainService {
     public static void removeMaterial(String name)
     {
         Material target = searchByName(name);
-        target.getPublisher().remove(target);
-        target.getAuthor().removeBook(target);
-
-        if(target.getAuthor().getBooks().size()==0)
-            authors.remove(target.getAuthor());
-
-        if(target.getPublisher().getBooks().size()==0)
-            publishers.remove(target.getPublisher());
-
-        materials.remove(target);
+        if(target != null)
+        {
+            target.getPublisher().remove(target);
+            target.getAuthor().removeBook(target);
+    
+            if(target.getAuthor().getBooks().size()==0)
+                authors.remove(target.getAuthor());
+    
+            if(target.getPublisher().getBooks().size()==0)
+                publishers.remove(target.getPublisher());
+    
+            materials.remove(target);
+        }
     }
 
     /**
