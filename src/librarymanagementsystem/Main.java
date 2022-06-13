@@ -1743,7 +1743,8 @@ public class Main {
         }while (!inputFlag);
         List<Material> authorBooks = MainService.searchByAuthor(authorList.get(authorIndex).getName());
         if (authorBooks.size() == 0){
-            System.out.println(ANSI_RED + "|  There is no materıal for author              |");
+            System.out.print(ANSI_RED + "|  No material found for your search criteria:( |");
+            System.out.println(ANSI_BLUE + "=================================================");
             searchMaterials(userType);
             return;
         }
@@ -1821,7 +1822,8 @@ public class Main {
 
         List<Material> publisherBooks = MainService.searchByPublisher(publisherList.get(publisherIndex).getName());
         if (publisherBooks.size() == 0){
-            System.out.println(ANSI_RED + "|  There is no materıal for pubisher            |");
+            System.out.print(ANSI_RED + "|  No material found for your search criteria:( |");
+            System.out.println(ANSI_BLUE + "=================================================");
             searchMaterials(userType);
             return;
         }
@@ -1900,7 +1902,8 @@ public class Main {
 
         List<Material> categoryBooks = MainService.searchByCategory(categoryIndex);
         if (categoryBooks.size() == 0){
-            System.out.println(ANSI_RED + "|  There is no materıal for category            |");
+            System.out.print(ANSI_RED + "|  No material found for your search criteria:( |");
+            System.out.println(ANSI_BLUE + "=================================================");
             searchMaterials(userType);
             return;
         }
@@ -1967,7 +1970,8 @@ public class Main {
 
         List<Material> newMaterials = MainService.searchByRate(materialRate);
         if (newMaterials.size() == 0) {
-            System.out.print(ANSI_RED + "  No material found for your search criteria:( ");
+            System.out.print(ANSI_RED + "|  No material found for your search criteria:( |");
+            System.out.println(ANSI_BLUE + "=================================================");
             searchMaterials(userType);
         } else {
             for (int i = 0; i < newMaterials.size(); i++) {
