@@ -720,9 +720,8 @@ public class Main {
         System.out.print(ANSI_CYAN + "|   Enter the Rate 0-5 : ");
         int materialRate = Integer.parseInt(sc.next());
         MainService.addRate(newMat, materialRate);
-
-        System.out.println(ANSI_BLUE + "|   New average rate => " + newMat.getRateAve() );
-        System.out.println(ANSI_BLUE + "=================================================");
+        System.out.printf(ANSI_BLUE + "|   New average rate => %-24.2f|\n", newMat.getRateAve());
+        System.out.println(ANSI_BLUE + "=================================================\n\n\n");
 
         readerMenu();
     }
@@ -1869,7 +1868,36 @@ public class Main {
         System.out.printf(ANSI_CYAN + "|\t\t\tLodation : %-25s|\n", newMat.getLocation());
         System.out.printf(ANSI_CYAN + "|\t\t\tRate : %-29s|\n", newMat.getRateAve());
         System.out.printf(ANSI_CYAN + "|\t\t\tType : %-29s|\n", newMat.getType());
-        System.out.printf(ANSI_CYAN + "|\t\t\tInfo : %-29s|\n", newMat.getInfo());
+
+        String[] paragraph = paragraphString(newMat.getInfo());
+        int i = 0;
+        while (paragraph[i]!=null) {
+            System.out.printf(ANSI_CYAN + "|%-47s|\n", paragraph[i]);
+            i++;
+        }
         System.out.println(ANSI_BLUE + "=================================================");
+    }
+
+
+
+    static String[] paragraphString(String line) {
+
+        String[] words = line.split(" ");
+        String[] paragraph = new String[10];
+        int pindex = 0;
+        for (int i = 0; i < words.length; i++) {
+            if(paragraph[pindex]==null){
+                paragraph[pindex] = new String();
+            }
+            if (paragraph[pindex].length() + words[i].length() > 46) {
+                while (paragraph[pindex].length() < 46)
+                    paragraph[pindex] = paragraph[pindex] + " ";
+                pindex++;
+
+                paragraph[pindex] =  words[i];
+            } else
+                paragraph[pindex] = paragraph[pindex] + " " + words[i];
+        }
+        return paragraph;
     }
 }
