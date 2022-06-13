@@ -711,7 +711,7 @@ public class Main {
         Material newMat = MainService.searchByName(materialName);
         if (newMat == null) {
             System.out.println(ANSI_RED + "   The book your searched couldn't find :(");
-            searchByRate('r');
+            rateMaterials();
             return;
         } else {
             printBook(newMat);
@@ -720,16 +720,19 @@ public class Main {
         double materialRate = 0 ;
         boolean inputFlag = false;
         do {
-            if(sc.hasNextInt()){
+            if(sc.hasNextDouble()){
                 materialRate = sc.nextDouble();
                 if(materialRate < 0 || materialRate >5){
-                    System.out.print(ANSI_CYAN + "   Enter the Rate : ");
+                    System.out.println(ANSI_RED + "|      Invalid input!");
+                    System.out.print(ANSI_CYAN + "|   Enter the Rate 0-5 : ");
                 }
                 else
                     inputFlag =true;
             }else{
-                System.out.print(ANSI_CYAN + "   Enter the Rate : ");
+                System.out.println(ANSI_RED + "|      Invalid input!");
+                System.out.print(ANSI_CYAN + "|   Enter the Rate 0-5 : ");
             }
+            sc.nextLine();
         }while (!inputFlag);
 
         MainService.addRate(newMat, materialRate);
