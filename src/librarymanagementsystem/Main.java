@@ -346,7 +346,7 @@ public class Main {
                     removeLibrary();
                     break;
                 case "3":
-                    editLibrary();
+                    editLibrary('a');
                     break;
                 case "4":
                     System.out.println("\n\n\n");
@@ -374,7 +374,7 @@ public class Main {
 
             switch (input) {
                 case "1":
-                    editLibrary();
+                    editLibrary('l');
                     break;
                 case "2":
                     System.out.println("\n\n\n");
@@ -780,15 +780,18 @@ public class Main {
     /**
      * Menu that is used to edit the name of a library
      */
-    static void editLibrary() {
+    static void editLibrary(char userType) {
         Scanner sc = new Scanner(System.in);
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.println(ANSI_BLUE + "|   Choose a Library to edit name               |");
         ArrayList<Library> libList = MainService.listLibraries();
         if(libList.size()==0){
-            System.out.println(ANSI_RED + "|   There is no Library to remove                |");
+            System.out.println(ANSI_RED + "|   There is no Library to edit                  |");
             System.out.println(ANSI_BLUE + "=================================================");
-            administratorMenu();
+            if(userType == 'a')
+                administratorMenu();
+            else
+                libraryManagerMenu();
             return;
         }
         for (int i = 0; i < libList.size(); i++) {
@@ -806,7 +809,11 @@ public class Main {
         String newName = sc.next();
         MainService.editLibraryName(libList.get(libraryid), newName);
         System.out.print(ANSI_GREEN + "   Success! \n");
-        administratorMenu();
+        if(userType == 'a')
+            administratorMenu();
+        else
+            libraryManagerMenu();
+        return;
 
     }
 
