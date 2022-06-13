@@ -103,7 +103,7 @@ public class testLibrarian {
         assertEquals(--bookCount, MainService.listMaterials().size());
 
         // no material found with this name
-        bookCount = MainService.listLibrarians().size();
+        bookCount = MainService.listMaterials().size();
         MainService.removeMaterial("noSuchBook");
         assertEquals(bookCount, MainService.listMaterials().size());
     }
@@ -186,7 +186,7 @@ public class testLibrarian {
         assertNotNull(booksOfAuthor);
     }
 
-    @Disabled
+    //@Disabled
     @Test
     void testSearchCategory(){
         List<Material> classicBooks = null;
