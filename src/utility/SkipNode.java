@@ -3,6 +3,7 @@ package utility;
 import java.util.ArrayList;
 
 import librarymanagementsystem.model.Material;
+import librarymanagementsystem.model.Category;
 
 class SkipNode<N extends Comparable<? super N>> {
 
@@ -181,7 +182,7 @@ class SkipNode<N extends Comparable<? super N>> {
 
 
 
-    ArrayList<N> nodeTraverseByCategory(librarymanagementsystem.model.Category category, ArrayList<N> materialList) {
+    ArrayList<N> nodeTraverseByCategory(Category category, ArrayList<N> materialList) {
         SkipNode<N> current = this.getNext(0); // levela dikat.
 
         while (current != null) {

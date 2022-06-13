@@ -150,8 +150,8 @@ public class Author implements Comparable<Author>{
      * @param material The material to be removed from the library.
      * @return The method is returning the material that is being removed.
      */
-    public Material removeBook(Material material){
-        return removeBook(material);
+    public boolean removeBook(Material material){
+        return materials.remove(material);
     }
 
     @Override

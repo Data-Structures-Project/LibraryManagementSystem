@@ -400,6 +400,7 @@ public class MainService {
                 break;
 
             default:
+                cityOfLib = City.ISTANBUL;
                 break;
         }
         Library newLib = new Library(name, cityOfLib);
