@@ -9,7 +9,6 @@ import librarymanagementsystem.model.Material;
 import librarymanagementsystem.model.MaterialType;
 import librarymanagementsystem.model.Publisher;
 import librarymanagementsystem.model.User;
-import librarymanagementsystem.model.Category;
 import librarymanagementsystem.service.MainService;
 
 import java.sql.Date;
@@ -20,20 +19,26 @@ import java.util.Scanner;
 public class Main {
 
     public static final String ANSI_RED = "\u001B[31m";
-
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_YELLOW = "\u001B[33m";
-
     public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_PURPLE = "\u001B[35m";
     public static final String ANSI_CYAN = "\u001B[36m";
 
+    /**
+     * The main function is the entry point of the program. It calls the mockData function to populate the database with
+     * some data, and then calls the mainMenu function to display the main menu
+     */
     public static void main(String[] args) {
         MainService.mockData();
         mainMenu();
 
     }
 
+    /**
+     * This function is the main menu of the program, it will display the main menu and ask the user to choose one of the
+     * options
+     */
     static void mainMenu(){
         Scanner sc = new Scanner(System.in);
         System.out.println(ANSI_BLUE + "==================================================");
@@ -66,6 +71,9 @@ public class Main {
         }
     }
 
+    /**
+     * This function is used to login to the system
+     */
     static void loginMenu() {
         System.out.println(ANSI_BLUE + "\n\n=================================================");
         System.out.println(ANSI_BLUE + "|                     Login                     |");
@@ -100,6 +108,9 @@ public class Main {
         }
     }
 
+    /**
+     * It registers a new user.
+     */
     static void registerMenu() {
         System.out.println(ANSI_BLUE + "\n\n=================================================");
         System.out.println(ANSI_BLUE + "|                    Register                   |");
@@ -139,11 +150,19 @@ public class Main {
 
     }
 
+    /**
+     * This function prints a banner to the console with the user's name in the middle
+     *
+     * @param usersName The name of the user.
+     */
     static void helloBanner(String usersName){
         System.out.println(ANSI_BLUE + "\n\n=================================================");
         System.out.printf(ANSI_BLUE + "|\t\t\t\tHello %-26s|\n", usersName);
     }
 
+    /**
+     * This function is used to display the menu for the administrator
+     */
     static void administratorMenu() {
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.println(ANSI_CYAN + "|         1. Manage Libraries                   |");
@@ -177,6 +196,9 @@ public class Main {
 
     }
 
+    /**
+     * This function is used to display the menu for the library manager
+     */
     static void libraryManagerMenu() {
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.println(ANSI_CYAN + "|         1. Edit Libraries                     |");
@@ -206,9 +228,15 @@ public class Main {
                 System.out.print(ANSI_RED + "Invalid input!" + ANSI_GREEN + "\nPlease choose again : ");
                 break;
 
+    /**
+     * It's a menu for the librarian
+     */
         }
     }
 
+    /**
+     * This function is used to display the menu for the librarian
+     */
     static void librarianMenu() {
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.println(ANSI_CYAN + "|         1. Manage Readers                     |");
@@ -253,6 +281,9 @@ public class Main {
         }
     }
 
+    /**
+     * This function is used to display the menu for the reader
+     */
     static void readerMenu() {
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.println(ANSI_CYAN + "|         1. Search materials                   |");
@@ -286,6 +317,11 @@ public class Main {
 
     }
 
+    /**
+     * Menu that allows the user to add, remove, or edit a library
+     *
+     * @param userType This is the type of user that is currently logged in.
+     */
     static void manageLibraries(char userType) {
 
         System.out.println(ANSI_BLUE + "\n\n=================================================");
@@ -356,6 +392,9 @@ public class Main {
 
     }
 
+    /**
+     *  Menu that allows the user to add, remove, or edit a library manager
+     */
     static void manageLibraryManagers() {
         System.out.println(ANSI_BLUE + "\n\n=================================================");
         System.out.println(ANSI_BLUE + "|             Manage Library Managers           |");
@@ -393,6 +432,9 @@ public class Main {
         }
     }
 
+    /**
+     * Menu that allows the user to add, remove, or edit a librarian
+     */
     static void manageLibrarians() {
         System.out.println(ANSI_BLUE + "\n\n=================================================");
         System.out.println(ANSI_BLUE + "|               Manage Librarians               |");
@@ -431,6 +473,9 @@ public class Main {
         }
     }
 
+    /**
+     * Menu that allows the user to add, remove, or edit a reader
+     */
     static void manageReaders() {
         System.out.println(ANSI_BLUE + "\n\n=================================================");
         System.out.println(ANSI_BLUE + "|                 Manage Readers                |");
@@ -469,12 +514,15 @@ public class Main {
         }
     }
 
+    /**
+     * Menu that allows the user to add or remove loan book
+     */
     static void manageLoanBooks() {
         System.out.println(ANSI_BLUE + "\n\n=================================================");
         System.out.println(ANSI_BLUE + "|                Manage Loan Books              |");
         System.out.println(ANSI_BLUE + "=================================================");
         System.out.println(ANSI_CYAN + "|         1. Add loan book                      |");
-        System.out.println(ANSI_CYAN + "|         2. Remmove loan book                  |");
+        System.out.println(ANSI_CYAN + "|         2. Remove loan book                   |");
         System.out.println(ANSI_CYAN + "|         3. Back                               |");
         System.out.println(ANSI_CYAN + "|         0. Exit                               |");
         System.out.println(ANSI_BLUE + "=================================================");
@@ -503,6 +551,9 @@ public class Main {
         }
     }
 
+    /**
+     * Menu that allows the user to add, remove, or edit a book
+     */
     static void manageBooks() {
         System.out.println(ANSI_BLUE + "\n\n=================================================");
         System.out.println(ANSI_BLUE + "|                  Manage Books                 |");
@@ -541,6 +592,9 @@ public class Main {
         }
     }
 
+    /**
+     * Menu that allows the user to add, remove, or edit a magazine
+     */
     static void manageMagazines() {
         System.out.println(ANSI_BLUE + "\n\n=================================================");
         System.out.println(ANSI_BLUE + "|                Manage Magazines               |");
@@ -579,6 +633,12 @@ public class Main {
         }
     }
 
+    /**
+     * It's a function that prints a menu for searching materials and then calls the appropriate function based on the
+     * user's input
+     *
+     * @param userType  This is the type of user that is currently logged in.
+     */
     static void searchMaterials(char userType) {
         System.out.println(ANSI_BLUE + "\n\n=================================================");
         System.out.println(ANSI_BLUE + "|                  Search Materials             |");
@@ -639,6 +699,11 @@ public class Main {
             readerMenu();
     }
 
+    /**
+     * The function takes the name of the book from the user and searches for it in the library. If the book is found, it
+     * prints the book's information and asks the user to rate it. Then, it adds the rate to the book and prints the new
+     * average rate
+     */
     static void rateMaterials() {
         System.out.print(ANSI_CYAN + "   Enter the name of the book want to Rate : ");
         Scanner sc = new Scanner(System.in);
@@ -647,6 +712,7 @@ public class Main {
         if (newMat == null) {
             System.out.println(ANSI_RED + "   The book your searched couldn't find :(");
             searchByName('r');
+            return;
         } else {
             printBook(newMat);
         }
@@ -661,6 +727,9 @@ public class Main {
         readerMenu();
     }
 
+    /**
+     * Menu that adds a library to the database
+     */
     static void addLibrary() {
         Scanner sc = new Scanner(System.in);
 
@@ -675,6 +744,9 @@ public class Main {
         administratorMenu();
     }
 
+    /**
+     * Menu that is used to remove a library from the database
+     */
     static void removeLibrary() {
         Scanner sc = new Scanner(System.in);
 
@@ -706,6 +778,9 @@ public class Main {
         administratorMenu();
     }
 
+    /**
+     * Menu that is used to edit the name of a library
+     */
     static void editLibrary() {
         Scanner sc = new Scanner(System.in);
         System.out.println(ANSI_BLUE + "=================================================");
@@ -736,6 +811,9 @@ public class Main {
 
     }
 
+    /**
+     * Menu that adds a new Library Manager to the system
+     */
     static void addManager() {
         Scanner sc = new Scanner(System.in);
 
@@ -782,6 +860,9 @@ public class Main {
         administratorMenu();
     }
 
+    /**
+     * Menu that is used to remove a Library Manager from the system
+     */
     static void removeManager() {
         Scanner sc = new Scanner(System.in);
 
@@ -813,6 +894,9 @@ public class Main {
         administratorMenu();
     }
 
+    /**
+     * Menu that allows the administrator to change the password of a library manager
+     */
     static void editManager() {
         Scanner sc = new Scanner(System.in);
 
@@ -847,6 +931,9 @@ public class Main {
 
     }
 
+    /**
+     * Menu that is used to add a new librarian to the system
+     */
     static void addLibrarian() {
         Scanner sc = new Scanner(System.in);
 
@@ -893,6 +980,9 @@ public class Main {
         libraryManagerMenu();
     }
 
+    /**
+     * Menu that removes a librarian from the database
+     */
     static void removeLibrarian() {
         Scanner sc = new Scanner(System.in);
 
@@ -924,6 +1014,9 @@ public class Main {
         libraryManagerMenu();
     }
 
+    /**
+     * Menu that allows the library manager to change the password of a librarian
+     */
     static void editLibrarian() {
         Scanner sc = new Scanner(System.in);
 
@@ -956,6 +1049,9 @@ public class Main {
         libraryManagerMenu();
     }
 
+    /**
+     * Menu that is used to add a new reader to the library
+     */
     static void addReader() {
         Scanner sc = new Scanner(System.in);
 
@@ -1001,6 +1097,9 @@ public class Main {
         librarianMenu();
     }
 
+    /**
+     * Menu that is used to remove a reader from the system
+     */
     static void removeReader() {
         Scanner sc = new Scanner(System.in);
 
@@ -1032,6 +1131,9 @@ public class Main {
         librarianMenu();
     }
 
+    /**
+     * Menu that is used to change the password of a reader
+     */
     static void editReader() {
         Scanner sc = new Scanner(System.in);
 
@@ -1064,6 +1166,9 @@ public class Main {
         librarianMenu();
     }
 
+    /**
+     * Menu that is used to change the status of the book to "loan" in the database
+     */
     static void addLoanBook() {
 
         Scanner sc = new Scanner(System.in);
@@ -1080,6 +1185,9 @@ public class Main {
         librarianMenu();
     }
 
+    /**
+     * Menu that is used to change the status of a book from "loaned" to "available"
+     */
     static void removeLoanBook() {
         Scanner sc = new Scanner(System.in);
         System.out.print(ANSI_CYAN + "   Name of the book you want to change status : ");
@@ -1095,6 +1203,9 @@ public class Main {
         librarianMenu();
     }
 
+    /**
+     * Menu that takes the input from the user and adds a book to the library
+     */
     static void addBook() {
         Scanner sc = new Scanner(System.in);
         System.out.println(ANSI_BLUE + "=================================================");
@@ -1233,6 +1344,9 @@ public class Main {
         librarianMenu();
     }
 
+    /**
+     * Menu that is used to remove a book from the library
+     */
     static void removeBook() {
         Scanner sc = new Scanner(System.in);
 
@@ -1265,6 +1379,9 @@ public class Main {
 
     }
 
+    /**
+     * Menu that is used to edit the information of a book
+     */
     static void editBook() {
         Scanner sc = new Scanner(System.in);
 
@@ -1297,6 +1414,9 @@ public class Main {
         librarianMenu();
     }
 
+    /**
+     * Menu that takes the user's input and adds a new magazine to the database
+     */
     static void addMagazine() {
         Scanner sc = new Scanner(System.in);
         System.out.println(ANSI_BLUE + "=================================================");
@@ -1435,6 +1555,9 @@ public class Main {
         librarianMenu();
     }
 
+    /**
+     * Menu that is used to remove a magazine from the library
+     */
     static void removeMagazine() {
         Scanner sc = new Scanner(System.in);
 
@@ -1465,15 +1588,18 @@ public class Main {
         librarianMenu();
     }
 
+    /**
+     * Menu that is used to edit the information of a magazine
+     */
     static void editMagazine() {
         Scanner sc = new Scanner(System.in);
 
 
         System.out.println(ANSI_BLUE + "=================================================");
-        System.out.println(ANSI_BLUE + "|   Choose a Magazine to remove                 |");
+        System.out.println(ANSI_BLUE + "|   Choose a Magazine to edit info              |");
         ArrayList<Material> mList = MainService.listMaterials();
         if(mList.size()==0){
-            System.out.println(ANSI_RED + "|  There is no Magazine to remove               |");
+            System.out.println(ANSI_RED + "|  There is no Magazine to edit info            |");
             System.out.println(ANSI_BLUE + "=================================================");
             librarianMenu();
             return;
@@ -1497,6 +1623,11 @@ public class Main {
         librarianMenu();
     }
 
+    /**
+     * Menu that prints all the materials in the library
+     *
+     * @param userType This is the type of user that is currently logged in.
+     */
     static void listAll(char userType) {
         Scanner sc = new Scanner(System.in);
         System.out.println(ANSI_BLUE + "=================================================");
@@ -1537,6 +1668,11 @@ public class Main {
 
     }
 
+    /**
+     * Menu that takes a character as an argument and prints the book with the name that the user entered
+     *
+     * @param userType This is the type of user that is currently logged in.
+     */
     static void searchByName(char userType) {
         System.out.print(ANSI_CYAN + "   Enter the name of the book : ");
         Scanner sc = new Scanner(System.in);
@@ -1556,6 +1692,12 @@ public class Main {
             readerMenu();
     }
 
+    /**
+     * Menu that prints a list of authors, then asks the user to choose one of them, then prints a list of books written by that
+     * author, then asks the user to choose one of them, then prints the details of that book
+     *
+     * @param userType This is the type of user that is currently logged in.
+     */
     static void searchByAuthor(char userType) {
         System.out.println(ANSI_BLUE + "\n\n=================================================");
         System.out.println(ANSI_BLUE + "|                    Authors                    |");
@@ -1592,6 +1734,12 @@ public class Main {
             readerMenu();
     }
 
+    /**
+     * Menu that prints a list of publishers, then asks the user to choose one of them, then prints a list of books published by
+     * that publisher, then asks the user to choose one of them, then prints the details of that book
+     *
+     * @param userType This is the type of user that is currently logged in.
+     */
     static void searchByPublisher(char userType) {
 
         System.out.println(ANSI_BLUE + "\n\n=================================================");
@@ -1625,6 +1773,12 @@ public class Main {
             readerMenu();
     }
 
+    /**
+     * Menu that prints the list of categories, asks the user to choose one of them, then prints the list of materials in that
+     * category, and asks the user to choose one of them, then prints the details of that material
+     *
+     * @param userType This is the type of user that is currently logged in.
+     */
     static void searchByCategory(char userType) {
 
         System.out.println(ANSI_BLUE + "\n\n=================================================");
@@ -1656,6 +1810,11 @@ public class Main {
             readerMenu();
     }
 
+    /**
+     * Menu that is used to search for a book by its rate
+     *
+     * @param userType This is the type of user that is currently logged in.
+     */
     static void searchByRate(char userType) {
         System.out.print(ANSI_CYAN + "   Enter the rate of Book : ");
         Scanner sc = new Scanner(System.in);
@@ -1690,6 +1849,11 @@ public class Main {
 
 
 
+    /**
+     * This function is used to print the all information of a book
+     *
+     * @param newMat The material object that you want to print.
+     */
     static void printBook(Material newMat){
         System.out.println(ANSI_BLUE + "\n\n=================================================");
         System.out.printf(ANSI_BLUE + "|\t\t\t\t%-32s|\n", newMat.getName());
