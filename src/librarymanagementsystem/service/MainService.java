@@ -32,65 +32,73 @@ public class MainService {
      * It creates 3 libraries, 9 accounts, 3 publishers, 3 authors and 5 materials
      */
     public static void mockData() {
-        Library library1 = new Library("Library1", City.ANKARA);
-        Library library2 = new Library("Library2", City.ISTANBUL);
-        Library library3 = new Library("Library3", City.IZMIR);
+        Library library1 = new Library("Nation’s Library", City.ANKARA);
+        Library library2 = new Library("Beyazit State Library", City.ISTANBUL);
+        Library library3 = new Library("Izmir National Library", City.IZMIR);
         libraries.create(library1);
         libraries.create(library2);
         libraries.create(library3);
 
         User user1 = new User("Sefa", "Cahyir", "scahyir", "1234", library1);
-        User user2 = new User("Mustafa", "Mert", "q", "1", library2);
-        User user3 = new User("Emre", "Yılmaz", "Emre9180", "1234", library3);
+        User user2 = new User("Mustafa", "Mert", "mstfmrt", "1234", library2);
+        User user3 = new User("Emre", "Yılmaz", "emre9180", "1234", library3);
+        User user4 = new User("EasyLogin", "Login", "u", "1", library3);
 
-        LibraryManager libManager1 = new LibraryManager("SefaManager", "Cahyir", "scahyirPersonal", "1234", library1);
-        LibraryManager libManager2 = new LibraryManager("MustafaManager", "Mert", "Mustafa52Personal", "1234",
-                library2);
-        Librarian libManager3 = new Librarian("EmreLibrarian", "Yılmaz", "l", "1", library3);
+        LibraryManager libManager1 = new LibraryManager("Alperen", "Karacete", "akaracete", "1234", library1);
+        LibraryManager libManager2 = new LibraryManager("Irfan", "Karatekin", "ikaratekin", "1234", library2);
+        LibraryManager libManager3 = new LibraryManager("EasyLogin", "Login", "lm", "1", library2);
+        Librarian librarian1 = new Librarian("Tuba", "Toprak", "ttoprak", "1234", library3);
+        Librarian librarian2 = new Librarian("EasyLogin", "Login", "l", "1", library3);
 
-        Administrator admin1 = new Administrator("SefaAdmin", "Cahyir", "scahyirAdmin", "1234", library1);
-        Administrator admin2 = new Administrator("MustafaAdmin", "Mert", "Mustafa52Admin", "1234", library2);
-        Administrator admin3 = new Administrator("EmreAdmin", "Yılmaz", "Emre9180Admin", "1234", library3);
+        Administrator admin1 = new Administrator("Administrator", "GTU", "Administrator", "1234", library1);
+        Administrator admin2 = new Administrator("EasyLogin", "Login", "a", "1", library2);
+
 
         accounts.create(user1);
         accounts.create(user2);
         accounts.create(user3);
+        accounts.create(user4);
         accounts.create(libManager1);
         accounts.create(libManager2);
         accounts.create(libManager3);
+        accounts.create(librarian1);
+        accounts.create(librarian2);
         accounts.create(admin1);
         accounts.create(admin2);
-        accounts.create(admin3);
 
-        Publisher publisher1 = new Publisher("Is Bankasi", "Is Bankasi, klasik yayinlar");
-        Publisher publisher2 = new Publisher("Yapikredi", "Yapikredi, klasik yayinlar");
-        Publisher publisher3 = new Publisher("Can Yayinlari", "Can yayinlari, klasik yayinlar");
 
-        publishers.create(publisher1);
-        publishers.create(publisher2);
-        publishers.create(publisher3);
+        Publisher isBankasi = new Publisher("Is Bankasi", "Is Bankasi, klasik yayinlar");
+        Publisher yapiKredi = new Publisher("Yapikredi", "Yapikredi, klasik yayinlar");
+        Publisher can = new Publisher("Can Yayinlari", "Can yayinlari, klasik yayinlar");
+        Publisher natGeo = new Publisher("National Geographic", "National geographic, magazines");
 
-        Author author1 = new Author("JRR Tolkien", "Tolkien", "Born in Turkey");
-        Author author2 = new Author("Lev Nicolovig", "Tolstoy", "Born in Russia");
-        Author author3 = new Author("Stefan", "Zweig", "Born in Germany");
+        publishers.create(isBankasi);
+        publishers.create(yapiKredi);
+        publishers.create(can);
+        publishers.create(natGeo);
 
-        authors.create(author1);
-        authors.create(author2);
-        authors.create(author3);
+        Author kafka = new Author("Franz", "Kafka", "Franz Kafka was one of the most significant and influential fiction writers of the 20th century. Dark, absurdist, and existential, his stories and novels concern the struggles of troubled individuals to survive in an impersonal, bureaucratic world.");
+        Author lev = new Author("Lev", "Tolstoy", "Leo Tolstoy (September 9, 1828-November 20, 1910) was a Russian writer, best known for his epic novels. Born into an aristocratic Russian family, Tolstoy wrote realist fiction and semi-autobiographical novels before shifting into more moral and spiritual works");
+        Author stefan = new Author("Stefan", "Zweig", "Stefan Zweig was born in 1881 in Vienna, into a wealthy Austrian-Jewish family. He studied in Berlin and Vienna and was first known as a poet and translator, then as a biographer. Between the wars, Zweig was an international bestseller… ");
+        Author natGeoTeam = new Author("National Geographic","Team",  "National geographic magazine writer team.");
+        authors.create(kafka);
+        authors.create(lev);
+        authors.create(stefan);
+        authors.create(natGeoTeam);
 
-        Material material1 = new Material(MaterialType.BOOK, "Beyaz", Category.BIOGRAPHIES, new Date(1997513),
-                author1, publisher1, 1024, "A1", "Beyaz Dis Info", library1);
-        Material material2 = new Material(MaterialType.MAGAZINE, "Sefaya Selam olsun", Category.MYSTERY,
-                new Date(1997513),
-                author2, publisher2, 1130,"A2", "Sefaya Selam olsun Info", library2);
-        Material material3 = new Material(MaterialType.MAGAZINE, "Iradenin gucu", Category.LITERARY_FICTION,
-                new Date(1997513),
-                author2, publisher3, 1120, "C3", "Iradenin gucu Info", library3);
-        Material material4 = new Material(MaterialType.MAGAZINE, "Olmaz boyle math", Category.THRILLER,
-                new Date(1997513),
-                author3, publisher2, 2410,"B1", "Olmaz boyle math Info", library2);
-        Material material5 = new Material(MaterialType.BOOK, "Yalan dünya", Category.AUTOBIOGRAPHIES, new Date(1997513),
-                author3, publisher1, 510, "A3", "Yalan dünya Info", library1);
+        Material material1 = new Material(MaterialType.BOOK, "Amok", Category.CLASSICS, new Date(201611),
+                stefan, isBankasi, 104, "A1", "On a sweltering ocean-liner travelling from India to Europe a passenger tells his story: the tale of a doctor in the Dutch East Indies torn between his duty and the pull of his emotions; a tale of power and desire, pride and shame and a headlong flight into folly.", library1);
+        Material material2 = new Material(MaterialType.BOOK, "War and Peace", Category.HISTORY,
+                new Date(200911),
+                lev, isBankasi, 644,"A2", "War and Peace, historical novel by Leo Tolstoy, originally published as Voyna i mir in 1865–69. This panoramic study of early 19th-century Russian society, noted for its mastery of realistic detail and variety of psychological analysis, is generally regarded as a masterwork of Russian literature and one of the world’s greatest novels.", library2);
+        Material material3 = new Material(MaterialType.BOOK, "Anne Karenina", Category.CLASSICS,
+                new Date(201811),
+                lev, can, 1120, "C3", "Anna Karenina is a novel by the Russian author Leo Tolstoy, first published in book form in 1878. Widely considered to be one of the greatest works of literature ever written,Tolstoy himself called it his first true novel. It was initially released in serial installments from 1875 to 1877, all but the last part appearing in the periodical The Russian Messenger.", library3);
+        Material material4 = new Material(MaterialType.BOOK, "The Metamorphosis", Category.CLASSICS,
+                new Date(201511),
+                kafka , yapiKredi, 88,"B1", "As Gregor Samsa awoke one morning from uneasy dreams he found himself transformed in his bed into a gigantic insect. He was laying on his hard, as it were armor-plated, back and when he lifted his head a little he could see his domelike brown belly divided into stiff arched segments on top of which the bed quilt could hardly keep in position and was about to slide off completely. His numerous legs, which were pitifully thin compared to the rest of his bulk, waved helplessly before his eyes." , library2);
+        Material material5 = new Material(MaterialType.MAGAZINE, "National Geographic", Category.HISTORY, new Date(2021512),
+                natGeoTeam, natGeo, 200, "A3", "National Geographic (formerly the National Geographic Magazine, sometimes branded as NAT GEO) is a popular American monthly magazine published by the National Geographic Society. Known for its photojournalism, it is one of the most widely read magazines of all time.", library1);
 
         materials.create(material1);
         materials.create(material2);
@@ -98,9 +106,6 @@ public class MainService {
         materials.create(material4);
         materials.create(material5);
 
-        // author1.addBook(material1);
-        // author2.addBook(material2);
-        // author3.addBook(material4);
     }
 
     /**

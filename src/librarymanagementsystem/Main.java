@@ -707,7 +707,7 @@ public class Main {
     static void rateMaterials() {
         System.out.print(ANSI_CYAN + "   Enter the name of the book want to Rate : ");
         Scanner sc = new Scanner(System.in);
-        String materialName = sc.next();
+        String materialName = sc.nextLine();
         Material newMat = MainService.searchByName(materialName);
         if (newMat == null) {
             System.out.println(ANSI_RED + "   The book your searched couldn't find :(");
@@ -1172,7 +1172,7 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
         System.out.print(ANSI_CYAN + "   Name of the book you want to change status : ");
-        String loanName = sc.next();
+        String loanName = sc.nextLine();
 
         if (MainService.addLoanBook(loanName)){
             System.out.print(ANSI_GREEN + "   Success! \n");
@@ -1190,7 +1190,7 @@ public class Main {
     static void removeLoanBook() {
         Scanner sc = new Scanner(System.in);
         System.out.print(ANSI_CYAN + "   Name of the book you want to change status : ");
-        String loanName = sc.next();
+        String loanName = sc.nextLine();
 
         if (MainService.removeLoanBook(loanName)){
             System.out.print(ANSI_GREEN + "   Success! \n");

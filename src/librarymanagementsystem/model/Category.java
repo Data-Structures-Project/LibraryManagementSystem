@@ -2,7 +2,7 @@ package librarymanagementsystem.model;
 
 // Creating a new type called Category.
 public enum Category {
-    LITERARY_FICTION, MYSTERY, THRILLER, HORROR, HISTORY, SCIENCE_FICTION, BIOGRAPHIES, AUTOBIOGRAPHIES, POETRY;
+    LITERARY_FICTION, MYSTERY, THRILLER, HORROR, HISTORY, SCIENCE_FICTION, BIOGRAPHIES, AUTOBIOGRAPHIES, POETRY, CLASSICS;
 
 
     @Override
@@ -27,6 +27,8 @@ public enum Category {
                 return "Autobiographies";
             case POETRY:
                 return "Poetry";
+            case CLASSICS:
+                return "Classics";
             default:
                 return "";
         }
