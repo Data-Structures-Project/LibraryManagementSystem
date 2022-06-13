@@ -1308,7 +1308,7 @@ public class Main {
         System.out.println(ANSI_BLUE + "|   Choose an Publisher                         |");
         ArrayList<Publisher> pubList = MainService.listPublishers();
         if(pubList.size()==0){
-            System.out.println(ANSI_RED + "|  There is no Author to add Book               |");
+            System.out.println(ANSI_RED + "|  There is no Publisher to add Book             |");
         }
         else {
             for (int i = 0; i < authList.size(); i++) {
