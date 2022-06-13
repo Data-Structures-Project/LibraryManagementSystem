@@ -1742,7 +1742,7 @@ public class Main {
             sc.nextLine();
         }while (!inputFlag);
         List<Material> authorBooks = MainService.searchByAuthor(authorList.get(authorIndex).getName());
-        if (authorBooks == null){
+        if (authorBooks.size() == 0){
             System.out.println(ANSI_RED + "|  There is no materıal for author              |");
             searchMaterials(userType);
             return;
@@ -1820,7 +1820,7 @@ public class Main {
         }while (!inputFlag);
 
         List<Material> publisherBooks = MainService.searchByPublisher(publisherList.get(publisherIndex).getName());
-        if (publisherBooks == null){
+        if (publisherBooks.size() == 0){
             System.out.println(ANSI_RED + "|  There is no materıal for pubisher            |");
             searchMaterials(userType);
             return;
@@ -1899,7 +1899,7 @@ public class Main {
 
 
         List<Material> categoryBooks = MainService.searchByCategory(categoryIndex);
-        if (categoryBooks == null){
+        if (categoryBooks.size() == 0){
             System.out.println(ANSI_RED + "|  There is no materıal for category            |");
             searchMaterials(userType);
             return;
