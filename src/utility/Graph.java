@@ -85,7 +85,6 @@ public class Graph< T
                 ArrayList<Vertex<T>> vAdjList = this.getAdjListOf(v);
                 vAdjList.add(u);
             }
-            System.out.printf("Added edge between vertices %s and %s\n", u, v);
         }
     }
 

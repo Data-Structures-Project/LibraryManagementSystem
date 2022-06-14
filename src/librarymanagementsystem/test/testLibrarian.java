@@ -191,7 +191,7 @@ public class testLibrarian {
     void testSearchCategory(){
         List<Material> classicBooks = null;
         // this category exists
-        classicBooks = MainService.searchByCategory(Category.CLASSICS.ordinal());
+        classicBooks = MainService.searchByCategory(5);
         assertNotNull(classicBooks);
     }
 

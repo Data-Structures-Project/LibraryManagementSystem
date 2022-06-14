@@ -75,7 +75,7 @@ public class testReader {
     @Test
     void testSearchByCategory(){
         // tests if the given category has any books or not
-        List<Material> booksByCategory = MainService.searchByCategory(Category.BIOGRAPHIES.ordinal());
+        List<Material> booksByCategory = MainService.searchByCategory(5);
         assertNotNull(booksByCategory, "No such books exists in this category!");
         if(booksByCategory.size() == 0)
             throw new NoSuchElementException("No elements in the list!");
